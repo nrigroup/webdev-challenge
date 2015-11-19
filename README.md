@@ -42,19 +42,20 @@ Evaluation of your submission will be based on the following criteria.
 ## Instruction
 
 First, you need to create the table below in your database:
-CREATE TABLE `lot` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` datetime DEFAULT NULL,
-  `category` varchar(45) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `lot_condition` varchar(45) DEFAULT NULL,
-  `pre_tax_amount` decimal(10,2) DEFAULT NULL,
-  `tax_name` varchar(45) DEFAULT NULL,
-  `tax_amount` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-);
+
+     CREATE TABLE `lot` (
+       `id` int(11) NOT NULL AUTO_INCREMENT,
+       `date` datetime DEFAULT NULL,
+       `category` varchar(45) DEFAULT NULL,
+       `title` varchar(255) DEFAULT NULL,
+       `location` varchar(255) DEFAULT NULL,
+       `lot_condition` varchar(45) DEFAULT NULL,
+       `pre_tax_amount` decimal(10,2) DEFAULT NULL,
+       `tax_name` varchar(45) DEFAULT NULL,
+       `tax_amount` decimal(10,2) DEFAULT NULL,
+       PRIMARY KEY (`id`),
+       UNIQUE KEY `id_UNIQUE` (`id`)
+     );
 
 Then, modify from line 42 to 47 in uploadCSV.php file to build your database connection.
 
