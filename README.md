@@ -37,3 +37,28 @@ Evaluation of your submission will be based on the following criteria.
 2. Did you document the method for setting up and running your application?
 3. Did you follow the instructions for submission?
 4. Did you style your code in a way that it's easy to read and understand?
+
+
+## Instruction
+
+First, you need to create the table below in your database:
+CREATE TABLE `lot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `lot_condition` varchar(45) DEFAULT NULL,
+  `pre_tax_amount` decimal(10,2) DEFAULT NULL,
+  `tax_name` varchar(45) DEFAULT NULL,
+  `tax_amount` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+);
+
+Then, modify from line 42 to 47 in uploadCSV.php file to build your database connection.
+
+Now, you are ready to go!
+
+In this application, I used Mysql's LOAD DATA INFILE instead of looping sql insert statement through php code, which is much simple and clear way to meet the requirement.
+For the front-end, I used bootstrap library which provides a very clean interface.
