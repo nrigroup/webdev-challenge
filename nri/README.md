@@ -1,5 +1,5 @@
 # Julius Mayiga's Solution to NRI Web Development Challenge
-I chose to use CodeIgniter to complete this challenge
+I chose to use CodeIgniter to complete this challenge. I also added some mix of CSS and jQuery.
 
 ## Setup Instructions
 1. Create a new database
