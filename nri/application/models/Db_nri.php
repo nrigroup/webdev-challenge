@@ -2,10 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Db_nri extends CI_Model{
+    // Constructor
     public function __construct(){
         parent::__construct();
     }
     
+    /**
+     * insert_csv_data, this function handles insertion of csv file data
+     * into the database
+     */
     public function insert_csv_data($csv_array, $csv_file_orignal_name, $csv_file_new_name){
         $this->db->trans_start();
 		
@@ -26,6 +31,10 @@ class Db_nri extends CI_Model{
         return $csv_file_id; 
     }
     
+    /**
+     * select_expense_by_month, this function retrieves 
+     * expenses info per month
+     */
     public function select_expense_by_month(){
         $query = "SELECT MONTH(auction_item_date) AS auction_month, SUM(auction_item_pre_tax_amount) AS pre_tax_amount, SUM(auction_item_tax_amount) AS tax_amount 
         FROM auction_items 
@@ -34,6 +43,10 @@ class Db_nri extends CI_Model{
         return $results->result_array();
     }
     
+    /**
+     * select_expense_by_category, this function retrieves 
+     * expenses info per category
+     */
     public function select_expense_by_category(){
         $query = "SELECT ic.item_category_name AS category_name, SUM(ai.auction_item_pre_tax_amount) AS pre_tax_amount, SUM(ai.auction_item_tax_amount) AS tax_amount 
         FROM auction_items AS ai
@@ -44,6 +57,10 @@ class Db_nri extends CI_Model{
         return $results->result_array();
     }
     
+    /**
+     * select_expense_by_month_i, this function retrieves 
+     * expenses info per month for a particular file that was uploaded
+     */
     public function select_expense_by_month_i($csv_file_id){
         $csv_file_id = $this->db->escape($csv_file_id);
         $query = "SELECT MONTH(ai.auction_item_date) AS auction_month, SUM(ai.auction_item_pre_tax_amount) AS pre_tax_amount, SUM(ai.auction_item_tax_amount) AS tax_amount 
@@ -55,6 +72,10 @@ class Db_nri extends CI_Model{
         return $results->result_array();
     }
     
+    /**
+     * select_expense_by_category_i, this function retrieves 
+     * expenses info per category for a particular file that was uploaded
+     */
     public function select_expense_by_category_i($csv_file_id){
         $csv_file_id = $this->db->escape($csv_file_id);
         $query = "SELECT ic.item_category_name AS category_name, SUM(ai.auction_item_pre_tax_amount) AS pre_tax_amount, SUM(ai.auction_item_tax_amount) AS tax_amount 
@@ -68,6 +89,10 @@ class Db_nri extends CI_Model{
         return $results->result_array();
     }
     
+    /**
+     * insert_csv_file, this function handles insertion of records into
+     * the csv_files table
+     */
     private function insert_csv_file($csv_file_orignal_name, $csv_file_new_name, $csv_file_items_count){
         $csv_file_orignal_name = $this->db->escape($csv_file_orignal_name);
         $csv_file_new_name = $this->db->escape($csv_file_new_name);
@@ -80,6 +105,10 @@ class Db_nri extends CI_Model{
 		return $this->db->insert_id();
     }
     
+    /**
+     * insert_csv_file_to_auction_item, handles insertion of records into the
+     * table 'csv_files_to_auction_items'
+     */
     private function insert_csv_file_to_auction_item($csv_file_id, $auction_item_id){
         $csv_file_id = $this->db->escape($csv_file_id);
         $auction_item_id = $this->db->escape($auction_item_id);
@@ -91,6 +120,10 @@ class Db_nri extends CI_Model{
 		return $this->db->insert_id();
     }
     
+    /**
+     * insert_item_condition, handles insertion of records into the
+     * table 'items_conditions'
+     */
     private function insert_item_condition($item_condition_name){
         $item_condition_name = $this->db->escape($item_condition_name);
         
@@ -102,6 +135,10 @@ class Db_nri extends CI_Model{
 		return $this->db->insert_id();
     }
     
+    /**
+     * insert_item_category, handles insertion of records into the
+     * table 'items_categories'
+     */
     private function insert_item_category($item_category_name){
         $item_category_name = $this->db->escape($item_category_name);
         
@@ -113,6 +150,10 @@ class Db_nri extends CI_Model{
 		return $this->db->insert_id();
     }
     
+    /**
+     * insert_auction_item, handles insertion of records into the
+     * table 'auction_items'
+     */
     private function insert_auction_item($auction_item_date, $item_category_id, $auction_item_lot_title, $auction_item_lot_location, $item_condition_id, $auction_item_pre_tax_amount, $auction_item_tax_name, $auction_item_tax_amount){
         $auction_item_date = $this->db->escape($auction_item_date);
         $item_category_id = $this->db->escape($item_category_id);
