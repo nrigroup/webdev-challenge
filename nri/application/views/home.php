@@ -7,4 +7,3 @@
                 <input type="submit" value="Upload File" />
             </form>
             <br /><br />
-            <?php echo $html; ?>
