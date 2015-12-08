@@ -11,14 +11,14 @@ NOTE: If you want to install the system in any other folder then you will have t
 
 ## Code Files
 1. application/controllers/Inventory.php
-1. application/libraries/Nri.php
-2. application/models/Db_nri.php
-3. application/views/header.php
-4. application/views/footer.php
-5. application/views/home.php
-6. application/views/expenses.php
-7. assets/css/nri.css
-8. assets/js/nri.js
+2. application/libraries/Nri.php
+3. application/models/Db_nri.php
+4. application/views/header.php
+5. application/views/footer.php
+6. application/views/home.php
+7. application/views/expenses.php
+8. assets/css/nri.css
+9. assets/js/nri.js
 
 ## What I am Proud of With My Solution
-Iam particularly the way I structured the database, well optimized storing data in a way that can easily enable retrieval of data important data that can be used in decision making.
+Iam particularly proud of the way I structured the database, well optimized storing data in a way that can easily enable retrieval of data important data that can be used in decision making.
