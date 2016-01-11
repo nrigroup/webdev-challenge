@@ -38,3 +38,10 @@ Evaluation of your submission will be based on the following criteria.
 3. Did you follow the instructions for submission?
 4. Did you style your code in a way that it's easy to read and understand?
 5. Did you go above and beyond? (Did your submission surprise us?)
+
+## Note
+Please submit clean code with proper indentation. Understand that the first thing we do is  
+read your code, not run your code. If you fail to keep consistant and clean indentation and
+some of the best practices is defining your functions and variable names, chances are  
+we will not need to run your code to evaluate your skills.
+
