@@ -1,7 +1,7 @@
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
-We would like to see you use modern php frameworks for the backend. The usual suspects include Laravel, Yii, and Codeigniter. If you prefer NOT to use php frameworks, that is also okay. Simply provide us with reasons for going vanilla php.
+We would like to see you use modern php frameworks for the backend. The usual suspects include Laravel, Yii, and Codeigniter. If you prefer NOT to use php frameworks, that is also okay. Simply provide us with reasons for going vanilla php. However, we do prefer to see your work done in some frameworks.
 For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. Again, if you prefer NOT using any, please provide us with reasons as to why.
 
 ## Submission Instructions
@@ -37,3 +37,4 @@ Evaluation of your submission will be based on the following criteria.
 2. Did you document the method for setting up and running your application?
 3. Did you follow the instructions for submission?
 4. Did you style your code in a way that it's easy to read and understand?
+5. Did you go above and beyond? (Did your submission surprise us?)
