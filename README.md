@@ -41,7 +41,7 @@ Evaluation of your submission will be based on the following criteria.
 
 ## Note
 Please submit clean code with proper indentation. Understand that the first thing we do is  
-read your code, not run your code. If you fail to keep consistant and clean indentation and
-some of the best practices is defining your functions and variable names, chances are  
+read your code, not run your code. If you fail to keep consistant indentation and  
+the best practices in defining your functions and variable names, chances are  
 we will not need to run your code to evaluate your skills.
 
