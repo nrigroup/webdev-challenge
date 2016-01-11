@@ -26,7 +26,7 @@ Imagine that NRI has won some items from an auction. From the auctioneer, we hav
 
 Your application should be easy to set up, and should run on Linux distros such as ubuntu, centos or debian. It should not require any non open-source software.
 
-There are many ways that this application could be built; we ask that you build it in a way that showcases one of your strengths. If you you enjoy front-end development, do something interesting with the interface. If you like object-oriented design, feel free to dive deeper into the domain model of this problem. We're happy to tweak the requirements slightly if it helps you show off one of your strengths.
+There are many ways that this application could be built; we ask that you build it in a way that showcases one of your strengths (OOP, clean interface, clean code, extensible code, high code quailty, beautiful frontend...etc). If you you enjoy front-end development, do something interesting with the interface. If you like object-oriented design, feel free to dive deeper into the domain model of this problem. We're happy to tweak the requirements slightly if it helps you show off one of your strengths.
 
 Once you're done, please submit a paragraph or two in your `README` about what you are particularly proud of in your implementation, and why.
 
@@ -38,6 +38,7 @@ Evaluation of your submission will be based on the following criteria.
 3. Did you follow the instructions for submission?
 4. Did you style your code in a way that it's easy to read and understand?
 5. Did you go above and beyond? (Did your submission surprise us?)
+6. Did you maintain clean code (indentation, comments, naming conventions)
 
 ## Note
 Please submit clean code with proper indentation. Understand that the first thing we do is  
