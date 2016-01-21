@@ -13,16 +13,18 @@ For the frontend, please use your favourite frameworks or libararies such as boo
 Imagine that NRI has won some items from an auction. From the auctioneer, we have received the item details electronically. We would like to import this dataset into our central inventory system. Your task is to create a simple web interface that will accept a `.csv` file and then store them in a relation database.
 
 ### What your web application must do:
-1. Your app must accept a comma separated file with the following columns:date, category, lot title, lot location, lot condition, pre-tax amount, tax name, tax amount
-2. You can make the following assumptions
+0. Have a simple web interface that allows users to upload a csv file.
+1. Gets the uploaded csv file, parses it and saves it into a RDB
+2. After saving into the RDB, display the total spending amount per-month and per-category.
+
+
+* Your app must accept a comma separated file with the following columns:date, category, lot title, lot location, lot condition, pre-tax amount, tax name, tax amount
+* You can make the following assumptions
      - Columns will always be in that order
      - There will always be data in each column
      - There will always be a header line
 
  An example input file named `data.csv` is included in this repo.
-
-1. Your app must parse the given file, and store the information in a relational database.
-2. After upload, your application should display a table of the total spending amount per-month and per-category.
 
 Your application should be easy to set up, and should run on Linux distros such as ubuntu, centos or debian. It should not require any non open-source software.
 
