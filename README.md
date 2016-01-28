@@ -64,3 +64,4 @@ For file filtering, there will be an error message if the file uploaded is not o
 1. copy the folder `webdev-challenge` into the web server's document root
 2. initialize the database structure by following the sql guid scripts from here: http://localhost/webdev-challenge/codes/web/index.php?r=installer
 3. Upload the data.csv data file from here: http://localhost/webdev-challenge/codes/web/index.php?r=inventory/upload
+4. make sure to change file permission to 777 (world-writeable) the following folders recursively: /webdev-challenge/codes/web/assets , /webdev-challenge/codes/web/uploads

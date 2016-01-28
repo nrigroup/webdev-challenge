@@ -18,8 +18,12 @@ class InventoryController extends \yii\web\Controller
         return $this->render('index');
     }
     
-    
-    
+    /**
+     * Accepts csv file and process it, saving into the database and display statistical summary
+     * 
+     * 
+     * 
+     */    
     public function actionUpload()
     {
 				
@@ -40,9 +44,7 @@ class InventoryController extends \yii\web\Controller
 				$dataProviderCategory = $this->displayStatPerCategory();
 				
 				$dataProviderMonth = $this->displayStatPerMonth();
-				
-				
-
+	
                 return $this->render('upload',[
 					'error'=>$this->error, 
 					'dataProviderCategory'=>$dataProviderCategory,
@@ -59,6 +61,13 @@ class InventoryController extends \yii\web\Controller
 		return $this->render('upload', ['model' => $model]);
 	}
 	
+	/**
+	 * Reads file content and convert into array or object
+	 * 
+	 * @params string	$filePath
+	 * @return object
+	 *  
+	 */	
 	private function parseData($filePath)
 	{
 		
@@ -118,6 +127,13 @@ class InventoryController extends \yii\web\Controller
 		
 	}
 	
+	/**
+	 * Saves one record into the database
+	 * 
+	 * @params object $data
+	 * @return bool
+	 * 
+	 */
 	public function saveOneData($data)
 	{
 		$inventoryData = new \app\models\Inventory();
@@ -150,18 +166,27 @@ class InventoryController extends \yii\web\Controller
 		
 	}
 	
+	/**
+	 * Loops at an object or array and save each item into the database
+	 * 
+	 * @params object $data
+	 * @return bool
+	 * 
+	 */
 	public function saveAllData($data)
 	{
 		foreach($data as $key => $item) {
 			
 			$this->saveOneData($item);
 			
-
-			
 		}
 		
 	}
 	
+	/*
+	 * queries into database and display stat summary per category
+	 * 
+	 */
 	public static function displayStatPerCategory()
 	{
 		
@@ -180,6 +205,11 @@ class InventoryController extends \yii\web\Controller
 		
 	}
 	
+	/**
+	 * 
+	 * queries into database and display stat summary per month
+	 * 
+	 */
 	public static function displayStatPerMonth()
 	{
 		
