@@ -48,3 +48,19 @@ read your code, not run your code. If you fail to keep consistant indentation an
 the best practices in defining your functions and variable names, chances are  
 we will not need to run your code to evaluate your skills.
 
+## Developer's comment
+I have created sql initialization scripts. The instructions can be found on this page:
+
+http://localhost/webdev-challenge/codes/web/index.php?r=installer
+
+I have designed the database in such a way that data redundancy is minimized. This is achieved by using lookup tables (ex: categories).
+
+For aesthetics, I have used the Yii framework's builtin attractive and profesional looking widgets like data grid
+
+For file filtering, there will be an error message if the file uploaded is not on a .csv extension
+
+### Installation
+
+1. copy the folder `webdev-challenge` into the web server's document root
+2. initialize the database structure by following the sql guid scripts from here: http://localhost/webdev-challenge/codes/web/index.php?r=installer
+3. Upload the data.csv data file from here: http://localhost/webdev-challenge/codes/web/index.php?r=inventory/upload
