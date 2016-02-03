@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::controller('admin', 'AdminController');
+
+Route::group(['middleware' => ['web']], function () { 
+    Route::controller('admin', 'AdminController');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
