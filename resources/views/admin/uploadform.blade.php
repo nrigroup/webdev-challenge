@@ -1,6 +1,7 @@
 @extends('admin.layout')
 
 @section('additionalstyles')
+<link href="/dist/css/dropzone.css" media="all" rel="stylesheet" type="text/css" />
 @stop
 
 @section('heading')
@@ -26,60 +27,18 @@
                         <div class="panel-body">
                             <div class="row">
                                 {{ Form::open(array('role' => 'form')) }}
-                                    <div class="col-lg-6">
-                                        <div class="form-group{{ $errors->has('name')?' has-error':'' }}">
-                                            <label class='control-label'>Name</label>
-                                            {{ Form::text('name', isset( $menu->name ) ? $menu->name:null, array('class' => 'form-control', 'required' )) }}
-                                            @if ($errors->has('name'))
-                                            @foreach ($errors->get('name') as $message)
-                                                <span class="help-block">
-                                                    <span class="glyphicon glyphicon-warning-sign"></span>
-                                                    {{ $message }}
-                                                </span>
-                                            @endforeach
-                                            @endif
-                                        </div>
-                                        <div class="form-group{{ $errors->has('url')?' has-error':'' }}">
-                                            <label class='control-label'>URL</label>
-                                            {{ Form::text('url', isset( $menu->url ) ? $menu->url:null, array('class' => 'form-control' )) }}
-                                            <p class="help-block">Only required if this has a parent or if it is a parent but has no sub items under it</p>
-                                            @if ($errors->has('url'))
-                                            @foreach ($errors->get('url') as $message)
-                                                <span class="help-block">
-                                                    <span class="glyphicon glyphicon-warning-sign"></span>
-                                                    {{ $message }}
-                                                </span>
-                                            @endforeach
-                                            @endif
-                                        </div>
-                                         <div class="form-group">
-                                            <label>Location</label>
-                                            {{ Form::select('location', array('Side' => 'Side', 'Top' => 'Top'), isset($menu->location)?$menu->location:'Side', array('class' => 'form-control')) }}
-                                        </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="textarea"> Pictures </label>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class='control-label'>Parent</label>
-                                            {{ Form::select('parent', [], isset($menu->parent)?$menu->parent:0, array('class' => 'form-control')) }}
-                                        </div>
-                                        <div class="form-group">
-                                            <label class='control-label'>Order</label>
-                                            {{ Form::select('order', [], isset($menu->order)?$menu->order:0, array('class' => 'form-control')) }}
-                                            <p class="help-block">Works in Descending order, higher number means it will appear higher in the menu</p>
-                                        </div>
-                                        <div class="form-group{{ $errors->has('fa_icon')?' has-error':'' }}">
-                                            <label class='control-label'>Font Awesome Icon</label>
-                                            {{ Form::text('fa_icon', isset( $menu->fa_icon ) ? $menu->fa_icon:null, array('class' => 'form-control', 'required' )) }}
-                                            <p class="help-block"><a target='_blank' href='http://fortawesome.github.io/Font-Awesome/icons/'>Available Icons</a></p>
-                                            @if ($errors->has('fa_icon'))
-                                            @foreach ($errors->get('fa_icon') as $message)
-                                                <span class="help-block">
-                                                    <span class="glyphicon glyphicon-warning-sign"></span>
-                                                    {{ $message }}
-                                                </span>
-                                            @endforeach
-                                            @endif
-                                        </div>
+                                            <div class="col-md-8">
+                                                <div id="ad-photos" class="dropzone">
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-lg-6">
                                         <button type="submit" class="btn btn-default">Save</button>
                                     </div>
                                 {{ Form::close() }}
@@ -103,6 +62,34 @@
 
 
 @section('additionaljavascriptincludes')
+<script src="/dist/js/dropzone.js" type="text/javascript"></script>
+<script>
+$(function () {
+    $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+    });
+
+    var token = "{{ Session::getToken() }}";
+    var baseUrl = "{{ url('/') }}";
+    Dropzone.options.adPhotos = {
+        url: baseUrl + '/admin/upload-csv',
+        params: {
+            _token: token
+        },
+        addRemoveLinks: true,
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 8, // MB
+        acceptedFiles: 'text/csv',
+        uploadMultipel: true,
+        init: function() {
+            this.on("removedfile", function(file) {  
+                $.post('/admin/upload-remove-csv', { _token:token, name: file.name } );
+            });
+        }
+    };
+
+});
+</script>
 @stop
 
 @section('additionaljavascript')
