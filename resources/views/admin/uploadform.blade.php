@@ -28,8 +28,6 @@
                             <div class="row">
                                 {{ Form::open(array('role' => 'form')) }}
                                     <div class="form-group">
-                                        <label class="control-label" for="textarea"> Pictures </label>
-                                    </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <div class="col-md-8">
@@ -39,7 +37,11 @@
                                          </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-default">Save</button>
+                                        <div>
+                                            Use the file upload box and add as many csv files for processing as desired.  The use the button below to submit them for processing.
+                                        </div>
+                                        <br />
+                                        <button type="submit" class="btn btn-default">Submit</button>
                                     </div>
                                 {{ Form::close() }}
                             </div>
