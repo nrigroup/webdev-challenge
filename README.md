@@ -1,12 +1,12 @@
 # Installation Instructions
-clone or download the repository
-run composer install
-renamme .env.exampl to .env
-edit .env updating to the correct settings for your server environment, especially the database settings
-run php artisan migrate
-ensure the following directories and all there sub directories are writable by the web server user
-/storage
-/bootstrap/cache
+- clone or download the repository
+- run composer install
+- renamme .env.exampl to .env
+- edit .env updating to the correct settings for your server environment, especially the database settings
+- run php artisan migrate
+- ensure the following directories and all there sub directories are writable by the web server user
+- /storage
+- /bootstrap/cache
 
 # About my application
 I chose to use Laravel framework for this application.  A framework is well suited to this task and Laravel is actually the only php framework I've used.  I like it's syntax and style, it makes for very clean code.  For the theme, I used a simple bootstrap admin theme called sbadmin2.  My design skills are very limited, so I prefer to use someone elses design and this design is simple, but clean and functional.
