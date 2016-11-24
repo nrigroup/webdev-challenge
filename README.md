@@ -1,13 +1,12 @@
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
-We would like to see you use modern php frameworks for the backend. The usual suspects include Laravel, Yii, and Codeigniter. If you prefer NOT to use php frameworks, that is also okay. Simply provide us with reasons for going vanilla php. However, we do prefer to see your work done in some frameworks.
-For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. Again, if you prefer NOT using any, please provide us with reasons as to why.
+At this time, we would like to see you use Laravel to complete the challenge. If you don't yet know Laravel, give it a try, it's has a gentle learning curve. For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, we use Laravel & Bootstrap & jQuery, and it would help us to evaluate what we know and use.
 
 ## Submission Instructions
 1. Fork this project on github. You will need to create an account if you don't already have one
-2. Complete the project as described below within your fork
-3. Push all of your changes to your fork on github and submit a pull request. 
+2. Complete the challenge within your fork after reading below details.
+3. Push all of your changes to your fork on github and submit a pull request.
 
 ## Project Description
 Imagine that NRI has won some items from an auction. From the auctioneer, we have received the item details electronically. We would like to import this dataset into our central inventory system. Your task is to create a simple web interface that will accept a `.csv` file and then store them in a relation database.
