@@ -1,0 +1,17 @@
+Hi,
+
+About the MVC framework which I didn't use in this project, 
+In most projects I did in previous works, I just developed it from scratch with the team.
+So even though I know the concept of the MVC framework, I'm not familiar with specific ones like Zend, Laravel.
+That's the reason that I didn't use it. But I did this project with php5 oop programming.
+
+About the frontend framework, I just displayed the result of the project by using the Bootstrap.
+
+What I did contains 4 files that are 'db_table_create.php', 'database.php', 'index.php', 'purchase_import.php'
+I used the file (data.cvs) which you provided me with. I tested it in my local environment with success.
+
+About the file called 'db_table_create.php', I created it just for my test environment with server(localhost), db name(nrigroup),
+db user(root), db password(rootadmin). If you review and test it in your environment which might be different with mine, 
+just ignore this file or modify it according to yours.
+
+Thanks..
