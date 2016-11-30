@@ -1,3 +1,22 @@
+# Installation Instructions
+- clone or download the repository
+- run composer install
+- renamme .env.exampl to .env
+- edit .env updating to the correct settings for your server environment, especially the database settings
+- run php artisan migrate
+- ensure the following directories and all there sub directories are writable by the web server user
+- /storage
+- /bootstrap/cache
+
+# About my application
+I chose to use Laravel framework for this application.  A framework is well suited to this task and Laravel is actually the only php framework I've used.  I like it's syntax and style, it makes for very clean code.  For the theme, I used a simple bootstrap admin theme called sbadmin2.  My design skills are very limited, so I prefer to use someone elses design and this design is simple, but clean and functional.
+
+For the file upload, I decided to be a bit more creative.  I used a javascript plugin called dropzone.  It allows for multi upload and for drag and drop uploads.  It uses ajax to upload the files.  So I set up the page to allow you to upload multiple files, the click submit to process all of the uploaded files.  Once processed it clears the files.  I thought this was a more modern and user friendly way to upload and process these files.  I also made use of league/flysystem for managing the files on the filesystem and league/csv for parsing the csv file.
+
+When I started the project, I had intended to add authentication as well, but I just didn't have enough time to get that far.  I have built full admin panels with authentication using laravel previously.  One of these uses the composer package cartalyst/sentry in Laravel 4, another was using Laravel 5 and authenticating against another system by doing api calls.
+
+This was a fun project, this is just the sort of thing I enjoy working on and the sort of tools I like to use.
+
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
