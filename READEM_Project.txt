@@ -1,0 +1,3 @@
+NRI Import and Export with CRUD
+
+Here I developed project for Import and Export with CRUD operation using Laravel Framework and CSS bootstrap framework where you can add, edit, show, import and export data.  
