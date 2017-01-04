@@ -60,9 +60,6 @@ class CsvController extends Controller {
                 } else {
                     Input::file('file')->move($destinationPath, $fileName);
 
-                    //Grant access to uploaded file
-                    //chmod($destinationPath . $fileName, 0666);
-
                     echo "Filed uploaded @: " . $destinationPath . '/' . $fileName . "<br />";
 
                     //Read csv file
@@ -105,6 +102,7 @@ class CsvController extends Controller {
                         $arrCategoryKey = trim($row[1]);
                         $categoryTotal = trim($row[5]) + trim($row[7]);
 
+						//Store result in some array to be displayed later on
                         if (array_key_exists($arrYearMonthKey, $processedData)) {
                             if (array_key_exists($arrCategoryKey, $processedData[$arrYearMonthKey])) {
                                 $processedData[$arrYearMonthKey][$arrCategoryKey] += $categoryTotal;
@@ -128,7 +126,7 @@ class CsvController extends Controller {
         }
 
         return view('csv/upload')->with('data', $processedData)
-                ->with('results', 'Results:');
+                                 ->with('results', 'Results:');
     }
 
 }
