@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('csv', function (){
+
+    request()->file('csv')->store('csv');
+
+    return back();
+
+});
