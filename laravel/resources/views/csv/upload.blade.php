@@ -5,7 +5,7 @@
   <h1>Upload CSV Page</h1>
 </div>
 <div class="form-wrapper">
-    <form id="csv-form" name="csv" method="post" action="/parseData" enctype="multipart/form-data">
+    <form id="csv-form" name="csv" method="post" action="{{url()->current()}}/parseData" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <label for="pwd">CSV Upload*:</label>
