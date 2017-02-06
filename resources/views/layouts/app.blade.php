@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>@yield('title')</title>
+        <title>Test App</title>
 
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
@@ -26,6 +26,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
             <li><a href="/items/upload">Upload CSV</a></li>
+            <li><a href="/items/summary">Summary</a></li>
             <li><a href="/items/view">Items</a></li>
             <li><a href="/items/uploads">Uploads</a></li>
       </ul>

@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/items/view', 'ItemsController@view');
+Route::get('/items/summary', 'ItemsController@summary');
 Route::get('/items/upload', 'ItemsController@upload');
 Route::get('/items/uploads/', 'ItemsController@uploads');
 Route::get('/items/upload_detailed/{id}', 'ItemsController@upload_detailed');

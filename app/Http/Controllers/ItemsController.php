@@ -15,7 +15,17 @@ class ItemsController extends Controller
 
 	public function view() {
 		$items = Item::orderBy('id', 'desc')->paginate(20);
-  	 	return view('items.view', ['items' => $items, 'test' => "Test"]);
+  	 	return view('items.view', 
+  	 		['items' => $items]);
+	}
+
+	public function summary() {
+		$summary = Item::select('category', 
+		DB::raw("DATE_FORMAT(date, '%Y-%m') AS yearmonth"), 
+		DB::raw('sum(pretax_amount) as total'))
+		->groupBy('yearmonth','category')->get();
+		return view('items.summary', 
+			['summary' => $summary]);
 	}
 
 	public function upload() {
@@ -31,12 +41,13 @@ class ItemsController extends Controller
 	public function upload_detailed($id) {
 		$timestamp = Upload::find($id)->timestamp;
 		$items = Item::where('uploadid',$id)->orderBy('date','asc')->get();
-		$monthly = Item::select('category', 
+		$summary = Item::select('category', 
 				DB::raw("DATE_FORMAT(date, '%Y-%m') AS yearmonth"), 
 				DB::raw('sum(pretax_amount) as total'))
 				->where('uploadid', $id)->groupBy('yearmonth','category')->get();
 
-		return view('items.upload_detailed', ['monthly' => $monthly, 
+		return view('items.upload_detailed', 
+			['summary' => $summary, 
 				'items' => $items, 
 				'id' => $id, 
 				'timestamp' => $timestamp]);
