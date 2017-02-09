@@ -1,0 +1,149 @@
+html, body {
+	background-color: #fff;
+	color: #636b6f;
+}
+
+h1{
+	margin-bottom:2em;
+}
+
+p{
+	font-size: 1.3em;
+}
+
+
+li.visible {
+    display: inline;
+    float: none;
+}
+.content {
+	width: 100%;
+	float:left;
+	padding-left: 1em;
+	margin-top:1.5em;
+}
+
+.top_navigation {
+	background-color: black;
+	color: #fff;
+	float: left;
+	padding: 0 2em;
+	width: 100%;
+}
+
+ul {
+	background-color: #000;
+	float: right;
+	list-style-type: none;
+	margin: 2em 0 0;
+	overflow: hidden;
+	padding: 1em 4em;
+}
+
+li {
+	display: inline-block;
+	float: left;
+}
+li a {
+	font-size: 1.5em;
+	color: white;
+	display: inline-block;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+}
+li a:hover {
+	background-color: #111;
+	color:#ccc;
+}
+
+.logo img {
+	 padding: 3em 0 2em;
+	 float: left;
+}
+
+.hide_menu{
+	display:none;
+}
+
+.btn-info {
+	background-color: #0068b3;
+	border-color: #0068b3;
+}
+.menu-hamburger{
+	margin-top: 3em; float: right;display:none;
+}
+.glyphicon-menu-hamburger {
+  font-size: 2em;
+}
+
+.inventory_display{
+	padding:1em;
+	color:#000;
+}
+.inventory_display.header{
+	font-weight:bold;
+}
+
+.make_responsive_ul_visible{
+    margin: -2em 0 1em 0;
+    overflow: hidden;
+    left: -4em;
+    float: left;
+    position: relative;
+    clear: both;
+	width:116%;
+}
+
+._make_responsive_li_visible{
+	display:block;
+	float: none;
+}
+
+
+
+/********FILE UPLOADER******************/
+/***************************************/
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	 margin-right: 10px;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+#file_name_wrapper{ 
+	width:90%; text-align: left;   
+	margin-top: 1em; 
+	color: blavender; 
+	font-weight: bold;
+	padding:0.95em;
+}
+
+.file_name_wrapper_color{
+	 border: 1px solid #ccc;
+}
+
+
+@media screen and (max-width:786px) {
+	.menu-hamburger{display:block;}
+	li {border-bottom:1px solid #1B2932;}
+	li:last-child { border-bottom: none; }
+	li a:hover {
+		background-color: #000;
+		color:#ccc;
+		text-decoration:none;
+	}
+}
+@media screen and (max-width:390px) {
+	.logo img{width:70%;}
+}
