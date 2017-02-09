@@ -11,15 +11,6 @@
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});*/
-
-
-//Route::get('/', 'pageController@getData');
-//Route::post('/insert', 'pageController@insert');
-
 Route::get('/', 'pageController@welcome_to_NRI');
 Route::post('/', 'pageController@welcome_to_NRI');
 Route::post('/upload', 'pageController@upload');
@@ -29,7 +20,3 @@ Route::get('upload', function () {
     return redirect('/');
 });
 
-//Route::get('/', 'pageController@hello');
-
-//Route::get('/', 'pageController@readCSV_File');
-//Route::get('/', 'dbController@getData');
