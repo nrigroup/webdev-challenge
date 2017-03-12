@@ -1,0 +1,189 @@
+#header-hr {
+    background: #2C3E50;
+    margin: 0;
+    padding: 2px 0;
+    border: 0;
+}
+
+.header {
+    padding-top: 0;
+    /*padding-bottom: 20px;*/
+    font-size: 14px;
+    /*background: #34495E;*/
+    /*color: #ffffff;*/
+}
+
+.header a {
+    /*color: #ffffff;*/
+}
+
+.header .active {
+    /*background: #27AE60;*/
+}
+
+.header h1 {
+    padding: 0 0 5px 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+.header h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    /*color: #dedede;*/
+}
+
+.header .active a {
+    /*color: #27AE60;*/
+}
+
+.header .navbar-header {
+    /*background: #27AE60;*/
+}
+
+.header .navbar-nav > li {
+    /*padding: 8px 20px;*/
+}
+
+.guide {
+    background: #2C3E50;
+    color: #ffffff;
+    text-align: center;
+}
+
+.guide .active {
+    background: #34495E;
+}
+
+.guide h1 {
+    padding: 0 0 8px 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+.guide .row div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.guide h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    color: #dedede;
+}
+
+.guide .active a {
+    /*color: #27AE60;*/
+}
+
+.guide a {
+    color: #ffffff;
+}
+
+.form-center {
+    margin: 40px 0;
+}
+
+.form-center .help-block {
+    font-size: 12px;
+}
+
+.form-center a {
+    color: #27AE60;
+}
+
+.main {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.ref {
+    font-size: 13px;
+    color: #aaaaaa;
+}
+
+body {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+a {
+    color: #34495E;
+}
+
+a:hover {
+    color: #2C3E50;
+}
+
+ul.tickets {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.tickets li {
+    padding: 0 0 20px;
+    margin: 4px 0 10px;
+}
+
+ul.tickets li:not(:last-child) {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.hero {
+    background: #34495E;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero h1 {
+    margin: 0;
+    padding: 0 0 10px;
+    font-size: 28px;
+}
+
+.hero h2 {
+    margin: 0 0 20px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #bbb;
+    font-weight: normal;
+}
+
+.hero p {
+    font-size: 16px;
+}
+
+.wizard > li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: ">\00a0"
+}
+
+.wizard li {
+    color: #aaa;
+}
+
+.wizard li.active {
+    color: #333;
+}
