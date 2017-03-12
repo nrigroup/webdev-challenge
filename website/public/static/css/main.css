@@ -1,0 +1,106 @@
+
+.header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.header h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+a {
+    color: #34495E;
+}
+
+a:hover {
+    color: #2C3E50;
+}
+
+.ref {
+    font-size: 13px;
+    color: #aaaaaa;
+}
+
+body {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+ul.tickets {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.tickets li {
+    padding: 0 0 20px;
+    margin: 4px 0 10px;
+}
+
+ul.tickets li:not(:last-child) {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.hero {
+    background: #34495E;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero h1 {
+    margin: 0;
+    padding: 0 0 10px;
+    font-size: 28px;
+}
+
+.hero h2 {
+    margin: 0 0 20px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #bbb;
+    font-weight: normal;
+}
+
+.hero p {
+    font-size: 16px;
+}
+
+.wizard > li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: ">\00a0"
+}
+
+.wizard li {
+    color: #aaa;
+}
+
+.wizard li.active {
+    color: #333;
+}
