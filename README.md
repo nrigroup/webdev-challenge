@@ -2,6 +2,7 @@
 # Author
   - Shisun(Leo) Xia
   - Date: 2017-03-12
+
 # Technical Specifications
   - BackEnd
     * Framework: Laravel
@@ -25,14 +26,17 @@
     * Jquery
     * Bootstrap
     * Html5
+
 # Deployment
   - Redirect the root of server to public/
   - Create a .env file acording to .env.example file
   - Config config/database.php
   - Run php composer.phar update
-  - Run php artisan migrate
+  - Run php artisan migrate Or Import db from nri.sql
+
 # Known issue
   - Deleting file from disk does not work
+
 # Future phase
   - Improvements
     * Fixing the file deletion bug
