@@ -21,6 +21,7 @@ class CreateLotTable extends Migration
             $table->int('category_id');
             $table->int('uploader_id');
             $table->int('tax_id');
+            $table->int('file_id');
             $table->string('tax_amount');
             $table->string('pre_tax');
             $table->string('date');

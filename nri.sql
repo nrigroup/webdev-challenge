@@ -11,7 +11,7 @@
  Target Server Version : 50712
  File Encoding         : utf-8
 
- Date: 03/12/2017 11:35:58 AM
+ Date: 03/12/2017 14:19:47 PM
 */
 
 SET NAMES utf8mb4;
@@ -31,7 +31,7 @@ CREATE TABLE `file` (
   `size` varchar(255) DEFAULT NULL,
   `status` int(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Table structure for `lot`
@@ -50,8 +50,9 @@ CREATE TABLE `lot` (
   `tax_id` int(11) DEFAULT NULL,
   `tax_amount` varchar(255) DEFAULT NULL,
   `pre_tax` varchar(255) DEFAULT NULL,
+  `file_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Table structure for `lot_category`
@@ -64,7 +65,7 @@ CREATE TABLE `lot_category` (
   `created_at` varchar(255) DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Table structure for `tax`
@@ -77,7 +78,7 @@ CREATE TABLE `tax` (
   `created_at` varchar(255) DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Table structure for `user`
