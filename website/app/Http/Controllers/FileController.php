@@ -124,7 +124,6 @@ class fileController extends Controller
     public function import($id)
     {
         $fileRecord=\App\File::findOrFail($id);
-        //$file=Storage::get('uploadedFiles/'.$fileRecord->name);
         //Retrieve all categories and taxes in DB and put the result to two arraies
         $lotCats=\App\LotCategory::get();
         $lotCatsArray=[];
@@ -133,7 +132,7 @@ class fileController extends Controller
         foreach ($lotCats as $cat) {
             $lotCatsArray[$cat->name]=$cat->id;
         }
-        foreach ($taxesArray as $tax) {
+        foreach ($taxes as $tax) {
             $lotCatsArray[$tax->name]=$tax->id;
         }
         $catsFromFile=[];
@@ -142,11 +141,18 @@ class fileController extends Controller
         //Read data from the csv file
         $rows=Excel::load($fileRecord->path)->get();
         foreach ($rows as $row) {
+            $date=explode('/', $row->date);
+            if($date[0]<10){
+                $date[0]='0'.$date[0];
+            }
+            if($date[1]<10){
+                $date[1]='0'.$date[1];
+            }
             $lots[]=['title'=>$row->lot_title,'location'=>$row->lot_location,
-                    'condition'=>$row->lot_condition,'date'=>$row->date,
+                    'condition'=>$row->lot_condition,'date'=>$date[2].'-'.$date[0].'-'.$date[1],
                     'category_id'=>$row->category,'pre_tax'=>$row->pre_tax_amount,
                     'tax_amount'=>$row->tax_amount,'tax_id'=>$row->tax_name,
-                    'uploader_id'=>Auth::id(),
+                    'uploader_id'=>Auth::id(),'file_id'=>$fileRecord->id,
                     'created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')];
             if(!array_key_exists($row->category,$lotCatsArray)){
                 $catsFromFile[]=['name'=>$row->category,'parent_id'=>'0','created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')];
@@ -197,6 +203,10 @@ class fileController extends Controller
      */
     public function download($id){
         $fileRecord=\App\File::findOrFail($id);
+        $lots = $fileRecord->lots()->get();
+        foreach ($lots as $lot) {
+            $lot->delete();
+        }
         return response()->download($fileRecord->path,'yourFile.csv', ['content-type' => 'text/cvs']);
     }
 }

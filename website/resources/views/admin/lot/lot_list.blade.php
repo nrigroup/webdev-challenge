@@ -30,7 +30,7 @@
 @stop
 
 @section("content")
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 col-lg-11 col-lg-offset-1 main">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 col-lg-12 main">
         <h1 class="page-header">Lots
 		<small><a href="/lot/create"> New+ &raquo;</a></small>
 		</h1>
@@ -46,6 +46,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#" onclick="return batchDelete();">Delete</a></li>
                 </ul>
+                <button class="btn btn-default" data-toggle="modal" data-target="#searchModal">Search</button>
             </div>
         </div>
         <div class="table-responsive">
@@ -62,6 +63,7 @@
                     <th>Tax Amount</th>
                     <th>Pre-tax Amount</th>
                     <th>Uploader</th>
+                    <th>Source</th>
                     <th>Date</th>
                     <th>Date of Update</th>
                     <th>Date of Creation</th>
@@ -82,6 +84,7 @@
                     <td><?php echo htmlspecialchars($lot->tax_amount);?></td>
                     <td><?php echo htmlspecialchars($lot->pre_tax);?></td>
 					<td><?php if($lot->uploader!=null):?><?php echo htmlspecialchars($lot->uploader->name);?><?php endif;?></td>
+                    <td><?php if($lot->source!=null):?><?php echo htmlspecialchars($lot->source->name);?><?php endif;?></td>
                     <td><?php echo htmlspecialchars($lot->date);?></td>
                     <td><?php echo \App\Toolkits\Display::showDate($lot->updated_at);?></td>
                     <td><?php echo \App\Toolkits\Display::showDate($lot->created_at);?></td>
@@ -104,6 +107,59 @@
             </table>
         </div>
         <?php echo $lots->render();?>
+        <!-- Modal -->
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Upload File</h4>
+              </div>
+              <div class="modal-body">
+                <form id="searchForm" action="/lot/filter" method="post">
 
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label for="keyword">Title</label>
+                        <input type="text" name="keyword" class="form-control" id="keyword">
+                    </div>
+                    <div class="form-group">
+                        <label for="from">From</label>
+                        <input type="date" name="from" class="form-control" id="from">
+                    </div>
+                    <div class="form-group">
+                        <label for="to">To</label>
+                        <input type="date" name="to" class="form-control" id="to">
+                    </div>
+                    <div class="form-group">
+                        <label for="file_id">Source</label>
+                        <select name="file_id">
+                        <option selected=""></option>
+                            <?php foreach($files as $file):?>
+                          <option value="<?php echo $file->id;?>"><?php echo $file->name;?></option>
+                          <?php endforeach;?>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="category_id">Category</label>
+                        <select name="category_id">
+                          <option selected=""></option>
+
+                            <?php foreach($cats as $cat):?>
+                          <option value="<?php echo $cat->id;?>"><?php echo $cat->name;?></option>
+                          <?php endforeach;?>
+                        </select>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="$('#searchForm').submit();">Search</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
     </div>
 @stop

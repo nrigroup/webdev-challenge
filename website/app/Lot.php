@@ -21,4 +21,7 @@ class Lot extends Model
 	public function uploader(){
 		return $this->belongsTo('App\User','uploader_id','id');
 	}
+	public function source(){
+		return $this->belongsTo('App\File','file_id','id');
+	}
 }

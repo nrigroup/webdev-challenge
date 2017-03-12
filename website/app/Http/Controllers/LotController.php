@@ -28,9 +28,39 @@ class LotController extends Controller
     public function index(Request $request)
     {
         
-		$lots = \App\Lot::orderBy('id', 'desc')->with('category')->with('uploader')->with('tax')->paginate();
-        return view('admin/lot/lot_list', ['lots' => $lots]);
+		$lots = \App\Lot::orderBy('id', 'desc')->with('category')->with('uploader')->with('source')->with('tax')->paginate();
+        $cats = \App\LotCategory::get();
+        $files=\App\File::get();
+        return view('admin/lot/lot_list', ['lots' => $lots,'cats'=>$cats,'files'=>$files]);
 		
+    }
+
+    /**
+     * Display a listing of filtered lots .
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request)
+    {
+        $lots = \App\Lot::orderBy('id', 'desc');
+        if($request->category_id){
+            $lots=$lots->where('category_id',$request->category_id);
+        }
+        if($request->file_id){
+            $lots=$lots->where('file_id',$request->file_id);
+        }
+        if($request->from){
+            $lots=$lots->where('date','>=',$request->from);
+        }
+        if($request->to){
+            $lots=$lots->where('date','<=',$request->to);
+        }
+        if($request->keyword){
+            $lots=$lots->where('title','like','%'.$request->keyword.'%');
+        }
+        $lots=$lots->with('category')->with('uploader')->with('source')->with('tax')->get();
+        return view('admin/lot/lot_filter_list', ['lots' => $lots]);
+        
     }
 
     /**

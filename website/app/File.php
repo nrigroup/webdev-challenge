@@ -10,4 +10,7 @@ class File extends Model
     public function owner(){
 		return $this->belongsTo('App\User','owner_id','id');
 	}
+	public function lots(){
+		return $this->hasMany('App\Lot','file_id','id');
+	}
 }

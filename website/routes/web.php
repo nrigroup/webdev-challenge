@@ -21,6 +21,7 @@ Route::get('file/import/{id}', 'FileController@import');
 Route::get('file/download/{id}', 'FileController@download');
 Route::get('user/login', 'UserController@login');
 Route::get('user/register', 'UserController@register');
+Route::post('lot/filter', 'LotController@filter');
 Route::resource('user', 'UserController');
 Route::resource('tax', 'TaxController');
 Route::resource('file', 'FileController');
