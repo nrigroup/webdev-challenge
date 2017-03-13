@@ -1,4 +1,11 @@
 # NRI Web Development Challenge
+
+## Summary
+I am proud of how simple and effortless a user would have to use this application. They only have to click once to achieve their goal. They don't need to be rerouted to another page to see results and the result of their action is easy to digest.
+
+Thanks for the challenge guys! Here is a [GIF image](https://gyazo.com/a8df7ab76d2a26b8499a6fcac0fbbe38) to see it in action. I look forward to meeting the team :) 
+
+## Instructions
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
 At this time, we require you to use a PHP MVC framework, preferably Laravel to complete the challenge. If you don't yet know Laravel, [give it a try](https://laravel.com/), it has a gentle learning curve. For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, we use Laravel, Bootstrap & jQuery, and it would help us to evaluate what we know and use.
