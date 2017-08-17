@@ -136,6 +136,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -187,12 +188,13 @@ return [
         'Response'  => Illuminate\Support\Facades\Response::class,
         'Route'     => Illuminate\Support\Facades\Route::class,
         'Schema'    => Illuminate\Support\Facades\Schema::class,
-        'Session'   => Illuminate\Support\Facades\Session::class,
+        'Session'   => Illuminate\Support\FacaIlluminate\Session\SessionServiceProvideCollective::class,des\Session::class,
         'Storage'   => Illuminate\Support\Facades\Storage::class,
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-
+        'HTML'      => Illuminate\Html\HtmlFacade::class,
+        'Form'      => Illuminate\Html\FormFacade::class,
     ],
 
 ];
