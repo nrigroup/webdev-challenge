@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\HomeRepositoryInterface;
 use File;
 use Input;
 use DB;
@@ -10,6 +11,12 @@ use Request;
 
 class HomeController extends Controller
 {
+	protected $home;
+	
+	public function __construct(HomeRepositoryInterface $home)
+    {
+	    $this->home = $home;
+    }
 	/**
 	*Loads the home page
 	*/
@@ -19,8 +26,6 @@ class HomeController extends Controller
 
 		return view('home', compact('pageType'));
 	}
-
-	//TODO: Create a DBHomeRepository.php in eloquent folder to handle the database calls
 
     /**
      * This is the function which is called when the file is uploaded
@@ -41,10 +46,8 @@ class HomeController extends Controller
 
 		// The total number of lines will be stored in the count variable
     	$count = count($lines);
-        
-		// Before the insert statement all the data must be truncated
-		DB::table('category_amount')
-		 ->truncate();
+
+    	$this->home->trunateBeforeInsert();
 
         // Loop through all the lines except the header
     	for($i = 1; $i < $count; $i++)
@@ -54,19 +57,8 @@ class HomeController extends Controller
 
             // Convert the date to database date format i.e Y-M-d
     		$date = date('Y-m-d', strtotime(str_replace('-', '/', $data[0])));
-
-			// Insert the data into the category table
-    		$insert_data = DB::table('category_amount')
-				    		->insert([
-				    			'tax_date' => $date, 
-				    			'category' => $data[1],
-				    			'iot_title' => $data[2],
-				    			'iot_location' => $data[3],
-				    			'iot_condition' => $data[4],
-				    			'pre_tax_amt' => $data[5],
-				    			'tax_name' => $data[6],
-				    			'tax_amt' => $data[7]
-				    			]);
+            
+    		$res = $this->home->storeCSVParsedData($data, $date);
     	}
 
     	return Response::json(['success' => 1]);
@@ -82,8 +74,7 @@ class HomeController extends Controller
     public function fetchFullData()
     {
 	    // fetch the data from the category table
-		$category_data = DB::table('category_amount')
-			    		->get();
+		$category_data = $this->home->fetchFullData();
 
 	    return Response::json(['data' => $category_data]);
     }
@@ -95,9 +86,7 @@ class HomeController extends Controller
      */
 	public function fetchPerMonth()
 	{
-		$month_data =  DB::select("SELECT MONTHNAME(tax_date) as month, SUM(pre_tax_amt+tax_amt) AS total
-								   FROM category_amount
-								   GROUP BY month");
+		$month_data =  $this->home->fetchPerMonth();
 
 	    return Response::json(['data' => $month_data]);
 	}
@@ -109,9 +98,7 @@ class HomeController extends Controller
      */
 	public function fetchPerCategory()
 	{
-		$category_data =  DB::select("SELECT category, SUM(pre_tax_amt+tax_amt) AS total
-                                  FROM category_amount
-                                  GROUP BY category");
+		$category_data =  $this->home->fetchPerCategory();
 
 	    return Response::json(['data' => $category_data]);
 	}
