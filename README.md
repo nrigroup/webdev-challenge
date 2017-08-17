@@ -12,10 +12,11 @@ At this time, we require you to use a PHP MVC framework, preferably Laravel to c
 Imagine that NRI has won some items from an auction. From the auctioneer, we have received the item details electronically. We would like to import this dataset into our central inventory system. Your task is to create a simple web interface that will accept a `.csv` file and then store them in a relation database.
 
 ### What your web application must do:
-1. Show a simple, attractive web interface that allows users to upload a file.
-2. Gets the uploaded csv file, parses it and saves it into a RDB.
-3. After saving into the RDB, displays the total spending amount per-month and per-category.
-4. These are the basic requirements of this challenge. Other features you implement will count as bonus.
+1. Observe MVC structure in your code.
+2. Show a simple, attractive web interface that allows users to upload a file.
+3. Gets the uploaded csv file, parses it and saves it into a RDB.
+4. After saving into the RDB, displays the total spending amount per-month and per-category.
+5. These are the basic requirements of this challenge. Other features you implement will count as bonus.
 
 * Your app must accept a comma separated file with the following columns:date, category, lot title, lot location, lot condition, pre-tax amount, tax name, tax amount
 * You can make the following assumptions
