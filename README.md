@@ -1,3 +1,10 @@
+## IMPLEMENTATION WHICH I'M PROUD OF
+
+1. I have used a simple and eleqant ajax plugin to upload the file which shows the progress bar, success       and error messages to the users therefore the best user experience.
+2. I implemented the jquery datatable to display the data. It has features to sort, search and pagination      functionalities which makes the users feel comfortable using the application.
+3. The parse method is extremely simple and powerful to parse any similar kind of CSV file.
+4. I have used AJAX to load the data and upload file, so the user have an amazing experience as the page       don't load.
+
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
