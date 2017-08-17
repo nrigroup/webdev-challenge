@@ -1,0 +1,92 @@
+.navbar{
+	box-shadow:0 0 3px 0 black;
+}
+.top-navbar-brand
+{
+	margin: 12px 0px;
+	font-size:35px;
+	font-family: 'Roboto Slab', serif;
+}
+.navbar-nav{
+	margin: 12px 0px;
+}
+.footer-content
+{
+	margin: 10px;
+}
+#form .container{
+	margin-top:145px;
+	margin-bottom:70px;
+}
+.panel-heading{
+	border-bottom: 1px solid #aaa;
+}
+.form{
+	background:#f8f8f8;
+	border-radius:5px;
+}
+.jumbotron{
+	color:white;
+}
+.jumbotron p,.jumbotron p{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+#btn-login{
+	border-left:1px solid #aaa;
+}
+#btn-login .btn{
+	margin-left: 10px;
+}
+#loginform .input-group{
+	margin-bottom: 25px;
+}
+#loginform .input-group[class*="col-"]{
+	float:left;
+}
+.login-action{
+	border-top:1px solid #aaa;
+	margin-bottom:0px;
+}
+.panel{
+	margin-bottom:0;
+	box-shadow:0px 0px 20px 1px black;
+	border-radius:20px;
+}
+.panel-body{
+	padding-top:30px;
+}
+.panel-title{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+.panel-title span{
+	font-family: 'Roboto Slab', serif;
+}
+#loginbox{
+	padding: 20px;
+}
+#registertext{
+	padding: 20px;
+}
+.white-alpha-90{
+	/* Fallback for web browsers that don't support RGBa */
+    background-color: white;
+    /* RGBa with 0.6 opacity */
+    background-color: rgba(256, 256, 256, 0.9);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+.black-alpha-90{
+	/* Fallback for web browsers that don't support RGBa */
+    background-color: black;
+    /* RGBa with 0.6 opacity */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+.bigger-130{
+	font-size:130%;
+}
