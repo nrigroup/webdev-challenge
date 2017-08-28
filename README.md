@@ -48,3 +48,12 @@ read your code, not run your code. If you fail to keep consistant indentation an
 the best practices in defining your functions and variable names, chances are  
 we will not need to run your code to evaluate your skills.
 
+## Submission
+
+One of the features that I enjoyed implementing was the migration between the model (class) and the table in the database. This made the development simple in mapping between an object and the table in the database. I was aslo proud of the presentation that was created via bootsrap.
+
+### Instructions for Running the APP
+- Index method displays the first upload page
+- Once CSV file is uploaded the report page will be displayed
+
+- The application will automatically create the tables in a database name db. Make sure you have a database name db before running.
