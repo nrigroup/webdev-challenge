@@ -1,0 +1,30 @@
+<table class="table table-hover table-striped">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>date</th>
+			<th>category</th>
+			<th>lot_title</th>
+			<th>lot_location</th>
+			<th>lot_condition</th>
+			<th>pre_tax</th>
+			<th>tax_name</th>
+			<th>tax_amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach($categorized[$category] as $item)
+			<tr>
+				<td>{{$item->id}}</td>
+				<td>{{$item->date}}</td>
+				<td>{{$item->category}}</td>
+				<td>{{$item->lot_title}}</td>
+				<td>{{$item->lot_location}}</td>
+				<td>{{$item->lot_condition}}</td>
+				<td>{{$item->pre_tax}}</td>
+				<td>{{$item->tax_name}}</td>
+				<td>{{$item->tax_amount}}</td>
+			</tr>
+		@endforeach
+	</tbody>
+</table>
