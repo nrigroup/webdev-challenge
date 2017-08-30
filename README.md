@@ -1,5 +1,7 @@
 # NRI Webdev challenge: Inventory CSV
 
+This is build completely with laravel. I didn't use any frontend js frameworks because I haven't built a full stack app with laravel in some time so I thought it would be best to forego using a js framework and recap my laravel knowledge. I have other projects on my github that display my JS framework knowledge/skills if that needs to be examined.
+
 ## Instructions
 1. Clone the repo and cd into it
 2. make a relational Database (DB) named anything
