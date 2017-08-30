@@ -3,7 +3,6 @@
 	<div class="row">
 		<div class="col-sm-4 col-md-offset-3">
 			<div class="form-group">
-				<label for="csvfile" class="label-control">Select CSV file to upload</label>
 				<input  type="file" name="csvfile">
 			</div>
 		</div>
