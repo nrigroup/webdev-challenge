@@ -3,10 +3,11 @@
 ## Instructions
 1. Clone the repo and cd into it
 2. make a relational Database (DB) named anything
-3. edit ```.env```
+3. edit ```.env``` to set DB credentials
     * set ```DB_DATABASE``` to the name from step 2
     * set ```DB_USERNAME``` to your DB's username
     * set ```DB_PASSWORD``` to your DB's password
+    * set any other DB credentials that may be different from the default
 4. run the command ```php artisan migrate``` to migrate the DB ```inventories``` table
 5. run the command ```php artisan serve``` to serve the app and go to the address displayed
 6. upload a valid ```.csv``` file
