@@ -16,7 +16,8 @@ class ParseController extends MasterController
     public function parse(Request $request)
     {
     	/**
-    	* First, we do a validation for a CSV file. A manual validation is needed for     	* checking if the input file is a valid CSV file
+    	* First, we do a validation for a CSV file. A manual validation is needed for     	
+        * checking if the input file is a valid CSV file
     	*/	
     	$csvfile = $request->csvfile;
 
