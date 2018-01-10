@@ -8,7 +8,7 @@
         <div class="row">
 
             <div class="jumbotron center">
-                <h1 class="white-text">Welcome to {{ config('app.name') }}</h1>
+                <h1 class="white-text">Welcome to csv-parser</h1>
 
                 <div class="jumbotron bottom">
                     <div class="center-block">
