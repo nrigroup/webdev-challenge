@@ -1,0 +1,67 @@
+/*Import font family*/
+@import 'https://fonts.googleapis.com/css?family=Montserrat';
+
+/*Global body background pattern*/
+body {
+  min-height: 100%;
+  background: #f76da9;
+  background: -moz-linear-gradient(45deg, #f76da9 17%, #716fee 57%, #75a9fd 100%);
+  background: -webkit-linear-gradient(45deg, #f76da9 17%,#716fee 57%,#75a9fd 100%);
+  background: linear-gradient(45deg, #f76da9 17%,#716fee 57%,#75a9fd 100%);
+}
+
+.tables {
+  position: absolute;
+  top:50%;
+  left:50%;
+}
+
+.space {
+  padding-top:10%;
+}
+
+
+.white-text {
+  color:white;
+}
+
+.jumbotron.center {
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	font-family: Monteserrat;
+  background: rgba(122, 130, 136, 0.2)!important;
+  box-shadow: 0px 0px 6px black;
+  margin: auto;    
+}
+
+.jumbotron.bottom {
+	position: relative;
+	font-family: Monteserrat;
+  background: rgba(122, 130, 136, 0.1)!important;
+}
+
+
+/*Media Queries for responsiveness*/
+@media only screen and (max-width: 700px) {
+  .jumbotron.center {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .jumbotron.bottom {
+    width: 100% !important;
+    height: 100% !important;	
+  }
+
+  .alert.alert-danger {
+    position: relative;
+    margin-top: 100%;
+    z-index: 999;
+  }
+
+  
+}
+
+
