@@ -16,7 +16,7 @@
 
 <body>
 
-    <!-- Import validation error -->
+    <!-- Yield the content section -->
     @yield('content')
     
 </body>
