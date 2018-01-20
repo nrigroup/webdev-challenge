@@ -17,6 +17,7 @@
                     <img src="img/excel-to-mysql-illustration.png" class="img-responsive" alt="Cinque Terre">
                 </div>
                 <div class="col-sm-4">
+                    <a href="{!! asset('doc/data.csv')!!}" download="data.csv"><h4>Download sample CSV file</h4></a>
                     @if ( Session::has('success') )
                             <div class="alert alert-success alert-block" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -62,7 +63,7 @@
             <h2 class="hidden">
                 {{$recordCount = count($auctions)}}</h2>
             @if ($recordCount > 0)
-            <table id="customers" class="table-responsive table tb table-striped table-bordered table-hover">
+            <table  class="table-responsive table tb table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
                         <th>Date</th>
@@ -96,7 +97,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <table id="customers" class="table-responsive table tb table-striped table-bordered table-hover">
+            <table  class="table-responsive table tb table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
                         <th>Year/Month</th>
