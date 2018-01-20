@@ -4,12 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Import CSV/XLS file into database using Laravel</title>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="{!! asset('css/style.css') !!}" media="all" rel="stylesheet" type="text/css" />
 </head>
+
+
+
     <body>
         <div class="container">
             <div class="row">
@@ -63,7 +67,13 @@
             <h2 class="hidden">
                 {{$recordCount = count($auctions)}}</h2>
             @if ($recordCount > 0)
-            <table  class="table-responsive table tb table-striped table-bordered table-hover">
+                <script type="text/javascript">
+                    $(function () {
+                        $('table').addClass('table').wrap('<div class="table-responsive"></div>');
+                    });
+
+                </script>
+            <table  class="table-responsive table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
                         <th>Date</th>
@@ -97,7 +107,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <table  class="table-responsive table tb table-striped table-bordered table-hover">
+            <table  class="table-responsive table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
                         <th>Year/Month</th>
