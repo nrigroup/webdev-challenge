@@ -9,7 +9,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="{!! asset('css/style.css') !!}" media="all" rel="stylesheet" type="text/css" />
-
 </head>
     <body>
         <div class="container">
@@ -60,6 +59,9 @@
                     </div>
                 </div>
             </form>
+            <h2 class="hidden">
+                {{$recordCount = count($auctions)}}</h2>
+            @if ($recordCount > 0)
             <table id="customers" class="table-responsive table tb table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
@@ -112,6 +114,7 @@
                     @endforeach
                 </tbody>
             </table>
+            @endif
         </div>
     </body>
 </html>
