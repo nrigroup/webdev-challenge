@@ -1,0 +1,18 @@
+.container {
+    padding: 150px 0 !important;
+}
+.ml {
+    margin-left: 10px;
+}
+#text-input {
+    width: 250px;
+}
+#text-input:focus {
+    width: 350px;
+}
+#short-url {
+    display: none;
+}
+#error {
+    display: none;
+}
