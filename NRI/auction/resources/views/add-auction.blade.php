@@ -61,9 +61,7 @@
                     </div>
                 </div>
             </form>
-            <h2 class="hidden">
-                {{$recordCount = count($auctions)}}</h2>
-            @if ($recordCount > 0)
+            @if (count($auctions) > 0)
             <table  class="table-responsive table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
