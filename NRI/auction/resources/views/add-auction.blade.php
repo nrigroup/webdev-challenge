@@ -11,9 +11,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="{!! asset('css/style.css') !!}" media="all" rel="stylesheet" type="text/css" />
 </head>
-
-
-
     <body>
         <div class="container">
             <div class="row">
@@ -67,12 +64,6 @@
             <h2 class="hidden">
                 {{$recordCount = count($auctions)}}</h2>
             @if ($recordCount > 0)
-                <script type="text/javascript">
-                    $(function () {
-                        $('table').addClass('table').wrap('<div class="table-responsive"></div>');
-                    });
-
-                </script>
             <table  class="table-responsive table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
