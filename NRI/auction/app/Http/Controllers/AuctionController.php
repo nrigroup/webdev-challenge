@@ -14,8 +14,8 @@ class AuctionController extends Controller
     public function index()
     {
         $auctions=Auction::all();
-        $results = DB::select('SELECT DATE_FORMAT(date, "%Y-%m") as date,category,SUM(pre_tax_amount + tax_amount) as total_amount FROM `auctions`
-                               GROUP BY category,DATE_FORMAT(date, "%Y-%m")');
+        $results = DB::select('SELECT DATE_FORMAT(date, "%m-%Y") as date,category,SUM(pre_tax_amount + tax_amount) as total_amount FROM `auctions`
+                               GROUP BY category,DATE_FORMAT(date, "%m-%Y")');
         return view('add-auction',compact('auctions','results'));
     }
     public function destroy($id)

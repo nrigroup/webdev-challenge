@@ -110,7 +110,7 @@
             <table  class="table-responsive table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="bg-info">
-                        <th>Year/Month</th>
+                        <th>Month-Year</th>
                         <th>Category</th>
                         <th>Total spending amount</th>
                     </tr>
