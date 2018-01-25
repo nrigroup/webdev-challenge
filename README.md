@@ -12,5 +12,5 @@ Follow the following instructions to set up the project:
 6. Update database configurations in .evn file, include DB_DATABASE, DB_USERNAME, DB_PASSWORD, etc
 7. Run php artisan migrate
 
-Now you are ready to and run the app.
+Now you are ready to run the app.
 
