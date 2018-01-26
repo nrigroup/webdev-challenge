@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', ['uses' => 'LotController@create']);
-Route::post('/item/store', ['uses' => 'LotController@store']);
-Route::get('/lot/view/{id}', ['uses' => 'LotSetController@view']);
+Route::get('/', ['uses' => 'LotController@create'])->name('upload');
+Route::post('/lotset/store', ['uses' => 'LotController@store']);
+Route::get('/lotset/view/{id}', ['uses' => 'LotSetController@view']);
+Route::get('/lotset/view', ['uses' => 'LotSetController@viewAll'])->name('view-all');
+Route::get('/lot/view', ['uses' => 'LotSetController@viewAll'])->name('view-all');
