@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['uses' => 'LotController@create']);
+Route::post('/item/store', ['uses' => 'LotController@store']);
+Route::get('/lot/view/{id}', ['uses' => 'LotSetController@view']);
