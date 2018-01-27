@@ -16,15 +16,15 @@ class CreateLotsTable extends Migration
         Schema::create('lots', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-			$table->integer('lot_id');
+			$table->integer('lot_set_id');
             $table->date('date');
             $table->string('category');
             $table->string('lot_title');
             $table->string('lot_location');
             $table->string('lot_condition');
-            $table->decimal('pre-tax_amount', 20,2);
+            $table->decimal('pre_tax_amount', 20,2);
             $table->string('tax_name');
-            $table->decimal('tax_amount', 2, 2);
+            $table->decimal('tax_amount', 20, 2);
         });
     }
 

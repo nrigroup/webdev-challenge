@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Traits\LotTrait;
+use App\LotSet;
 
 class LotSetController extends Controller
 {
@@ -23,7 +25,7 @@ class LotSetController extends Controller
      */
     public function create()
     {
-        //
+        return view('upload');
     }
 
     /**
@@ -32,9 +34,25 @@ class LotSetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+	 
+		use LotTrait;
     public function store(Request $request)
     {
-        //
+        $csv = $request->file('file');
+		$lotSet = new LotSet;
+        $lotSet->save();
+		$first_row = true;
+		
+		$fh = fopen($csv->getRealPath(), "r");
+		 while (($rowData = fgetcsv($fh, 0, "\n", '"')) !== FALSE) {
+			 if ($first_row) {
+                $first_row = false;
+                continue;
+            }
+			
+			  $lotSet->lots()->save($this->storeLot($rowData[0]));
+		 }
+		 return redirect('lotset/show/' . $lotSet->id);
     }
 
     /**
@@ -45,7 +63,8 @@ class LotSetController extends Controller
      */
     public function show($id)
     {
-        //
+        $lotSet = LotSet::with('lots')->findOrFail($id);
+		return view('upload');
     }
 
     /**
@@ -72,12 +91,11 @@ class LotSetController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Return all lots from all LotSets
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function viewAll()
     {
         //
     }

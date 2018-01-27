@@ -23,7 +23,7 @@ class LotController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
