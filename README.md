@@ -8,3 +8,5 @@ I'm also proud of my web routes design. Assigning an ID to each LotSet allowed m
 
 Once again, thanks NRI for the opportunity.
 
+PS: I've uploaded a version live on my website here: http://www.osamaalam.tk/NRIWebDevChallenge/public/
+
