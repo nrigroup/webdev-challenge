@@ -23,4 +23,32 @@ class LotSet extends Model
     {
         return $this->hasMany('App\Lot');
     }
+	
+	public function totalSpendingByMonth()
+	{
+		$lots = collect([]);
+		$lots = $this->lots->groupBy(function($lot) {
+                return $lot->date->format('Y-m');
+            });
+		$totalSpent = [];
+		foreach ($lots as $month => $lot) {
+            $totalSpent[$month] = $lot->sum('pre_tax_amount')+$lot->sum('tax_amount');
+        }
+		return $this->getTotal($lots);
+		
+	}
+	
+	public function totalSpendingByCategory()
+	{
+		$lots = $this->lots->groupBy('category');
+		return $this->getTotal($lots);
+		
+	}
+	public function getTotal($lots){
+		$totalSpent = [];
+		foreach ($lots as $hash => $lot) {
+            $totalSpent[$hash] = $lot->sum('pre_tax_amount')+$lot->sum('tax_amount');
+        }
+		return $totalSpent;
+	}
 }

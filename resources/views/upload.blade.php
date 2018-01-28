@@ -4,7 +4,7 @@
 
 <div class="container">
 <fieldset>
-<legend>title</legend>
+<legend>Upload a Lot CSV</legend>
 <form id="CSVForm" method="post"
 enctype="multipart/form-data">
 <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
@@ -18,9 +18,5 @@ enctype="multipart/form-data">
 </div>
 </form>
 </fieldset>
-
-<div id="messages">
-<p>Status Messages</p>
-</div>
 </div>
 @endsection

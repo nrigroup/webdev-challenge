@@ -15,7 +15,8 @@ class LotSetController extends Controller
      */
     public function index()
     {
-        //
+        $lotSets = LotSet::all();
+		return view('viewHistory')->with('lotSets', $lotSets);
     }
 
     /**
@@ -52,7 +53,7 @@ class LotSetController extends Controller
 			
 			  $lotSet->lots()->save($this->storeLot($rowData[0]));
 		 }
-		 return redirect('lotset/show/' . $lotSet->id);
+		 return('lotset/show/' . $lotSet->id);
     }
 
     /**
@@ -63,8 +64,12 @@ class LotSetController extends Controller
      */
     public function show($id)
     {
-        $lotSet = LotSet::with('lots')->findOrFail($id);
-		return view('upload');
+        $lotSet = LotSet::with('Lots')->findOrFail($id);
+		//$totalSpendingCategory = $lotSet->totalSpending('category');
+		return view('viewLotSet')
+			->with('spentMonthly', $lotSet->totalSpendingByMonth())
+			->with('spentByCategory', $lotSet->totalSpendingByCategory())
+			->with('lotSet', $lotSet);
     }
 
     /**
@@ -86,16 +91,6 @@ class LotSetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Return all lots from all LotSets
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function viewAll()
     {
         //
     }

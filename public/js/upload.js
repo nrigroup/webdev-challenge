@@ -1,5 +1,8 @@
 (function() {
 $('#filedrag').click(function(){ $('#fileselect').trigger('click'); });
+$(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
 	
 	// file drag hover
 	function FileDragHover(e) {
@@ -33,7 +36,7 @@ $('#filedrag').click(function(){ $('#fileselect').trigger('click'); });
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function(data) {
-				alert("success");
+				window.location.replace(data);
             }
         });
 	}
