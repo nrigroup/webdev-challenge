@@ -48,3 +48,9 @@ read your code, not run your code. If you fail to keep consistant indentation an
 the best practices in defining your functions and variable names, chances are  
 we will not need to run your code to evaluate your skills.
 
+## What's Next?
+Once when you have submitted your work we will review your submission as soon as possible. 
+
+Please note we will only contact the selected candidates for further consideration.
+
+We thank you for taking the time to complete this development challenge and appreciate your interest in pursuing a career with NRI. 
