@@ -11,7 +11,7 @@ class Product extends Model
     public $primaryKey = 'id';
     //Timestamps
     public $timestamps = false;
-    public $fillable=['date', 'category', 'lot_title', 'lot_location', 'lot_condition', 'pre_tax_amount', 'tax_name', 'tax_amount'];
+    public $fillable=['date', 'category', 'lot_title', 'lot_location', 'lot_condition', 'pre_tax_amount', 'tax_name', 'tax_amount', 'auction_name'];
     
     //model relationship
     public function auction(){

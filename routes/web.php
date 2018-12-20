@@ -21,3 +21,4 @@ Route::post('/import-file', 'ExcelController@importFile');
 Route::get('/import', 'ExcelController@importView');
 Route::get('/table', 'ExcelController@tableView');
 Route::post('/destroy-file', 'ExcelController@destroyTable');
+Route::post('/destroy-single', 'ExcelController@destroy');

@@ -57,8 +57,8 @@ class ExcelController extends Controller
             }else{
                 return redirect('/import')->with('error', 'Duplicate file has been submitted');  
             }
-            \Excel::load($path)->each(function (Collection $csvLine) {
-
+            
+            \Excel::load($path)->each(function (Collection $csvLine) use ($filename){
                 Product::create([
                     'date' => $csvLine->get('date') ,
                     'category' => $csvLine->get('category'),
@@ -67,9 +67,9 @@ class ExcelController extends Controller
                     'lot_condition' => $csvLine->get('lot_condition'),
                     'pre_tax_amount' => $csvLine->get('pre_tax_amount'),
                     'tax_name' => $csvLine->get('tax_name'),
-                    'tax_amount' => $csvLine->get('tax_amount')
+                    'tax_amount' => $csvLine->get('tax_amount'),
+                    'auction_name' => $filename
                 ]);
-           
            });
            return redirect('/table')->with('success', 'table created');
 
@@ -92,4 +92,6 @@ class ExcelController extends Controller
         // $products->delete();
         return redirect('/import')->with('success', 'Table Removed');
     }
+
+
 }

@@ -20,8 +20,10 @@
     </table>
     {!!Form::open(['action' => 'ExcelController@destroyTable', 'method' => 'POST'])!!}
                 {{-- {{Form::hidden('_method', 'DELETE')}} --}}
-                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                {{Form::submit('Delete Whole Table', ['class' => 'btn btn-danger'])}}
     {!!Form::close()!!}
+
+
     @else
     <p> No data</p>
     @endif

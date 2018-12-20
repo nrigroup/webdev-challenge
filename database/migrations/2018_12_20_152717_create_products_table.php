@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->float('pre_tax_amount');
             $table->text('tax_name');
             $table->float('tax_amount');
+            $table->text('auction_name');
             // $table->timestamps();
         });
     }
