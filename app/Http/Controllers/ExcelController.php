@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Product;
+use App\Auction;
 
 class ExcelController extends Controller
 {
@@ -43,6 +44,19 @@ class ExcelController extends Controller
     public function importFile(Request $request){
         if($request->hasFile('sample_file')){
             $path = $request->file('sample_file')->getRealPath();
+
+            // Get filename with the extension
+            $filenameWithExt = $request->file('sample_file')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            if(!Auction::find($filename)){
+                Auction::create([
+                    'filename'=>$filename
+                ]);
+            }else{
+                return redirect('/import')->with('error', 'Duplicate file has been submitted');  
+            }
             \Excel::load($path)->each(function (Collection $csvLine) {
 
                 Product::create([
@@ -74,6 +88,7 @@ class ExcelController extends Controller
         // $products = Product::query();
         // // Check for correct user
         Product::truncate();
+        Auction::truncate();
         // $products->delete();
         return redirect('/import')->with('success', 'Table Removed');
     }
