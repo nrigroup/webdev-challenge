@@ -17,6 +17,7 @@
 
 // Route::get('import-view', 'ExcelController@importView')->name('import.view');
 
-Route::post('import-file', 'ExcelController@importFile')->name('import.file');
+Route::post('/import-file', 'ExcelController@importFile');
 Route::get('/import', 'ExcelController@importView');
 Route::get('/table', 'ExcelController@tableView');
+Route::post('/destroy-file', 'ExcelController@destroyTable');

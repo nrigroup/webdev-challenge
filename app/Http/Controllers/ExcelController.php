@@ -16,7 +16,7 @@ class ExcelController extends Controller
 
     public function importView(){
 
-        return view('import');
+        return view('pages.import');
 
     }
 
@@ -28,7 +28,7 @@ class ExcelController extends Controller
                 ->get();
 
 
-        return view('table')->with('products', $products);
+        return view('pages.table')->with('products', $products);
 
     }
 
@@ -57,10 +57,24 @@ class ExcelController extends Controller
                 ]);
            
            });
-           return redirect('/table')->with('success', 'Message created');
+           return redirect('/table')->with('success', 'table created');
 
         }
+        return redirect('/import')->with('error', 'No file submitted, please choose a csv file to submit');    
+    }
 
-        // dd('Request data does not have any files to import.');      
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyTable()
+    {
+        // $products = Product::query();
+        // // Check for correct user
+        Product::truncate();
+        // $products->delete();
+        return redirect('/import')->with('success', 'Table Removed');
     }
 }
