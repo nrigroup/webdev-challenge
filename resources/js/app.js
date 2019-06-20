@@ -21,6 +21,7 @@ Vue.use(VeeValidate);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('form-component', require('./components/FormComponent.vue').default);
+Vue.component('data-component', require('./components/DataComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

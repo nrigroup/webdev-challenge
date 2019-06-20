@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'UploaderController@index')->name('home.index');
+
+Route::get('/data', 'UploaderController@data')->name('home.data');

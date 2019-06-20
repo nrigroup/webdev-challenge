@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Validator;
 
 class UploaderController extends Controller
 {
+    public function index() {
+        return view('index');
+    }
+
+    public function data() {
+        $records = AuctionData::all();
+        return view('data', ['records' => $records]);
+    }
+    
     public function upload(Request $request) {
         // Validate incoming file request if file is not in .csv format
         $validator = Validator::make($request->all(), [

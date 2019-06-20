@@ -19,6 +19,7 @@
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">NRI Web</a>
 
         </nav>
+        <?php $path = Route::currentRouteName(); ?>
 
         <div class="container-fluid">
             <div class="row">
@@ -26,13 +27,13 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">
+                            <a class="nav-link @if($path=='home.index') active @endif" href="{{route('home.index')}}">
                                     <span data-feather="home"></span>
-                                    Index <span class="sr-only">(current)</span>
+                                    Index
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link @if($path=='home.data') active @endif" href="{{route('home.data')}}">
                                     <span data-feather="file"></span>
                                     Data
                                 </a>
