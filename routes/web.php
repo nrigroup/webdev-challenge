@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', 'UploaderController@index')->name('home.index');
+Route::get('/', 'UploaderController@data')->name('home.index');
 
-Route::get('/data', 'UploaderController@data')->name('home.data');
+Route::get('/upload', 'UploaderController@index')->name('home.upload');
+

@@ -1757,6 +1757,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['records'],
   components: {},
@@ -1778,7 +1785,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {},
   created: function created() {},
-  methods: {},
+  methods: {
+    clickCallback: function clickCallback(page) {
+      console.log(page);
+    }
+  },
   mounted: function mounted() {
     console.log(this.records);
   }
@@ -48946,47 +48957,65 @@ var render = function() {
   return _c("div", [
     _c("h2", [_vm._v("Auction Data")]),
     _vm._v(" "),
-    _c("button", { staticClass: "btn btn-primary btn-sm my-3" }, [
-      _vm._v("Upload Records")
-    ]),
+    _c(
+      "a",
+      {
+        staticClass: "btn btn-primary btn-sm my-3",
+        attrs: { href: "/upload" }
+      },
+      [_vm._v("Upload Records")]
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "table-responsive" }, [
-      _c("table", { staticClass: "table table-striped table-sm" }, [
-        _vm._m(0),
+    _c(
+      "div",
+      { staticClass: "table-responsive" },
+      [
+        _c("table", { staticClass: "table table-striped table-sm" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.records, function(record, index) {
+              return _c("tr", { key: index }, [
+                _c("td", { domProps: { innerHTML: _vm._s(index + 1) } }),
+                _vm._v(" "),
+                _c("td", { domProps: { innerHTML: _vm._s(record.date) } }),
+                _vm._v(" "),
+                _c("td", { domProps: { innerHTML: _vm._s(record.category) } }),
+                _vm._v(" "),
+                _c("td", { domProps: { innerHTML: _vm._s(record.lot_title) } }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { innerHTML: _vm._s(record.lot_location) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { innerHTML: _vm._s(record.lot_condition) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { innerHTML: _vm._s(record.pre_tax_amount) }
+                }),
+                _vm._v(" "),
+                _c("td", { domProps: { innerHTML: _vm._s(record.tax_name) } }),
+                _vm._v(" "),
+                _c("td", { domProps: { innerHTML: _vm._s(record.tax_amount) } })
+              ])
+            }),
+            0
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.records, function(record, index) {
-            return _c("tr", { key: index }, [
-              _c("td", { domProps: { innerHTML: _vm._s(index + 1) } }),
-              _vm._v(" "),
-              _c("td", { domProps: { innerHTML: _vm._s(record.date) } }),
-              _vm._v(" "),
-              _c("td", { domProps: { innerHTML: _vm._s(record.category) } }),
-              _vm._v(" "),
-              _c("td", { domProps: { innerHTML: _vm._s(record.lot_title) } }),
-              _vm._v(" "),
-              _c("td", {
-                domProps: { innerHTML: _vm._s(record.lot_location) }
-              }),
-              _vm._v(" "),
-              _c("td", {
-                domProps: { innerHTML: _vm._s(record.lot_condition) }
-              }),
-              _vm._v(" "),
-              _c("td", {
-                domProps: { innerHTML: _vm._s(record.pre_tax_amount) }
-              }),
-              _vm._v(" "),
-              _c("td", { domProps: { innerHTML: _vm._s(record.tax_name) } }),
-              _vm._v(" "),
-              _c("td", { domProps: { innerHTML: _vm._s(record.tax_amount) } })
-            ])
-          }),
-          0
-        )
-      ])
-    ])
+        _c("paginate", {
+          attrs: {
+            pageCount: 10,
+            containerClass: "pagination",
+            clickHandler: _vm.clickCallback
+          }
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [

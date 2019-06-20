@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Auction Data</h2>
-        <button class="btn btn-primary btn-sm my-3">Upload Records</button>
+        <a href="/upload" class="btn btn-primary btn-sm my-3">Upload Records</a>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
@@ -19,6 +19,7 @@
                 </thead>
 
                 <tbody>
+
                     <tr v-for="(record, index) in records" :key="index">
                         <td v-html="index + 1"></td>
                         <td v-html="record.date"></td>
@@ -32,6 +33,12 @@
                     </tr>
                 </tbody>
             </table>
+
+            <paginate 
+                :pageCount="10"
+                :containerClass="'pagination'"
+                :clickHandler="clickCallback">
+            </paginate>
         </div>
     </div>
 </template>
@@ -72,7 +79,11 @@
 
         created: function () {},
 
-        methods: {},
+        methods: {
+            clickCallback: function(page) {
+                console.log(page)
+            }
+        },
 
         mounted: function () {
             console.log(this.records);

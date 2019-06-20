@@ -33,9 +33,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if($path=='home.data') active @endif" href="{{route('home.data')}}">
+                                <a class="nav-link @if($path=='home.upload') active @endif" href="{{route('home.upload')}}">
                                     <span data-feather="file"></span>
-                                    Data
+                                    Upload
                                 </a>
                             </li>
                         </ul>
