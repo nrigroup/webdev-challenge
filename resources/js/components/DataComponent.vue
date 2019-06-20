@@ -33,12 +33,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <paginate 
-                :pageCount="10"
-                :containerClass="'pagination'"
-                :clickHandler="clickCallback">
-            </paginate>
         </div>
     </div>
 </template>

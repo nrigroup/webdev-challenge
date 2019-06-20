@@ -1758,12 +1758,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['records'],
   components: {},
@@ -1857,6 +1851,9 @@ __webpack_require__.r(__webpack_exports__);
 
             if (result.success) {
               _this.flag.submit = true;
+              var input = _this.$refs.file;
+              input.type = 'text';
+              input.type = 'file';
             }
           })["catch"](function (errors) {
             return console.log(errors);
@@ -48966,56 +48963,43 @@ var render = function() {
       [_vm._v("Upload Records")]
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "table-responsive" },
-      [
-        _c("table", { staticClass: "table table-striped table-sm" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.records, function(record, index) {
-              return _c("tr", { key: index }, [
-                _c("td", { domProps: { innerHTML: _vm._s(index + 1) } }),
-                _vm._v(" "),
-                _c("td", { domProps: { innerHTML: _vm._s(record.date) } }),
-                _vm._v(" "),
-                _c("td", { domProps: { innerHTML: _vm._s(record.category) } }),
-                _vm._v(" "),
-                _c("td", { domProps: { innerHTML: _vm._s(record.lot_title) } }),
-                _vm._v(" "),
-                _c("td", {
-                  domProps: { innerHTML: _vm._s(record.lot_location) }
-                }),
-                _vm._v(" "),
-                _c("td", {
-                  domProps: { innerHTML: _vm._s(record.lot_condition) }
-                }),
-                _vm._v(" "),
-                _c("td", {
-                  domProps: { innerHTML: _vm._s(record.pre_tax_amount) }
-                }),
-                _vm._v(" "),
-                _c("td", { domProps: { innerHTML: _vm._s(record.tax_name) } }),
-                _vm._v(" "),
-                _c("td", { domProps: { innerHTML: _vm._s(record.tax_amount) } })
-              ])
-            }),
-            0
-          )
-        ]),
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("table", { staticClass: "table table-striped table-sm" }, [
+        _vm._m(0),
         _vm._v(" "),
-        _c("paginate", {
-          attrs: {
-            pageCount: 10,
-            containerClass: "pagination",
-            clickHandler: _vm.clickCallback
-          }
-        })
-      ],
-      1
-    )
+        _c(
+          "tbody",
+          _vm._l(_vm.records, function(record, index) {
+            return _c("tr", { key: index }, [
+              _c("td", { domProps: { innerHTML: _vm._s(index + 1) } }),
+              _vm._v(" "),
+              _c("td", { domProps: { innerHTML: _vm._s(record.date) } }),
+              _vm._v(" "),
+              _c("td", { domProps: { innerHTML: _vm._s(record.category) } }),
+              _vm._v(" "),
+              _c("td", { domProps: { innerHTML: _vm._s(record.lot_title) } }),
+              _vm._v(" "),
+              _c("td", {
+                domProps: { innerHTML: _vm._s(record.lot_location) }
+              }),
+              _vm._v(" "),
+              _c("td", {
+                domProps: { innerHTML: _vm._s(record.lot_condition) }
+              }),
+              _vm._v(" "),
+              _c("td", {
+                domProps: { innerHTML: _vm._s(record.pre_tax_amount) }
+              }),
+              _vm._v(" "),
+              _c("td", { domProps: { innerHTML: _vm._s(record.tax_name) } }),
+              _vm._v(" "),
+              _c("td", { domProps: { innerHTML: _vm._s(record.tax_amount) } })
+            ])
+          }),
+          0
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -49074,7 +49058,7 @@ var render = function() {
           { staticClass: "alert alert-success", attrs: { role: "alert" } },
           [
             _vm._v("\n        Records added! "),
-            _c("a", { attrs: { href: "/data" } }, [_vm._v("See results.")])
+            _c("a", { attrs: { href: "/" } }, [_vm._v("See results.")])
           ]
         )
       : _vm._e(),

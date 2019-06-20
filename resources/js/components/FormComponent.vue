@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="alert alert-success" role="alert" v-if="flag.submit">
-            Records added! <a href="/data">See results.</a>
+            Records added! <a href="/">See results.</a>
         </div>
         <hr>
             <input 
@@ -55,6 +55,9 @@
 
                                     if (result.success) {
                                         this.flag.submit = true;
+                                        let input = this.$refs.file;
+                                        input.type = 'text';
+                                        input.type = 'file';
                                     }
                                 })
                                 .catch(errors => console.log(errors));
