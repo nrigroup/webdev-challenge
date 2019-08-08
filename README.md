@@ -5,6 +5,8 @@ This project is to import the items in CSV to database and then it displays the 
 
 ## Installation
 
+After cloning the repo, please follow the following steps to install the project:
+
 1. Install dependencies (at the root of the project):
 
     ```shell
