@@ -1,6 +1,9 @@
 ## About Project
 
-This project is to import the items in CSV to database and then it displays the total spending amount per-month and per-category. I have used laravel, bootstrap, jquery.
+This project is to import the items in CSV to database and then it displays the total spending amount per-month and per-category. I have used laravel, bootstrap, jquery. I have created two tables,one for categories and one for the items and i have made one to many relation between these two tables. When user uploads CSV file, first i am inserting all categories(unique) into categories table and then adding items to items table with category_id as foreign key. I have used chunk method to import the records in case if CSV contains huge data. 
+
+For front end, i have bootstrap and datatables to show amount per month per category. 
+
 
 
 ## Installation
