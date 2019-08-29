@@ -1,0 +1,62 @@
+
+    html, body {
+        
+        color: #636b6f;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 100;
+        margin: 0;
+    }
+
+    .full-height {
+        height: 100vh;
+    }
+
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .position-ref {
+        position: relative;
+    }
+
+    .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 84px;
+    }
+
+    .heading {
+        font-weight: 300;
+        text-align: center;
+    }
+
+    .submit {
+        margin-top: 15px;
+    }
+
+
+    .m-b-md {
+        margin-bottom: 30px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    td{
+        font-weight: 400;
+    }
+
+    .table-custom {
+        height:auto;
+    }
