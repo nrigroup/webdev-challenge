@@ -35,7 +35,7 @@ class CategorieController extends Controller
     public function store()
     {
     	request()->validate([
-    		'name' => ['required','min:3']
+    		'name' => ['required','min:3','unique:categories']
     	]);
 
     	$categorie = new Categorie();
@@ -56,7 +56,7 @@ class CategorieController extends Controller
     public function update($id)
     {
     	request()->validate([
-    		'name' => ['required','min:3']
+    		'name' => ['required','min:3','unique:categories']
     	]);
 
     	$categorie = Categorie::find($id);

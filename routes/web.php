@@ -26,5 +26,11 @@ Route::get('/categories/{categorie}/edit', 'CategorieController@edit');
 Route::put('/categories/{categorie}', 'CategorieController@update');
 Route::delete('/categories/{categorie}', 'CategorieController@destroy');
 
+Route::get('/conditions', 'ConditionController@index');
+Route::post('/conditions', 'ConditionController@store');
+Route::get('/conditions/create', 'ConditionController@create');
+Route::get('/conditions/{condition}', 'ConditionController@show');
+Route::get('/conditions/{condition}/edit', 'ConditionController@edit');
+Route::put('/conditions/{condition}', 'ConditionController@update');
+Route::delete('/conditions/{condition}', 'ConditionController@destroy');
 
-//GET . POST. PUT. DELETE
