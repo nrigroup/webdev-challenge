@@ -7,14 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{@csrf_token()}}">
     <title>NRI Web dev Challenge</title>
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-    <nri-home></nri-home>
-</div>
+<div id="app"></div>
 
-
-<script src="/js/app.js"></script>
+<script defer src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

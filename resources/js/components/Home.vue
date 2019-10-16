@@ -28,8 +28,6 @@
 
     export default {
         mounted() {
-            this.uid = '5da600d874582';
-            this.getDashboard();
         },
         components: {
             Lottie
@@ -147,9 +145,7 @@
                 if (this.uid.length === 0) {
                     return;
                 }
-
-                const uri = `/dashboard/${this.uid}`;
-
+                this.$router.push({name: 'dashboard', params: {uid: this.uid}});
             }
         }
     }
