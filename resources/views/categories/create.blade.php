@@ -1,10 +1,10 @@
 @extends ('layout')
 @section ('content')
 <div class="container">
-    <h1>Upload a file</h1>
+    <h1>Create new category</h1>
 </div>                
 
-    <div class="text-center">
+	<div class="text-center">
         <nav class="navbar navbar-expand-lg navbar-light bg-light>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,10 +15,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="/upload/">Upload a file</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item actif">
                 <a class="nav-link" href="/categories/">Manage categories</a>
               </li>
               <li class="nav-item">
@@ -32,15 +32,25 @@
         </nav>
     </div>
 
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-      </div>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01"
-          aria-describedby="inputGroupFileAddon01">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-      </div>
+    <div id="wrapper">
+    	<div id="page" class="container">
+    		<h3>New Category:</h3>
+
+    		<form method="POST" action="/categories">
+    			@csrf
+    			<div class="form-group">
+    				<label for="InputTitle">Category name: </label>
+    				<input type="text" class="form-control" id="name" name="name" placeholder="Default name" values="{{ old('name') }}"> 
+    				@error('name')
+	    				<div class="alert alert-danger" role="alert">
+							{{$errors->first('name')}}
+						</div>
+      				@enderror  
+    			</div>
+    			<button type="submit" class="btn btn-primary">Submit</button>
+    		</form>
+    	</div>
+
     </div>
 </div>
 @endsection

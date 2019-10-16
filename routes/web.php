@@ -16,3 +16,15 @@ Route::get('/', function () {
 });
 
 Route::get('/upload', 'Controller@upload_file');
+
+
+Route::get('/categories', 'CategorieController@index');
+Route::post('/categories', 'CategorieController@store');
+Route::get('/categories/create', 'CategorieController@create');
+Route::get('/categories/{categorie}', 'CategorieController@show');
+Route::get('/categories/{categorie}/edit', 'CategorieController@edit');
+Route::put('/categories/{categorie}', 'CategorieController@update');
+Route::delete('/categories/{categorie}', 'CategorieController@destroy');
+
+
+//GET . POST. PUT. DELETE

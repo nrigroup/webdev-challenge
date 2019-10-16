@@ -1,10 +1,10 @@
 @extends ('layout')
 @section ('content')
 <div class="container">
-    <h1>Upload a file</h1>
+    <h1>Categories:</h1>
 </div>                
 
-    <div class="text-center">
+	<div class="text-center">
         <nav class="navbar navbar-expand-lg navbar-light bg-light>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,10 +15,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="/upload/">Upload a file</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item actif">
                 <a class="nav-link" href="/categories/">Manage categories</a>
               </li>
               <li class="nav-item">
@@ -32,15 +32,20 @@
         </nav>
     </div>
 
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-      </div>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01"
-          aria-describedby="inputGroupFileAddon01">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-      </div>
+    <div id="wrapper">
+    	<div id="page" class="container">
+    		<a class="btn btn-primary" href="/categories/create" role="button">Add a new category</a>
+
+    		<h3>Categories:</h3>
+    		<ul class="list-group">
+    		@foreach($categories as $categorie)
+			 <li class="list-group-item">{{$categorie->name}} 
+			 	<a class="btn btn-primary" href="/categories/{{$categorie->id}}/edit" role="button">Edit</a>
+			 </li>		
+    		@endforeach
+    		</ul>
+    	</div>
+
     </div>
 </div>
 @endsection

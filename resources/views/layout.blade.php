@@ -14,7 +14,7 @@
   <body>
     <div class="text-center">
 	    <div class="container">
-	        Laravel
+	        NRI Industrail
 	    </div> 
   		@yield ('content')
 
