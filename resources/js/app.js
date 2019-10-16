@@ -4,9 +4,19 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import HomeComponent from "./components/HomeComponent";
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -15,18 +25,25 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+Vue.component('nri-home', HomeComponent);
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+/*
+Define some routes
+*/
+const routes = [
+    {path: '/', name: 'home', component: HomeComponent}
+];
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Initiate VueRouter with defined routes
+const router = new VueRouter({
+    mode: 'history',
+    routes
+});
 
 /**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
+ * We will create a fresh Vue
+ * application instance and attach it to the page.
  */
-
 const app = new Vue({
-    el: '#app',
-});
+    router
+}).$mount('#app');

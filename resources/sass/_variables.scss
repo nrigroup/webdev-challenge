@@ -2,7 +2,7 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'Oswald', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -17,3 +17,8 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+$primaryTextColor: #263351;
+$btnGradient: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+
+
+$mobileBreakPoint: 600px;

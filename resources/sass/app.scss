@@ -1,8 +1,178 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,600&display=swap');
+//variables
+@import "variables";
 
-// Variables
-@import 'variables';
+body {
+    background-color: #eceff5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: $font-family-sans-serif;
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+    @media only screen and (max-width: $mobileBreakPoint) {
+        height: auto;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 85vw;
+    height: 85vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    text-align: left;
+    border-radius: 30px;
+
+    @media only screen and (max-width: $mobileBreakPoint) {
+        flex-direction: column;
+        width: 95vw;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .content-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: start;
+        padding: 50px;
+
+        h1 {
+            font-size: 3em;
+            color: $primaryTextColor;
+            margin: 0 0 10px 0;
+        }
+
+        p {
+            font-size: 1.4em;
+            margin: 0 0 15px 0;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            background: $btnGradient;
+            background-size: 600%;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: $mobileBreakPoint) {
+            align-items: center;
+
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+    }
+
+    .content-img {
+        width: 30%;
+
+        @media only screen and (max-width: $mobileBreakPoint) {
+            width: 60%;
+        }
+    }
+
+    .dashboard-contents {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
+        @media only screen and (max-width: $mobileBreakPoint) {
+            width: 90%;
+        }
+
+        .dashboard-contents-container {
+            display: flex;
+            margin: 20px 0;
+            background-color: #ebeff5;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.01);
+
+            @media only screen and (max-width: $mobileBreakPoint) {
+                flex-direction: column;
+            }
+
+            .dashboard-contents-left {
+                display: flex;
+                width: 100px;
+                background-color: #0fb77e;
+                color: #ffffff;
+                font-size: 1em;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+                min-height: 100px;
+
+                @media only screen and (max-width: $mobileBreakPoint) {
+                    width: 100%;
+                    height: 100%;
+                    min-height: 70px;
+                }
+            }
+
+            .dashboard-contents-right {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                ul {
+                    list-style: none;
+                    padding-left: 20px;
+
+                    li {
+                        display: flex;
+                        padding: 5px 0;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+
+                        div {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin: 0 10px;
+                            min-width: 130px;
+
+                            img {
+                                width: 20px;
+                                height: 20px;
+                                margin-right: 5px;
+                            }
+
+                            span {
+                                font-weight: normal;
+                                font-size: 1em;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+}
