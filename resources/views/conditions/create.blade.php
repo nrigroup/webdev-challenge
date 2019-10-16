@@ -25,6 +25,9 @@
                 <a class="nav-link" href="/conditions/">Manage conditions</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="/lots/">Manage lots</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="https://github.com/laravel/laravel">GitHub</a>
               </li>
             </ul>

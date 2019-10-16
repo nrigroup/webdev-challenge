@@ -17,6 +17,13 @@ Route::get('/', function () {
 
 Route::get('/upload', 'Controller@upload_file');
 
+Route::get('/lots', 'LotController@index');
+Route::post('/lots', 'LotController@store');
+Route::get('/lots/create', 'LotController@create');
+Route::get('/lots/{lot}', 'LotController@show');
+Route::get('/lots/{lot}/edit', 'LotController@edit');
+Route::put('/lots/{lot}', 'LotController@update');
+Route::delete('/lots/{lot}', 'LotController@destroy');
 
 Route::get('/categories', 'CategorieController@index');
 Route::post('/categories', 'CategorieController@store');

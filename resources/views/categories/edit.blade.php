@@ -16,13 +16,16 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/upload/">Upload a  file</a>
+                <a class="nav-link" href="/upload/">Upload a file</a>
               </li>
               <li class="nav-item actif">
                 <a class="nav-link" href="/categories/">Manage categories</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/conditions/">Manage conditions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lots/">Manage lots</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="https://github.com/laravel/laravel">GitHub</a>

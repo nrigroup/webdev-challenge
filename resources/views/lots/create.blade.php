@@ -1,7 +1,7 @@
 @extends ('layout')
 @section ('content')
 <div class="container">
-    <h1>Edit condition</h1>
+    <h1>Create new Lot</h1>
 </div>                
 
 	<div class="text-center">
@@ -21,10 +21,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/categories/">Manage categories</a>
               </li>
-              <li class="nav-item actif">
+              <li class="nav-item">
                 <a class="nav-link" href="/conditions/">Manage conditions</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item actif">
                 <a class="nav-link" href="/lots/">Manage lots</a>
               </li>
               <li class="nav-item">
@@ -37,28 +37,43 @@
 
     <div id="wrapper">
     	<div id="page" class="container">
-    		<h3>Edit a condition:</h3>
+    		<h3>New Lot:</h3>
 
-    		<form method="POST" action="/conditions/{{$condition->id}}">
+    		<form method="POST" action="/lots">
     			@csrf
-    			@method('PUT')
-    			
     			<div class="form-group">
-    				<label for="InputTitle">Category title: </label>
-    				<input type="text" class="form-control is-danger" id="title" name="title" placeholder="Default title" value="{{$condition->title}}">
-              @error('title')
-                <div class="alert alert-danger" role="alert">
-                  {{$errors->first('title')}}
-                </div>
-              @enderror
+    				<label for="title">Title: </label>
+    				<input type="text" class="form-control" id="title" name="title" placeholder="Default condition" values="{{ old('name') }}"> 
+    				@error('title')
+	    				<div class="alert alert-danger" role="alert">
+							{{$errors->first('title')}}
+						</div>
+      				@enderror  
+            <label for="location">Location: </label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Default condition" values="{{ old('name') }}"> 
+            @error('location')
+              <div class="alert alert-danger" role="alert">
+              {{$errors->first('location')}}
+            </div>
+              @enderror  
+            <label for="categories">Category: </label>
+            <select name="categorie" id="categorie>
+              @foreach($categories as $categorie)
+              <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+              @endforeach
+            </select>
+            <label for="conditions">Condition: </label>
+            <select name="condition" id="condition>
+              @foreach($conditions as $condition)
+              <option value="{{$condition->id}}">{{$condition->title}}</option>
+              @endforeach
+            </select>
     			</div>
+
+
+
     			<button type="submit" class="btn btn-primary">Submit</button>
     		</form>
-        <form method="POST" action="/conditions/{{$condition->id}}">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-primary">Delete category</button>
-        </form>
     	</div>
 
     </div>

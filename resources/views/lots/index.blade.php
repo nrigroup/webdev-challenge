@@ -1,7 +1,7 @@
 @extends ('layout')
 @section ('content')
 <div class="container">
-    <h1>Edit condition</h1>
+    <h1>Lots:</h1>
 </div>                
 
 	<div class="text-center">
@@ -21,10 +21,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/categories/">Manage categories</a>
               </li>
-              <li class="nav-item actif">
+              <li class="nav-item">
                 <a class="nav-link" href="/conditions/">Manage conditions</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item actif">
                 <a class="nav-link" href="/lots/">Manage lots</a>
               </li>
               <li class="nav-item">
@@ -37,28 +37,16 @@
 
     <div id="wrapper">
     	<div id="page" class="container">
-    		<h3>Edit a condition:</h3>
+    		<a class="btn btn-primary" href="/lots/create" role="button">Add a new lot</a>
 
-    		<form method="POST" action="/conditions/{{$condition->id}}">
-    			@csrf
-    			@method('PUT')
-    			
-    			<div class="form-group">
-    				<label for="InputTitle">Category title: </label>
-    				<input type="text" class="form-control is-danger" id="title" name="title" placeholder="Default title" value="{{$condition->title}}">
-              @error('title')
-                <div class="alert alert-danger" role="alert">
-                  {{$errors->first('title')}}
-                </div>
-              @enderror
-    			</div>
-    			<button type="submit" class="btn btn-primary">Submit</button>
-    		</form>
-        <form method="POST" action="/conditions/{{$condition->id}}">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-primary">Delete category</button>
-        </form>
+    		<h3>Lots:</h3>
+    		<ul class="list-group">
+    		@foreach($lots as $lot)
+			 <li class="list-group-item">{{$lot->title}} 
+			 	<a class="btn btn-primary" href="/lots/{{$lot->id}}/edit" role="button">Edit</a>
+			 </li>		
+    		@endforeach
+    		</ul>
     	</div>
 
     </div>
