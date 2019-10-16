@@ -24,7 +24,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/conditions/">Manage conditions</a>
               </li>
-              <li class="nav-item actif">
+              <li class="nav-item active">
                 <a class="nav-link" href="/lots/">Manage lots</a>
               </li>
               <li class="nav-item">
