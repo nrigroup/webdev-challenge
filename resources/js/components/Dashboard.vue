@@ -49,12 +49,14 @@
             fetch() {
                 this.uid = this.$route.params.uid;
                 this.loading = !this.loading;
+
                 axios.get(this.uri)
                     .then((res) => {
                         this.spending = res.data;
                         this.loading = !this.loading;
                     }).catch((err) => {
                     this.loading = !this.loading;
+                    alert(err)
                 })
             }
         }

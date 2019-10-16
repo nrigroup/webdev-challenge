@@ -66,10 +66,16 @@ class Upload
              */
             $path = Storage::disk($this->disk)->putFileAs($this->directory, $this->file, $filename);
 
+
             $this->path = storage_path('app/' . $path);
         }
     }
 
+    /**
+     * Magic Class method to string
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->path;

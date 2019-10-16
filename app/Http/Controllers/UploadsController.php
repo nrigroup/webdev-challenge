@@ -20,13 +20,12 @@ class UploadsController extends Controller
      */
     public function store(StoreUpload $request)
     {
-        sleep(10);
         // Unique id to store for every upload session
         $uid = uniqid();
 
         // Process uploaded file
         $file = (string)new Upload($request->file('csv'), $uid);
-        
+
         /**
          * Invoke CSV parser and parse the file
          * return parsed items to be database table compatible

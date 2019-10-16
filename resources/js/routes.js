@@ -8,11 +8,12 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [{
-        path: '/',
-        name: 'home',
-        component: Home
-    },
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
         {
             path: '/dashboard/:uid',
             name: 'dashboard',

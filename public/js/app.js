@@ -1912,6 +1912,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.loading = !_this.loading;
       })["catch"](function (err) {
         _this.loading = !_this.loading;
+        alert(err);
       });
     }
   }
