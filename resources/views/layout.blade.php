@@ -47,6 +47,7 @@
         </nav>
       </div>
     </div>
+    <br/>
   		@yield ('content')
 
     <!-- Optional JavaScript -->

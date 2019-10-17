@@ -26,23 +26,14 @@ class Controller extends BaseController
     	$total_categories = DB::table('categories')->count();
     	$total_conditions = DB::table('conditions')->count();
     	$total_taxes = DB::table('taxes')->count();
+    	$categories = \DB::table('categories')->get();    	
+        $lots = \DB::table('lots')->get();    
 
-    	$categories = \DB::table('categories')
-                ->orderBy('name', 'asc')
-                ->get();
+        // Making sure the total cost per category has been calculated
+        $this->getCategorySums();
+        // Making sure the total cost per month has been calculated
+        $this->getSumsPerMonth();
 
-        foreach ($categories as $_category) {
-            $category = Categorie::find($_category->id);
-            $category->total_amount = $category->calculate_total_amount($category->id);
-            $category->save();
-        }
-        $lots = \DB::table('lots')->get();
-        
-        foreach($lots as $_lot){
-        	$lot = Lot::find($_lot->id);
-        	$lot->total_amount_per_month = $this->getMonthlySum($lot->date_lot);
-        	$lot->save();
-        }
 
 	    return view('report', [
 	    	'total_lots' => $total_lots,
@@ -82,10 +73,18 @@ class Controller extends BaseController
 	    	$lot->taxe_amount = $line['tax amount'];
 
 	    	$lot->date_lot = Carbon::createFromFormat('m/d/Y', $line['date']); ;
-	    	$lot->save();
+	    	$lot->save();	    	
     	}
+
+    	//After saving data in DB - Calculate total amout per category and per month
+    	$this->getCategorySums();
+    	$this->getSumsPerMonth();
+
+    	//redirects to the report page
+    	return redirect()->action('Controller@report');
     }
 
+    //Read a CSV file and transforms it into an collection
     public function readCSV(String $filename){
     	if (!file_exists($filename) || !is_readable($filename))
         return false;
@@ -106,7 +105,34 @@ class Controller extends BaseController
     return $data;
     }
 
-    public function getMonthlySum(Carbon $date)
+    //goes though all the categories and calculates the total amount spent
+	public function getCategorySums(){
+
+		$categories = \DB::table('categories')
+                ->orderBy('name', 'asc')
+                ->get();
+
+        foreach ($categories as $_category) {
+            $category = Categorie::find($_category->id);
+            $category->total_amount = $category->calculate_total_amount($category->id);
+            $category->save();
+        }
+	}
+
+	//goes though all the lots and calculates the total amount spent per month
+	public function getSumsPerMonth(){
+
+		$lots = \DB::table('lots')->get();
+        
+        foreach($lots as $_lot){
+        	$lot = Lot::find($_lot->id);
+        	$lot->total_amount_per_month = $this->getMonthlySum($lot->date_lot);
+        	$lot->save();
+        }
+	}
+
+	// Calculates the total amount spent per month 
+	public function getMonthlySum(Carbon $date)
 	{
 
 	    $year = $date->year;
@@ -128,6 +154,8 @@ class Controller extends BaseController
 
 	    return $sum;
 	}
+
+	        
 }
 
 
