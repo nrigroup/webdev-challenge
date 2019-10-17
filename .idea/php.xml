@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/erusev/parsedown" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/facade/flare-client-php" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/facade/ignition" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/facade/ignition-contracts" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/scrivo/highlight.php" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/dnoegel/php-xdg-base-dir" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/fideloper/proxy" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/composer" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/jakub-onderka/php-console-color" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/jakub-onderka/php-console-highlighter" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/csvProcessor/vendor/phpdocumentor/reflection-docblock" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/csvProcessor/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+</project>
