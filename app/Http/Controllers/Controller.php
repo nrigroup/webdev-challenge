@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Lot;
 use App\Categorie;
 use App\Condition;
+use App\Taxe;
 
 class Controller extends BaseController
 {
@@ -31,10 +32,20 @@ class Controller extends BaseController
     		$lot = new Lot();
 	    	$lot->title = $line['lot title'];
 	    	$lot->location = $line['lot location'];
+
 			$condition = new Condition();
 	    	$lot->condition = $condition->findOrCreate($line['lot condition']);
+
 	    	$category = new Categorie();
 	    	$lot->categorie = $category->findOrCreate($line['category']);
+
+	    	$lot->pre_taxe_amount = $line['pre-tax amount'];
+
+	    	$taxes_region = new Taxe();
+	    	$lot->taxes_region = $taxes_region->findOrCreate($line['tax name']);
+
+	    	$lot->taxe_amount = $line['tax amount'];
+
 	    	$lot->save();
     	}
     }
