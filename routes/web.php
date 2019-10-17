@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/upload', 'Controller@upload_file');
+Route::get('/upload', 'Controller@index');
+Route::post('/upload', 'Controller@store');
 
 Route::get('/lots', 'LotController@index');
 Route::post('/lots', 'LotController@store');
