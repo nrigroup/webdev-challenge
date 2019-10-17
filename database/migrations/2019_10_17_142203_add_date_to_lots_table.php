@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTotalAmountToCategoriesTable extends Migration
+class AddDateToLotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTotalAmountToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->double('total_amount')->nullable();
+        Schema::table('lots', function (Blueprint $table) {
+            $table->date('date_lot')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddTotalAmountToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->DropColumn('total_amount');
+        Schema::table('lots', function (Blueprint $table) {
+            $table->DropColumn('date_lot');
         });
     }
 }

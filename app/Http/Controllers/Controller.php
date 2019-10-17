@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 use DB;
 use App\Lot;
 use App\Categorie;
@@ -35,13 +36,21 @@ class Controller extends BaseController
             $category->total_amount = $category->calculate_total_amount($category->id);
             $category->save();
         }
+        $lots = \DB::table('lots')->get();
         
+        foreach($lots as $_lot){
+        	$lot = Lot::find($_lot->id);
+        	$lot->total_amount_per_month = $this->getMonthlySum($lot->date_lot);
+        	$lot->save();
+        }
+
 	    return view('report', [
 	    	'total_lots' => $total_lots,
 	    	'total_categories' => $total_categories,
 	    	'total_conditions' => $total_conditions,
 	    	'total_taxes' => $total_taxes,
 	    	'categories' => $categories,
+	    	'lots' => $lots,
 	    ]);  
     }
 
@@ -52,7 +61,6 @@ class Controller extends BaseController
     	$filename = $file->getClientOriginalName();
  		$file->storeAs('csv',$filename);
     	$data = $this->readCSV('storage/csv/' . $filename);
-
 
     	foreach ($data as $line) 
     	{
@@ -73,6 +81,7 @@ class Controller extends BaseController
 
 	    	$lot->taxe_amount = $line['tax amount'];
 
+	    	$lot->date_lot = Carbon::createFromFormat('m/d/Y', $line['date']); ;
 	    	$lot->save();
     	}
     }
@@ -96,6 +105,29 @@ class Controller extends BaseController
 	    }
     return $data;
     }
+
+    public function getMonthlySum(Carbon $date)
+	{
+
+	    $year = $date->year;
+	    $month = $date->month;
+
+	    if ($month < 10) {
+	        $month = '0' . $month;
+	    }
+
+	    $search = $year . '-' . $month;
+
+	    $lots = Lot::where('date_lot', 'like', $search .'%')->get();	    
+
+	    $sum = 0;
+
+	    foreach ($lots as $lot) {
+	        $sum += $lot->pre_taxe_amount + $lot->taxe_amount;
+	    }
+
+	    return $sum;
+	}
 }
 
 

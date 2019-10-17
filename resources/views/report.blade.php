@@ -66,6 +66,18 @@
         @endforeach     
       </tbody>
    </table>
+
+   total spending amount per-month : 
+   <table class="table table-dark">
+      <tbody>
+        @foreach($lots as $lot)
+        <tr>
+          <th scope="row">Lot date: {{$lot->date_lot}}</th>
+          <td>Total amount: {{$lot->total_amount_per_month}} $</td>
+        </tr>
+        @endforeach     
+      </tbody>
+   </table>
 </div>
 @endsection
 
