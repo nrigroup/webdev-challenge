@@ -1,11 +1,11 @@
-#CSV import
-####Author: Jiaqing Zhu
-####Github page: github.com/dreamrukia
-####Email: dreamrukia@hotmail.com
+# CSV import
+#### Author: Jiaqing Zhu
+#### Github page: github.com/dreamrukia
+#### Email: dreamrukia@hotmail.com
 
 ---
 
-##How to compile:
+## How to compile:
 ```console
 composer install
 npm install
@@ -15,7 +15,7 @@ php artisan serve
 ```
 Then copy and paste the url to the browser.
 
-##How to use:
+## How to use:
 
 1. On the home page, you can see the data currently in database. (As the first run of this server, *No data* will be display.)
 2. Click on the Import CSV button, which will navigate you to the upload page.
@@ -23,7 +23,7 @@ Then copy and paste the url to the browser.
 4. The summary of the csv file will be shown on the screen.
 5. Click back button on top left corner, which will navigate you back to home page. You can see you file has successfully imported to the database.
 
-##Features I used in this project:
+## Features I used in this project:
 
 - Front-end: blade template, jquery and bootstrap 4, installed with npm.
 - Use sqlite database to avoid database set up problems (feel free to replace to any databases that Laravel support by modify the **.env** file).
