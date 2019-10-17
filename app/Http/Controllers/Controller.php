@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
+use DB;
 use App\Lot;
 use App\Categorie;
 use App\Condition;
@@ -18,6 +19,32 @@ class Controller extends BaseController
     public function index(){
 	    return view('upload');  
     }
+
+    public function report(){
+    	$total_lots = DB::table('lots')->count();
+    	$total_categories = DB::table('categories')->count();
+    	$total_conditions = DB::table('conditions')->count();
+    	$total_taxes = DB::table('taxes')->count();
+
+    	$categories = \DB::table('categories')
+                ->orderBy('name', 'asc')
+                ->get();
+
+        foreach ($categories as $_category) {
+            $category = Categorie::find($_category->id);
+            $category->total_amount = $category->calculate_total_amount($category->id);
+            $category->save();
+        }
+        
+	    return view('report', [
+	    	'total_lots' => $total_lots,
+	    	'total_categories' => $total_categories,
+	    	'total_conditions' => $total_conditions,
+	    	'total_taxes' => $total_taxes,
+	    	'categories' => $categories,
+	    ]);  
+    }
+
 
     public function store()
     {

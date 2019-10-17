@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 use App\Categorie;
 
@@ -15,6 +16,13 @@ class CategorieController extends Controller
                 ->orderBy('name', 'asc')
                 ->get();
 
+
+        foreach ($categories as $_category) {
+
+            $category = Categorie::find($_category->id);
+            $category->total_amount = $category->calculate_total_amount($category->id);
+            $category->save();
+        }
     	return view('categories.index', ['categories' => $categories]);
     }
 

@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('/upload', 'Controller@index');
 Route::post('/upload', 'Controller@store');
 
+Route::get('/report', 'Controller@report');
+
 Route::get('/lots', 'LotController@index');
 Route::post('/lots', 'LotController@store');
 Route::get('/lots/create', 'LotController@create');
