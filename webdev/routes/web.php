@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inventory/inventory');
 });
+
+// Route::get('/');

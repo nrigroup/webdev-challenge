@@ -31,7 +31,7 @@ class InventoryManagement extends Migration
         Schema::create('tax', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tax_name');
-            $table->float('tax_percentage');
+            $table->float('tax_rule')->nullable();
             $table->timestamps();
         });
 
