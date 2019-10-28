@@ -243,7 +243,7 @@ class InventoryManagerController extends Controller
         }
         else
         {
-            return redirect()->back();
+            // New conditions will be apllies here to get more advance search.
         }
      }
 }
