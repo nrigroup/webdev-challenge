@@ -16,6 +16,6 @@ class Inventory extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'date', 'category_id', 'lot_title', 'lot_location', 'lot_condition_id', 'tax_name','tax_amount'
+        'date', 'category', 'lot_title', 'lot_location', 'lot_condition','pre_tax_amount', 'tax_name','tax_amount'
     ];
 }

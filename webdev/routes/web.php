@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('inventory/inventory');
-});
+Route::get('/', 'InventoryManagerController@index');
 
-// Route::get('/');
+// Route::post('/import', 'InventoryManagerController@import_inventory');
+
+Route::post('/import', 'InventoryManagerController@import_inventory')->name('import');
+Route::get('/search_result', 'InventoryManagerController@search_result')->name('search');

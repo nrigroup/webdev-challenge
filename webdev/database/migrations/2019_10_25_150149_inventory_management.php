@@ -39,17 +39,18 @@ class InventoryManagement extends Migration
         Schema::create('inventory', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('category');
             $table->string('lot_title');
             $table->text('lot_location');
-            $table->unsignedInteger('lot_condition_id');
+            $table->unsignedInteger('lot_condition');
+            $table->float('pre_tax_amount');
             $table->unsignedInteger('tax_name');
-            $table->bigInteger('tax_amount');
+            $table->float('tax_amount');
             $table->timestamps();
 
             // Foreign key constraint
-            $table->foreign('category_id')->references('id')->on('inventory_category')->onDelete('cascade');
-            $table->foreign('lot_condition_id')->references('id')->on('inventory_condition')->onDelete('cascade');
+            $table->foreign('category')->references('id')->on('inventory_category')->onDelete('cascade');
+            $table->foreign('lot_condition')->references('id')->on('inventory_condition')->onDelete('cascade');
             $table->foreign('tax_name')->references('id')->on('tax')->onDelete('cascade');
         });
     }
