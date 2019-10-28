@@ -19,7 +19,17 @@ class InventoryManagerController extends Controller
      */
     public function index()
     {
-        return view('inventory/inventory');
+        // Check database connection configuration
+        try {
+            DB::connection()->getPdo();
+            if(DB::connection()->getDatabaseName()){
+                return view('inventory/inventory');
+            }else{
+                die("Could not find the database. Please check your configuration.");
+            }
+        } catch (\Exception $e) {
+            die("Could not open connection to database server.  Please check your configuration.");
+        }
     }
 
     /**
@@ -208,6 +218,7 @@ class InventoryManagerController extends Controller
         $timeline = $request->get('timeline');
         $category = $request->get('category');
 
+        // Check condition
         if($timeline == 'M' && $category != 0){
             $data = DB::table('inventory')
                 ->select(
