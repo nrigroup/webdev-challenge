@@ -16,7 +16,7 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->unsignedInteger('category');
+            $table->string('category');
             $table->string('lot_title');
             $table->string('lot_location');
             $table->longText('lot_condition');

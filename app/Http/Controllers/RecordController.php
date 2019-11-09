@@ -38,10 +38,12 @@ class RecordController extends Controller
     public function store(Request $request)
     {
       
-        $request->validate([
-            'file' => 'required|file'
-        ]);
-        $file = $request->file('file');
+    //Valiaation
+    $request->validate([
+        'file' => 'required|file'
+    ]);
+
+      $file = $request->file('file');
 
       // File Details 
       $filename = $file->getClientOriginalName();
@@ -97,17 +99,18 @@ class RecordController extends Controller
           }
           fclose($file);
 
+          //Find if file is empty
           if(count($importData_arr)<1)
           {
               return response("OOps! Your CSV File is empty");
           }
+          
+          //if file not empty
           else
           {
-
-           
+              //Reach each row and save to database
                foreach ($importData_arr as $data)
                {
-                  
                 $row = new Record;
                 $row->date = $data[0];
                 $row->category = $data[1];
@@ -120,14 +123,14 @@ class RecordController extends Controller
                 $row->save();
                }
 
-
+               //Search the table in order to get tosal sum of tax_amount per month per category wise.
                $result = \DB::table('records')
-               ->select(\DB::raw('SUM(tax_amount) as total_spending, MONTH(date) month, category'))
+               ->select(\DB::raw('SUM(pre_tax_amount) as total_spending, MONTH(date) month, category'))
                ->groupBy('month')
                ->groupBy('category')
                ->get();
 
-            
+               //Store the data to info array
                 $info = [];
                 foreach ($result as $res)
                 {
@@ -135,19 +138,13 @@ class RecordController extends Controller
                 }
 
                
-               
+               //Redirect to dashboard with success message 
                return redirect('/')->with('result', $info)->with('status','Data Imported Successfully');
-             
-
-
-
-
-
-
+          
           }
 
-
-          return redirect('/')->with('status', 'Oops! Some Error Occured');
+          //redirect to dashboard with error message
+          return redirect('/')->with('error', 'Oops! Some Error Occured');
           
         }
     }
