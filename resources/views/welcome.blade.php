@@ -46,7 +46,7 @@
         </h6>
         <label for="file" class="file-upload btn btn-primary btn-block rounded-pill shadow"><i class="fa fa-upload mr-2"></i>Browse for file ...
         <input id="file" required type="file" name="file">
-        </label>
+        </label> 
         <input type="submit" class="file-upload btn btn-primary btn-block rounded-pill shadow"/>
       </div>
     </div>
