@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ItemsController@index')->name('index');
+Route::get('/show_table', 'ItemsController@showTable')->name('show_table');
+Route::post('upload_file', 'ItemsController@uploadFile')->name('upload_file');
