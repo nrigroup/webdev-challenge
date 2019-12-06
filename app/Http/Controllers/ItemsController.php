@@ -12,12 +12,13 @@ class ItemsController extends Controller {
     }
 
     public function showTable() {
-        return view('show_table');
+        $items = Item::getAllItems();
+        return view('show_table', ['items' => $items]);
     }
 
     public function uploadFile(Request $request) {
         if ($request->input('submit') != null ){
-            $file = $request->file('file');
+            $file = $request->file('csv_file');
       
             // File Details 
             $filename = $file->getClientOriginalName();
@@ -74,7 +75,7 @@ class ItemsController extends Controller {
                             "pre_tax_amount"=>$importData[6],
                             "tax_name"      =>$importData[7],
                             "tax_amount"    =>$importData[8]);
-                        Page::insertData($insertData);
+                        Item::insertData($insertData);
                     }
                     Session::flash('message','Import Successful.');
                 } else {

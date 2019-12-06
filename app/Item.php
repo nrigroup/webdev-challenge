@@ -12,4 +12,8 @@ class Item extends Model {
             DB::table('items')->insert($data);
         }
     }
+
+    public static function getAllItems() {
+        return DB::table('items')->get();
+    }
 }
