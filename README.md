@@ -1,3 +1,9 @@
+## Steps to run project
+1.Create database with name Laravel.
+2. Go to Laravel directory and execute command php artisan migrate.
+3. Execute command command php artisan serve
+
+
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
