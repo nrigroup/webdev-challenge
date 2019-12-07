@@ -54,3 +54,10 @@ Once when you have submitted your work we will review your submission as soon as
 Please note we will only contact the selected candidates for further consideration.
 
 We thank you for taking the time to complete this development challenge and appreciate your interest in pursuing a career with NRI. 
+
+Name: Chitrangi Ambegaonkar
+Documentation:
+Steps to run project:
+1. Create database with name Laravel.
+2. Go to Laravel directory and execute command php artisan migrate.
+3. Execute command php artisan serve.
