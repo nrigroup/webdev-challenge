@@ -1,5 +1,5 @@
 ## Steps to run project
-1.Create database with name Laravel.
+1. Create database with name Laravel.
 2. Go to Laravel directory and execute command php artisan migrate.
 3. Execute command command php artisan serve
 
