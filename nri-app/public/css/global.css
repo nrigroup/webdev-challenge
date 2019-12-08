@@ -1,0 +1,128 @@
+/****** Some boilerplate global css I found online to keep things clean ******/
+/****** Source: https://gist.github.com/thisisadityarao/cc86efbdd916c6031f8ca3601c107d71 ******/
+
+/* Raleway */
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,600,600i");
+/* Open Sans*/
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i");
+
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+
+/* Box Sizing
+  ========================================================================== */
+
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* PARAGRAPHS
+  ========================================================================== */
+
+p {
+    font-size: 1em;
+    color: #0a0a0a;
+    margin: 0;
+    hyphens: auto;
+}
+
+/* HEADINGS
+  ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Open Sans", sans-serif;
+    margin: 21px 0 0;
+    /* non-scalable fallback for old browsers */
+    margin-top: 1.5rem;
+    /* 21px, will be ignored by old browsers */
+}
+
+/* LINKS
+  ========================================================================== */
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: #ff6732;
+}
+
+a:visited {
+    color: #ff6732;
+}
+
+a:focus,
+a:hover {
+    border-bottom: 1px solid #ff6732;
+}
+
+a:active {
+    color: #ff9d00;
+}
+
+/* A better looking default horizontal rule
+  ========================================================================== */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ ========================================================================== */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/* IMAGES
+  ========================================================================== */
+
+img {
+    height: auto;
+    width: auto;
+    /* max-width allows image to be responsive. */
+    max-width: 100%;
+}
+
+/* LISTS
+  ========================================================================== */
+li,
+ul {
+    margin: 0;
+    padding: 0;
+}
