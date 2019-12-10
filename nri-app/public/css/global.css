@@ -30,6 +30,7 @@ body {
     font-family: "Raleway", sans-serif;
     font-size: 16px;
     line-height: 1.6;
+    background-color: rgb(240, 240, 240);
 }
 
 /* PARAGRAPHS
@@ -66,20 +67,20 @@ a {
 }
 
 a:link {
-    color: #ff6732;
+    color: gray;
 }
 
 a:visited {
-    color: #ff6732;
+    color: gray;
 }
 
 a:focus,
 a:hover {
-    border-bottom: 1px solid #ff6732;
+    color: #2196f3;
 }
 
 a:active {
-    color: #ff9d00;
+    color: #2196f3;
 }
 
 /* A better looking default horizontal rule

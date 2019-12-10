@@ -11,4 +11,8 @@
 |
 */
 
-Route::get('/', array('uses' => 'HomeController@index'));
+Route::get('/', array('uses' => 'HomeController@index'))->name('homePage');
+Route::post('/', array('uses' => 'AuctionsController@store'))->name('auctionSubmit');
+
+Route::get('/dashboard/{month?}/{year?}', array('uses' => 'DashboardController@index'))->name('dashboardPage');
+Route::post('/dashboard/submit', array('uses' => 'DashboardController@submit'))->name('dashboardSubmit');

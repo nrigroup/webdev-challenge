@@ -1,0 +1,53 @@
+.header {
+    color: rgb(99, 99, 99);
+    font-weight: 600;
+}
+
+.main-card {
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.form-div {
+    padding: 80px 80px 50px 80px;
+    border-right: solid 1px gray;
+    background-color: #c4ebfd;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+.table-div {
+    padding: 50px 50px 20px 40px;
+}
+
+.data-table {
+    padding: 10px;
+}
+
+.table-row {
+    padding: 5px 10px;
+    border-bottom: solid 1px gray;
+    border-left: solid 1px gray;
+    border-right: solid 1px gray;
+}
+
+.first-row {
+    border-top: solid 1px gray;
+    background-color: lightgray;
+}
+
+.submitButton {
+    margin-top: 10px;
+}
+
+.homeLink {
+    float: right;
+    border: solid 1px gray;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.homeLink:hover {
+    border: solid 1px #2196f3;
+}
