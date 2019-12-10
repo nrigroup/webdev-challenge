@@ -9,8 +9,11 @@ class HomeController extends Controller
 {
     public function index() {
         try {
-            // render home.blade.php
-            return view('home.home');
+            // Data to inject into blade template
+            $data = ['errorMessage' => ''];
+
+            // render home page blade template
+            return view('home.home', $data);
 
         } catch (Exception $ex) {
             abort(500); // Internal server error

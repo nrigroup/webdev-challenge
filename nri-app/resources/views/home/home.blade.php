@@ -30,6 +30,7 @@
             <div class="custom-file mb-3">
               <input type="file" class="custom-file-input" id="customFile" name="csvFile">
               <label class="custom-file-label" for="csvFile">Choose file</label>
+              <span class="error">{{$errorMessage}}</span>
             </div>
           
             <div class="text-center">
