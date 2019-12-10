@@ -21,7 +21,7 @@
           'method' => 'POST',
           'id' => 'dashboard_filter_form'))
         }}
-        <p class="instruction">Please enter the month and year to display auction expenses by category.</p>
+        <p class="instruction">Please enter month and year to display auction expenses by category.</p>
         <br>
         <div class="row">
           <div class="col-sm-6">

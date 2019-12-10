@@ -11,7 +11,8 @@
 .form-div {
     padding: 80px 80px 50px 80px;
     border-right: solid 1px gray;
-    background-color: #c4ebfd;
+    /* background-color: #c4ebfd; */
+    background-image: linear-gradient(to bottom right, white, #c4ebfd);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     color: white;
