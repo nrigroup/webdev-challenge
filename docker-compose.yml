@@ -1,0 +1,44 @@
+# version
+version: '2'
+
+# services
+services:
+  # application
+  app:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+
+  # web server
+  web:
+    build:
+      context: ./
+      dockerfile: web.dockerfile
+    working_dir: /var/www
+    volumes_from:
+      - app
+    ports:
+      - 8080:80
+
+  # database
+  database:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=NRI_DATABASE"
+      - "MYSQL_USER=NRI_DATABASE"
+      - "MYSQL_PASSWORD=NRI_DATABASE"
+      - "MYSQL_ROOT_PASSWORD=NRI_DATABASE"
+    ports:
+        - "33061:3306"
+
+# volumes
+volumes:
+  dbdata:
