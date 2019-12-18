@@ -1,10 +1,10 @@
 ## How to Use
 
 #### Install Docker: 
-```apt-get install docker``` or ```brew install docker``` or ```yay -S docker```
+```apt-get install docker```
 
 #### Install Docker Compose: 
-```apt-get install docker-compose``` or ```brew install docker-compose``` or ```yay -S docker-compose```
+```apt-get install docker-compose```
 
 #### Start Docker Daemon:
 ```sudo service docker start```
