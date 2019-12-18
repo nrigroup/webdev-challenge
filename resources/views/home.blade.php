@@ -15,6 +15,11 @@
             margin-top: 10px;
         }
 
+        .browse-button {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
         .error, .processing, #button-spinner {
             display: none;
         }
@@ -28,7 +33,7 @@
     <!-- upload form -->
     <form class="form">
         <div class="alert alert-danger error">
-            Invalid data file, please select a valid .csv file.
+            Invalid or unknown data file, please select a valid .csv file.
         </div>
         <div class="alert alert-success processing">
             The file was successfully uploaded. Wait until we finish processing the file.
@@ -38,16 +43,16 @@
             <div class="input-group">
                 <label class="input-group-btn">
                     <!-- label for file -->
-                    <span class="btn btn-primary">
+                    <span class="btn btn-primary browse-button">
                         Browse File <input type="file" style="display: none;" multiple>
                     </span>
                 </label>
-                <!-- input file -->
-                <input type="text" class="form-control" readonly>
+                <!-- input text -->
+                <input type="text" class="form-control" autocomplete="off" readonly>
             </div>
         </div>
         <!-- submit button -->
-        <button id="submit-button" type="button" class="btn btn-primary">
+        <button id="submit-button" type="button" class="btn btn-primary disabled">
             <!-- span -->
             <span id="button-label">UPLOAD</span>
 

@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// route to update the datafile
+// method: [POST]
+Route::post('insertData', 'ItemController@insertData');

@@ -18,6 +18,19 @@ $(function() {
 
             // clear label
             label = "";
+
+            // clear file
+            input.val("");
+
+            // add disabled from button
+            $("#submit-button").addClass("disabled");
+        }
+        else {
+            // hide error
+            $(".error").hide();
+
+            // remove disabled from button
+            $("#submit-button").removeClass("disabled");
         }
 
         // manually trigger the event
@@ -45,13 +58,22 @@ $(function() {
 
     // submit button event
     $("#submit-button").click(function() {
-        // hide button label
-        $("#button-label").hide();
+        // get file path
+        var file = $(':file').val();
 
-        // show button spinner
-        $("#button-spinner").show();
+        // check if there is a file
+        if (file != "") {
+            // hide button label
+            $("#button-label").hide();
 
-        // show processing message
-        $(".processing").show();
+            // show button spinner
+            $("#button-spinner").show();
+
+            // show processing message
+            $(".processing").show();
+
+            // process the file
+            
+        }
     });
 });
