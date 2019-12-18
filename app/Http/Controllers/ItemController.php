@@ -21,6 +21,9 @@ class ItemController extends Controller
             // declare file index
             $index = 0;
 
+            // truncate table for testing purposes
+            Item::query()->truncate();
+
             // foreach the csv file
             foreach($csv as &$record) {
                 // check for header

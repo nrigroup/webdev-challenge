@@ -20,8 +20,13 @@
             border-bottom-right-radius: 0px;
         }
 
-        .error, .processing, #button-spinner {
+        .error, .processing, #button-spinner, #months-header, #categories-header, #data-months, #data-categories {
             display: none;
+        }
+
+        #months-header, #categories-header {
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
     </style>
     <!-- header -->
@@ -44,7 +49,7 @@
                 <label class="input-group-btn">
                     <!-- label for file -->
                     <span class="btn btn-primary browse-button">
-                        Browse File <input type="file" style="display: none;" multiple>
+                        Browse File <input id="file" type="file" style="display: none;">
                     </span>
                 </label>
                 <!-- input text -->
@@ -61,5 +66,36 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </button>
+        <!-- months table -->
+        <h2 id="months-header" class="title">TOTAL PER MONTH</h2>
+        <div id="data-months">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="data-months-content">
+                </tbody>
+            </table>
+        </div>
+        <!-- categories table -->
+        <h2 id="categories-header" class="title">TOTAL PER CATEGORY</h2>
+        <div id="data-categories">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="data-categories-content">
+                </tbody>
+            </table>
+        </div>
+        <!-- clear -->
+        <br clear="all" />
     </form>
 @stop

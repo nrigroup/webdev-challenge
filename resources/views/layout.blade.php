@@ -27,13 +27,7 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
-                background-image: url("background.jpg");
-            }
-
-            .overlay {
-                background-color: rgba(0, 0, 0, 0.8);
-                width: 100%;
-                height: 100%;
+                background-color: #000;
             }
 
             h2 {
@@ -57,11 +51,9 @@
         </style>
     </head>
     <body>
-        <div class="overlay">
-            <h2>NRI WEBDEV</h2>
-            <div class="content">
-                @yield('content')
-            </div>
+        <h2>NRI WEBDEV</h2>
+        <div class="content">
+            @yield('content')
         </div>
     </body>
 </html>
