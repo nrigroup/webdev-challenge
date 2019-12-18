@@ -1,15 +1,15 @@
 ## How to Use
 
-Install Docker: 
+#### Install Docker: 
 ```apt-get install docker``` or ```brew install docker```
 
-Clone the project:
+#### Clone the project:
 ```git clone https://github.com/fbonesso/webdev-challenge.git && cd webdev-challenge```
 
-Create Docker Instance:
+#### Create Docker Instance:
 ```docker-compose up```
 
-Open the URL:
+#### Open the URL:
 ```http://localhost:8080```
 
 ## Particularly Proud
