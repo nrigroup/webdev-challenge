@@ -93,7 +93,7 @@
                 }
 
             }).done(function(response){
-                // console.log(response);
+                console.log(response);
                 if(response.success){
                     htmlTable = generateTable(response.result);
                     console.log(response.result);

@@ -16,7 +16,13 @@ Route::get('/', function () {
     return view('web-challenge');
 });
 
+/**
+ * Rout to process CSV upload and return calculated results
+ */
 Route::post('/csv-upload', function( Request $request){
+    $response_array = array();
+    $by_cat_tot = array();
+    $by_month_tot = array();
     $file = fopen($request->uploadfile->path(), 'r');
 
     // Loop throw rows and insert after converting formats
@@ -42,4 +48,21 @@ Route::post('/csv-upload', function( Request $request){
             'tax_amount' =>$insert_array['tax amount']
         ]);
     }
+            //Now Aggregate data
+            $by_cat_month = Purchase::getCategoryPerMonth();
+            $month_tot = Purchase::getByMonthTotal();
+            $cat_tot = Purchase::getByCategoryTotal();
+
+            //Prep json response
+            for ($i=0; $i < count($cat_tot) ; $i++) { 
+                $by_cat_tot[$cat_tot[$i]['category']] = $cat_tot[$i]['SUM(pre_tax_amount)'];
+            }
+
+            foreach ($month_tot as $key => $value) {
+                $by_month_tot[$key] = $value['SUM(pre_tax_amount)'];
+
+            }
+            
+            //Send json response to client
+            return array('success'=> true, 'result'=> array('cat' => $by_cat_tot, 'moncat' => $by_cat_month, 'month' => $by_month_tot));
 });
