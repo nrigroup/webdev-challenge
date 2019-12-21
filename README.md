@@ -1,7 +1,9 @@
 # How to run project
 1. Drag NRIApp folder into Visual Studio Code
 2. Open up Terminal and run 'npm install'
-3. Next in terminal run 'php artisan serve'
+3. If no 'database.sqlite' file in database folder, create it with command in terminal 'touch database/database.sqlite' or manually create it in database folder
+4. Next in terminal run 'php artisan migrate:fresh' initialize migration
+3. Next in terminal run 'php artisan serve' to start project
 4. Select data.svc when choosing a file
 
 # What I'm proud of
