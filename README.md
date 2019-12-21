@@ -6,6 +6,8 @@
 3. Next in terminal run 'php artisan serve' to start project
 4. Select data.svc when choosing a file
 
+5. Note: When displaying total tax amount I just summed up tax amount not including pre tax amount.
+
 # What I'm proud of
 Where to begin...
 I had no idea how to use Laravel, Vue, PHP Artisan, etc. So I guess learning about those in such a short time is pretty cool. 
