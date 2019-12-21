@@ -1,3 +1,9 @@
+# How to run project
+1. Drag NRIApp folder into Visual Studio Code
+2. Open up Terminal and run 'npm install'
+3. Next in terminal run 'php artisan serve'
+4. Select data.svc when choosing a file
+
 # What I'm proud of
 Where to begin...
 I had no idea how to use Laravel, Vue, PHP Artisan, etc. So I guess learning about those in such a short time is pretty cool. 
