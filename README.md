@@ -1,7 +1,7 @@
 # What I'm proud of
 Where to begin...
 I had no idea how to use Laravel, Vue, PHP Artisan, etc. So I guess learning about those in such a short time is pretty cool. 
-Figuring out how to communicate between server/client side languages
+Figuring out how to communicate between server/client side languages.
 I did my best with what I knew. I hope this shows i'm interested in the position.
 
 # NRI Web Development Challenge
