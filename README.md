@@ -1,3 +1,20 @@
+# How to run project
+1. Drag NRIApp folder into Visual Studio Code
+2. Open up Terminal and run 'npm install'
+- May need to run 'npm run dev' to compile
+3. If no 'database.sqlite' file in database folder, create it with command in terminal 'touch database/database.sqlite' or manually create it in database folder
+4. Next in terminal run 'php artisan migrate:fresh' initialize migration
+3. Next in terminal run 'php artisan serve' to start project
+4. Select data.svc when choosing a file
+
+5. Note: When displaying total tax amount I just summed up tax amount not including pre tax amount.
+
+# What I'm proud of
+Where to begin...
+I had no idea how to use Laravel, Vue, PHP Artisan, etc. So I guess learning about those in such a short time is pretty cool. 
+Figuring out how to communicate between server/client side languages.
+I did my best with what I knew. I hope this shows i'm interested in the position.
+
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
