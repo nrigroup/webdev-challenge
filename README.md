@@ -1,3 +1,9 @@
+# What I'm proud of
+Where to begin...
+I had no idea how to use Laravel, Vue, PHP Artisan, etc. So I guess learning about those in such a short time is pretty cool. 
+Figuring out how to communicate between server/client side languages
+I did my best with what I knew. I hope this shows i'm interested in the position.
+
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
