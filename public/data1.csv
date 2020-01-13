@@ -1,0 +1,20 @@
+date,category,lot title,lot location,lot condition,pre-tax amount,tax name,tax amount
+12/1/2013,Construction,Hauling Transfer Trailers,"783 Park Ave, New York, NY 10021",Brand New,350,NY Sales tax,31.06
+12/15/2013,Construction,Roll-of trucks,"1 Infinite Loop, Cupertino, CA 95014",Like Brand New,235,CA Sales tax,17.63
+12/31/2013,Construction,End dumps,"1 Infinite Loop, Cupertino, CA 95014",Used,999,CA Sales tax,74.93
+12/14/2013,Construction,Skid steer loaders,"1 Infinite Loop, Cupertino, CA 95014",For parts or not working,899,CA Sales tax,67.43
+12/6/2013,Construction,Bobtail dump trucks,"1600 Amphitheatre Parkway, Mountain View, CA 94043",Brand New,21000.54,CA Sales tax,1575.04
+12/9/2013,Construction,Front loaders' engines,"1600 Amphitheatre Parkway, Mountain View, CA 94043",For parts or not working,50,CA Sales tax,3.75
+11/10/2013,Construction,Water trucks,"1600 Amphitheatre Parkway, Mountain View, CA 94043",For parts or not working,300,CA Sales tax,22.5
+11/12/2013,Mining,Shovels,"1600 Amphitheatre Parkway, Mountain View, CA 94043",Like Brand New,230,CA Sales tax,17.25
+11/20/2013,Plastics & Rubber,2kgs; used rubber tires,"783 Park Ave, New York, NY 10021",Used,200,NY Sales tax,15
+10/4/2013,Mining,Assorted Tools,"1600 Amphitheatre Parkway, Mountain View, CA 94043",Used,200,CA Sales tax,15
+10/12/2013,Mining,Assorted Tools,"783 Park Ave, New York, NY 10021",Used,1999,NY Sales tax,177.41
+12/9/2013,Plastics & Rubber,2kgs; used rubber tires,"The Montreal Museum of Fine Arts, 1380 Rue Sherbrooke O, Montréal, QC H3G 1J5",Used,15,CA Sales tax,1.13
+9/18/2013,Plastics & Rubber,20” plastic sheets,"1 Infinite Loop, Cupertino, CA 95014",Brand New,200,CA Sales tax,15
+9/30/2013,Mining,Assorted Tools,"1600 Amphitheatre Parkway, Mountain View, CA 94043",Like Brand New,200,CA Sales tax,15
+12/30/2013,Computer - Hardware,Dell XPS 13,"1600 Amphitheatre Parkway, Mountain View, CA 94043",Used,200,CA Sales tax,15
+1/6/2014,Computer - Hardware,Dell XPS 13,"1600 Amphitheatre Parkway, Mountain View, CA 94043",Used,200,CA Sales tax,15
+1/7/2014,Computer - Hardware,Dell XPS 13,"1 Infinite Loop, Cupertino, CA 95014",Used,200,CA Sales tax,15
+2/3/2014,Computer – Software,MS OFFICE 2016,"1 Infinite Loop, Cupertino, CA 95014",Brand New,12,CA Sales tax,0.9
+2/18/2014,Computer – Software,MS OFFICE 2016 Bulk,"1600 Amphitheatre Parkway, Mountain View, CA 94043",Brand New,1500,CA Sales tax,112.5
