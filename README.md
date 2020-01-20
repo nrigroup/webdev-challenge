@@ -1,7 +1,7 @@
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
-At this time, we require you to [use a PHP MVC framework, preferably Laravel to complete the challenge]. If you don't yet know Laravel, [give it a try](https://laravel.com/), it has a gentle learning curve. [For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc.] If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, [we use Laravel, Bootstrap & jQuery], and it would help us to evaluate what we know and use.
+At this time, we require you to __*use a PHP MVC framework, preferably Laravel to complete the challenge*__. If you don't yet know Laravel, [give it a try](https://laravel.com/), it has a gentle learning curve. __*For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc.*__ If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, __*we use Laravel, Bootstrap & jQuery*__, and it would help us to evaluate what we know and use.
 
 ## Submission Instructions
 1. Fork this project on github. You will need to create an account if you don't already have one
@@ -15,7 +15,7 @@ Imagine that NRI has won some items from an auction. From the auctioneer, we hav
 1. Observe MVC structure in your code.
 2. Show a simple, attractive web interface that allows users to upload a file.
 3. Gets the uploaded csv file, parses it and saves it into a RDB.
-4. After saving into the RDB, [displays the total spending amount per-month and per-category.]
+4. After saving into the RDB, __* displays the total spending amount per-month and per-category. *__
 5. These are the basic requirements of this challenge. Other features you implement will count as bonus.
 
 * Your app must accept a comma separated file with the following columns:date, category, lot title, lot location, lot condition, pre-tax amount, tax name, tax amount
@@ -30,7 +30,7 @@ Your application should be easy to set up, and should run on Linux distros such 
 
 There are many ways that this application could be built; we ask that you build it in a way that showcases one of your strengths (OOP, clean interface, clean code, extensible code, high code quailty, beautiful frontend...etc). If you you enjoy front-end development, do something interesting with the interface. If you like object-oriented design, feel free to dive deeper into the domain model of this problem. We're happy to tweak the requirements slightly if it helps you show off one of your strengths.
 
-[Once you're done, please submit a paragraph or two in your `README` about what you are particularly proud of in your implementation, and why.]
+__* Once you're done, please submit a paragraph or two in your `README` about what you are particularly proud of in your implementation, and why.*__
 
 ## Evaluation
 Evaluation of your submission will be based on the following criteria. 
