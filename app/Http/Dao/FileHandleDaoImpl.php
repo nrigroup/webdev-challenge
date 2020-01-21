@@ -30,11 +30,11 @@ abstract class FileHandleDaoImpl
 
              FileHandleDaoImpl::createLot($fileRowData);
 
-            /* FileHandleDaoImpl::createLotCondition($fileRowData);
+             FileHandleDaoImpl::createLotCondition($fileRowData);
 
              FileHandleDaoImpl::createTaxType($fileRowData);
 
-             FileHandleDaoImpl::createSale($fileRowData); */
+             FileHandleDaoImpl::createSale($fileRowData); 
          }
 
    }
@@ -80,7 +80,8 @@ abstract class FileHandleDaoImpl
         {
             if($header == FileHandleDaoImpl::LOT_TITLE)
             {
-                $result = DB::select("SELECT 1 FROM lot WHERE lot_title= (?) ",[$value]);
+                $value = utf8_encode($value);
+                $result = DB::select("SELECT 1 FROM lot WHERE lot_title= ? ",[$value]);
                 
                 if(count($result) <= 0)
                 {
