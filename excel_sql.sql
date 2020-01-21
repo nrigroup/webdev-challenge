@@ -65,13 +65,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tax_type` (
   PRIMARY KEY (`tax_type_id`))
 ENGINE = InnoDB;
 
-----------
--- Inserting data into `mydb`.`tax_type`
-INSERT INTO `mydb`.`tax_type`(`tax_type_id`,`tax_name`)
-VALUES 
-(DEFAULT,'NY Sales tax'),
-(DEFAULT,'CA Sales tax');
-
 -- -----------------------------------------------------
 -- Table `mydb`.`sale`
 -- -----------------------------------------------------
