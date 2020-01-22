@@ -11413,10 +11413,15 @@ caption {
 }
 
 .label {
-  width: 100px;
+  width: 110px;
 }
 
 input.input {
   border: dotted 1px black;
+}
+
+.textleft {
+  display: inline-block;
+  text-align: left;
 }
 

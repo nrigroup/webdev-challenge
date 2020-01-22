@@ -13,8 +13,8 @@
             @method('put')
             @endisset
 
-            <div id="content">
-                <div>
+            <div id="content" style="text-align:center">
+                <div class="textleft">
                     <label for="lot_title" class="label">Title</label>
                     <input type="text" size="50" class="input" id='lot_title' name='lot_title'
                         value="{{$lot->lot_title ?? ''}}" /><br>
@@ -37,9 +37,7 @@
                     <label for="date_won" class="label">Date Won</label><input type="date" step="1" size="50"
                         name="date_won" id="date_won" class="input"
                         value="{{str_replace("T00:00", "",  $lot->date_won ?? '')}}" /><br>
-                </div>
-            </div>
-            <div class="formend">
+                </div><br>
                 <button class="btn btn-primary" type="submit">{{ucfirst($UPDATE_CREATE)}}</button>
             </div>
         </form>
