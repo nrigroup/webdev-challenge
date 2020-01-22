@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 class AuctionController extends Controller
 {
-    
     // store CEV file into database
-    public function store(Request $request){
+    public function import(Request $request){
 
     }
 

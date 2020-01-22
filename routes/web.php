@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/store', 'AuctionController@store');
+Route::post('/import', 'AuctionController@import');

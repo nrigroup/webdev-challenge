@@ -17,36 +17,27 @@
     </head>
     <body>
         <div class:"container" >
-                <div class:"tableRespond">
-                    <h1 align="center" >WebDev Chellenge</h1>
-                    <br>
-                    <div align="center" >
-                        <button type="button" name="load-data"  id="load-data" class="btn btn-primary">load data</button>
-                    </div>
-                    <br>
-                    <div align="center" id="auctios-table" >
+          
+            <h1 >WebDev Chellenge</h1>
+            <br>
+            <div class:"uploadForm" >
 
-                    </div>
-                </div>
+                <form action="{{url('/store')}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                   
+                </form>
+            </div>
+            <br>
+            <div align="center" id="auctios-table" >
+
+            </div>
+                
         </div>
     </body>
 </html>
 
-<script> 
-$(document).ready(function(){
 
-    $("#load-data").click(function(){
-        console.log("clicked")
-        $.ajax({
-            url:"data.csv",
-            dataType:"text",
-            success:function(data){
-
-                var auctioData = data.split(/\r?\n|\r/)
-                console.log(auctioData)
-            }
-        })
-    })
-
-});
-</script>
