@@ -9,21 +9,42 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <style>
-    .container{
 
+     html,body
+      {
+           height: 100%;
+      }
+    .container{
         display:grid;
+        height: 100%;
     }
 
    .form-container
    {
        display: grid;
-       grid-template-rows: 50% 30%;
+       height: 500px;
+      align-items: center;
+      box-shadow: 0px 0px 11px 1px rgba(0,0,0,1);
    }
+   .container
+    {
+       align-items: center;
+    }
    .button-cls
    {
       display:grid;
       justify-content: center;
+      margin-top:2%;
    }
+
+   .file-class
+   {
+      display:grid;
+      justify-content: center;
+   }
+
+  
+
 
 </style>
 
@@ -33,9 +54,12 @@
          <div class="form-container">
             <form action="/handlefile" method="post" id="fileForm" enctype="multipart/form-data">
                   {{ csrf_field() }}
-                  <div class="custom-file">
-                     <input type="file" class="custom-file-input" name="file" id="customFile">
-                     <label class="custom-file-label" for="customFile">Choose file</label>
+                  <h1>Select a CSV File</h1>
+                  <div class="file-class">
+                     <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="file" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                     </div>
                   </div>
                   <div class="button-cls">
                      <button type="button" class="btn btn-info" id="btnSubmit" name="btnSubmit">Submit</button>
