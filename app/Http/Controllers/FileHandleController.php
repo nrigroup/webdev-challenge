@@ -13,11 +13,11 @@ class FileHandleController extends Controller
       {
           
           /* creating new instnce */
-      //    $fileHandle = new FileHandle();
+          $fileHandle = new FileHandle();
           /* populating the instance with csv data */
-      //    $fileHandle =  FileHandlerService::handleFileRequest($request,$fileHandle);     
+          $fileHandle =  FileHandlerService::handleFileRequest($request,$fileHandle);     
           /* saving the data into the database */
-       //   FileHandleDaoImpl::persistData($fileHandle);
+          FileHandleDaoImpl::persistData($fileHandle);
           
           /* return the results */
           $results = FileHandleDaoImpl::getResults();
