@@ -14,6 +14,7 @@ abstract class FileHandleDaoImpl
    const PRE_TAX_AMOUNT = "pre-tax amount";
    const TAX_TYPE = "tax name";
    const TAX_AMOUNT = "tax amount"; 
+   const DATE = "date";
 
    public static function persistData(FileHandle $fileHandle)
    {
@@ -128,6 +129,44 @@ abstract class FileHandleDaoImpl
 
    public static function createSale(Array $fileRowData)
    {
-
-   }
+        $category_id; $location_id;$lot_id;$condition_id;$tax_type_id;$date;$pre_tax_amount;$tax_amount;
+        foreach($fileRowData as $header => $value)
+        {
+             switch($header)
+             {
+                  case FileHandleDaoImpl::CATEGORY:
+                     $result = DB::select("SELECT category_id FROM categories WHERE category_name=?",[$value]);
+                     $category_id = $result[0] -> category_id;
+                  break;
+                  case FileHandleDaoImpl::LOT_LOCATION:
+                     $result = DB::select("SELECT location_id FROM location WHERE location_name=?",[$value]);
+                     $location_id = $result[0] -> location_id;
+                  break;
+                  case FileHandleDaoImpl::LOT_TITLE:
+                     $result = DB::select("SELECT lot_id FROM lot WHERE lot_title=?",[$value]);
+                     $lot_id =  $result[0] -> lot_id;
+                  break;
+                  case FileHandleDaoImpl::LOT_CONDITION:
+                     $result = DB::select("SELECT condition_id FROM lot_condition WHERE condition_name=?",[$value]);
+                     $condition_id =  $result[0] -> condition_id;
+                  break;
+                  case FileHandleDaoImpl::TAX_TYPE:
+                     $result = DB::select("SELECT tax_type_id FROM tax_type WHERE tax_name=?",[$value]);
+                     $tax_type_id =  $result[0] -> tax_type_id;
+                  break;
+                  case FileHandleDaoImpl::PRE_TAX_AMOUNT:
+                     $pre_tax_amount = $value;
+                  break;
+                  case FileHandleDaoImpl::TAX_AMOUNT:
+                     $tax_amount = $value;
+                  break;
+                  case FileHandleDaoImpl::DATE:
+                     $date = $value;
+                  break;
+                  
+             }
+             
+        }
+       $result = DB::insert("INSERT INTO sale values (DEFAULT,?,?,?,?,?,?,?,?)",[date ("Y-m-d H:i:s", strtotime($date)),$pre_tax_amount,$tax_amount,$category_id,$location_id,$tax_type_id,$lot_id,$condition_id]);
+    }
 }

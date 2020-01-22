@@ -71,8 +71,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`sale` (
   `sale_id` INT NOT NULL AUTO_INCREMENT,
   `sale_date` DATE NOT NULL,
-  `pre_tax_amount` DECIMAL NOT NULL,
-  `tax_amount` DECIMAL NOT NULL,
+  `pre_tax_amount` DECIMAL(10,2) NOT NULL,
+  `tax_amount` DECIMAL(10,2) NOT NULL,
   `category_id` INT NOT NULL,
   `location_id` INT NOT NULL,
   `tax_type_id` INT NOT NULL,
