@@ -8,11 +8,23 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+   h1{
+     text-transform: uppercase;
+     font-size:23px;
+     opacity: 0.6;
+     margin-top:5%;
+     margin-bottom:5%;
+     text-align:center;
+   }
+</style>
 <body>
 
 <div class="container">         
+
+  <h1>Results categorized by month and year</h1>
   <table class="table">
-    <thead>
+    <thead class="thead-dark">
       <tr>
         <th>Category Name</th>
         <th>Expense</th>
@@ -23,10 +35,10 @@
     <tbody>
          @foreach ($results as $result)
             <tr>
-                <td>{{ $result -> category_name }}</td>
-                <td>{{ $result -> expense }}</td>
-                <td>{{ $result -> month }}</td>
-                <td>{{ $result -> year }}</td>
+                <td class="table-light">{{ $result -> category_name }}</td>
+                <td class="table-light">{{ $result -> expense }}</td>
+                <td class="table-light">{{ $result -> month }}</td>
+                <td class="table-light">{{ $result -> year }}</td>
             </tr>
          @endforeach
     </tbody>

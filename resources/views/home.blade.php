@@ -25,6 +25,7 @@
        height: 500px;
       align-items: center;
       box-shadow: 0px 0px 11px 1px rgba(0,0,0,1);
+      background-color: rgba(0,0,0,0.02);
    }
    .container
     {
@@ -43,7 +44,13 @@
       justify-content: center;
    }
 
-  
+   h1{
+      text-align:center;
+      font-size:22px;
+      margin-bottom:2%;
+      text-transform:uppercase;
+      opacity:0.7;
+   }
 
 
 </style>
@@ -73,7 +80,7 @@
        
         $(document).ready(function(){
 
-
+console.log('executed');
          $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
@@ -81,7 +88,6 @@
 
        
           $('#btnSubmit').on('click',function(){
-              console.log(document.getElementById("fileForm"));
               document.getElementById("fileForm").submit()
           });
 
