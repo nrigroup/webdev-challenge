@@ -169,4 +169,16 @@ abstract class FileHandleDaoImpl
         }
        $result = DB::insert("INSERT INTO sale values (DEFAULT,?,?,?,?,?,?,?,?)",[date ("Y-m-d H:i:s", strtotime($date)),$pre_tax_amount,$tax_amount,$category_id,$location_id,$tax_type_id,$lot_id,$condition_id]);
     }
+
+    public static function getResults()
+    {
+        $result = DB::select('
+                select c.category_name "category_name", sum(s.pre_tax_amount+s.tax_amount) "expense",monthname(s.sale_date) "month",YEAR(s.sale_date) "year"
+                from sale s ,categories c 
+                where s.category_id = c.category_id
+                group by c.category_name,YEAR(s.sale_date), MONTH(s.sale_date)
+                order by YEAR(s.sale_date) desc, month(s.sale_date)
+        ');
+        return $result;
+    } 
 }

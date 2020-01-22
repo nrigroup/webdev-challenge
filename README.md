@@ -59,3 +59,5 @@ We thank you for taking the time to complete this development challenge and appr
 create .env file
 php artisan key:generate
 php artisan config:cache
+
+set mysql 'strict' to 'false' in database.php, since laravel supports ONLY_FULL_GROUP_BY  when strict is set to false;
