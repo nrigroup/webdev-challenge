@@ -1,8 +1,68 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+$primary: black;
+
+
+body {
+    color: $primary;
+}
+
+.is-danger {
+    color: red;
+}
+
+.current_page_item {
+    background: blue;
+    border-radius: 10px;
+    color: #FFF;
+}
+
+.rightstrong {
+    margin-right: 10px;
+    font-weight: bolder;
+}
+
+.leftmargin10 {
+    margin-left: 10px;
+}
+
+.lotinfo {
+    color: darkslategray;
+}
+
+table td {
+    color: darkslategray;
+}
+
+.nav-link:hover {
+    border-bottom: 1px solid blue;
+    margin-top: -1px;
+}
+
+.nav-link.current_page_item {
+    color: #FFF;
+}
+
+.nav-link.current_page_item:hover {
+    border-bottom: none;
+    color: #FFF;
+    font-weight: normal;
+    text-transform: none;
+    text-decoration: none;
+    margin-top: 0;
+}
+
+caption {
+    color: black;
+    caption-side: top;
+    text-align: center;
+    background-color: lightgray;
+}
+
+.label {
+    width: 100px;
+}
+
+input.input {
+    border: dotted 1px black;
+}
