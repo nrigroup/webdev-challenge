@@ -4,9 +4,10 @@ namespace App\Http\Dao;
 use App\Http\Models\FileHandle;
 use Illuminate\Support\Facades\DB;
 
+/* Data Access Object class used to store,update and retrieve the data from database */
 abstract class FileHandleDaoImpl
 {
-
+   /* Declare constants */
    const CATEGORY = "category";
    const LOT_TITLE = "lot title";
    const LOT_LOCATION = "lot location";
@@ -16,6 +17,7 @@ abstract class FileHandleDaoImpl
    const TAX_AMOUNT = "tax amount"; 
    const DATE = "date";
 
+   /* function used to persist the .csv data into the database */
    public static function persistData(FileHandle $fileHandle)
    {
          $data = $fileHandle -> data;
@@ -40,6 +42,7 @@ abstract class FileHandleDaoImpl
 
    }
    
+   /* Inserts the categories records in the database */
    public static function createCategories(Array $fileRowData)
    {
        foreach($fileRowData as $header => $value)
@@ -56,7 +59,7 @@ abstract class FileHandleDaoImpl
            }
        }
    }
-
+ /* Inserts the location records in the database */
    public static function createLocation(Array $fileRowData)
    {
         foreach($fileRowData as $header => $value)
@@ -75,6 +78,7 @@ abstract class FileHandleDaoImpl
         }
    }
 
+   /* Inserts the lot records in the database */
    public static function createLot(Array $fileRowData)
    {
         foreach($fileRowData as $header => $value)
@@ -93,6 +97,7 @@ abstract class FileHandleDaoImpl
         }
    }
 
+   /* Inserts the lot condition records in the database */
    public static function createLotCondition(Array $fileRowData)
    {
         foreach($fileRowData as $header => $value)
@@ -109,7 +114,7 @@ abstract class FileHandleDaoImpl
             }
         }
    }
-
+ /* Inserts the tax type records in the database */
    public static function createTaxType(Array $fileRowData)
    { 
         foreach($fileRowData as $header => $value)
@@ -127,6 +132,7 @@ abstract class FileHandleDaoImpl
         }
    }
 
+   /* Inserts the sale records in the database */
    public static function createSale(Array $fileRowData)
    {
         $category_id; $location_id;$lot_id;$condition_id;$tax_type_id;$date;$pre_tax_amount;$tax_amount;
@@ -170,6 +176,7 @@ abstract class FileHandleDaoImpl
        $result = DB::insert("INSERT INTO sale values (DEFAULT,?,?,?,?,?,?,?,?)",[date ("Y-m-d H:i:s", strtotime($date)),$pre_tax_amount,$tax_amount,$category_id,$location_id,$tax_type_id,$lot_id,$condition_id]);
     }
 
+    /* retrieves result from the database */
     public static function getResults()
     {
         $result = DB::select('

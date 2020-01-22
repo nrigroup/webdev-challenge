@@ -4,8 +4,10 @@ namespace App\Http\Services;
 use Illuminate\Http\Request;
 use App\Http\Models\FileHandle;
 
+/* Servcie class used to perform file storing operations into fileHandle Object */
 abstract class FileHandlerService{
 
+   /* function used to handle the file upload and push the contents of .csv file into the fileHandle object */
    public static function handleFileRequest(Request $request,FileHandle $fileHandle)
    {
        $file = $request -> file('file');
@@ -13,11 +15,13 @@ abstract class FileHandlerService{
        
        /* set the headers to the fileHandle object */   
        FileHandlerService::setHeaders($csvAsArr,$fileHandle);
+       /* set the data of .csv into the fileHandle object */
        FileHandlerService::setDataInObject($csvAsArr,$fileHandle);
        
        return $fileHandle;   
     }
 
+     /* function sets the data of .csv into the fileHandle object */
     public static function setDataInObject(Array $csvAsArr,FileHandle $fileHandle)
     {
         $rows = count($csvAsArr);
@@ -41,7 +45,7 @@ abstract class FileHandlerService{
         $fileHandle -> data = $data;
     }
 
-
+    /* function set the headers to the fileHandle object */   
     public static function setHeaders(Array $csvAsArr,FileHandle $fileHandle)
     {
 
