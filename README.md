@@ -17,8 +17,8 @@ data.csv - Find this file in the project directory to load the .csv file into th
 
 ## Implementation
 
-I believe that a developer is someone who is language agnostic, he/she should have strong fundamentals on the concepts and rest of the  <br/>
-things can be implemented whatever language it might be. I have not coded in PHP before, this is the first time ever I have learned and <br/>
-written PHP code by using a MVC framework laravel. I am proud of what I have accomplished, in a few days I picked up a new language and <br/>
-a framework and written code using it. I believe that I can do the same when in professional envinorment as well, pick up new things and implement <br/>
-them without delay, and that's what companies want right!!! developers who are enthusiastic and love to be challenged. I am one of them. <br/>
+I believe that a developer is someone who is language agnostic, he/she should have strong fundamentals on the concepts and rest of the  
+things can be implemented whatever language it might be. I have not coded in PHP before, this is the first time ever I have learned and 
+written PHP code by using a MVC framework laravel. I am proud of what I have accomplished, in a few days I picked up a new language and 
+a framework and written code using it. I believe that I can do the same when in professional envinorment as well, pick up new things and implement 
+them without delay, and that's what companies want right!!! developers who are enthusiastic and love to be challenged. I am one of them. 
