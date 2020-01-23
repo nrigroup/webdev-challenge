@@ -17,6 +17,12 @@
      margin-bottom:5%;
      text-align:center;
    }
+
+   .table
+   {
+     box-shadow: 0px 0px 4px 1px rgba(0,0,0,1);
+   }
+
 </style>
 <body>
 
@@ -24,7 +30,7 @@
 
   <h1>Results categorized by month and year</h1>
   <table class="table">
-    <thead class="thead-dark">
+    <thead class="table-primary">
       <tr>
         <th>Category Name</th>
         <th>Expense</th>

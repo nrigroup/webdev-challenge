@@ -52,6 +52,11 @@
       opacity:0.7;
    }
 
+   .custom-file-input
+   {
+      cursor:pointer;
+   }
+
 
 </style>
 
