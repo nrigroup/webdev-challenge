@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/', 'AuctionController@showForm');
-
 Route::post('/import', 'AuctionController@import');
+Route::get('/perMonth', 'AuctionController@perMonth');
+Route::get('/perCategory', 'AuctionController@perCategory');
 

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Auction;
+use DB;
 
 
 
 
 class AuctionController extends Controller
 {
-    
+    // Display welcome view
     public function showForm(){
         return view('welcome');
     }
@@ -20,7 +21,13 @@ class AuctionController extends Controller
 
         // get file 
         $upload = $request -> file('upload_file');
+        if ( $upload == null){
+            $error = "Please select CSV file";
+            return view("welcome")->with('error',$error);
+        }
         $filePath = $upload-> getRealPath();
+        
+        
         // open and read file 
         $file = fopen($filePath, 'r');
 
@@ -58,12 +65,26 @@ class AuctionController extends Controller
            "tax_amount"=>$importData[7],
 
         );
+            
            Auction::insertData($insertData);
 
       }
-      return redirect()->action('AuctionController@showForm');
+    
+     $data = DB::table('auctions')->get();
+     return view("welcome")->with('allAuctionData',$data);
 
     }
+    // get all the total spending per month from database 
+    public function perMonth (){
+        $data =  Auction::totalPreMonth();
+        return view("welcome")->with('totalPerMonth',$data);   
+    }
+    // get all the total spending per category from database 
+    public function perCategory (){
+        $data =  Auction::totalPreCategory();
+        return view("welcome")->with('totalPerCategory' ,$data);      
+    } 
+
 
 
 
