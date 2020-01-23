@@ -21,20 +21,29 @@ I have used bootstrap with some custom styles
 
 ## Controller
 ImportCsvsController.php
+
 ImportCsvsController has three methods
+
 1)index() - which displays the file input form
+
 2)showData() - which calls the showData() method of model and pass the records to the records view
+
 3)uploadFile() - which check the file and process the file data and insert them to the table
 
 ## Model
 Csv.php
+
 Csv Model file has two methods 
+
 1)insertData() - To insert data in to the table
+
 2)showData() - To retrieve data from the table
 
 ## Views
 Index.blade.php (Home page with file upload form)
+
 records.blade.php (Report Page)
+
 app.blade.php (layout view inside layout folder)
 
 ## Step to Setup the Project
