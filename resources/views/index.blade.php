@@ -4,14 +4,6 @@
             <div class="jumbotron text-center">
                 <h1>{{$title}}</h1>
                 <hr>
-                
-                <!-- Show Records If file imported Successfully -->
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
                 <!-- Message -->
                 @if(Session::has('message'))
                     <div class="alert alert-danger">
