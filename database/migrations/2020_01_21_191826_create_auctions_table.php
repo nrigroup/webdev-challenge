@@ -22,7 +22,7 @@ class CreateAuctionsTable extends Migration
             $table->string("lot_condition");
             $table->integer("pretax_amount");
             $table->string("tax_name");
-            $table->double("tax_amount",5, 5);
+            $table->double("tax_amount");
             $table->timestamps();
         });
     }

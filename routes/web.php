@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', 'AuctionController@showForm');
+
 Route::post('/import', 'AuctionController@import');
+

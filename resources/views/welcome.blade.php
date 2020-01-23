@@ -22,13 +22,11 @@
             <br>
             <div class:"uploadForm" >
 
-                <form action="{{url('/store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{url('/import')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
-                
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                        <br>
-                        <button type="submit" class="btn btn-primary">Import</button>
-                   
+                    <input type="file" name="upload_file" class="form-control-file" id="exampleFormControlFile1">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Import</button> 
                 </form>
             </div>
             <br>
