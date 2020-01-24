@@ -54,3 +54,10 @@ Once when you have submitted your work we will review your submission as soon as
 Please note we will only contact the selected candidates for further consideration.
 
 We thank you for taking the time to complete this development challenge and appreciate your interest in pursuing a career with NRI. 
+
+## SetUp
+To Set up this project, change database configuration as required in .env
+Run `php artisan migrate` command for table generation.
+Then, to run the project, Run`php artisan serve`.
+
+The Best thing which I felt while doing this was, I have not worked/read anything in Laravel earlier. But, still was able to complete it within few hours.
