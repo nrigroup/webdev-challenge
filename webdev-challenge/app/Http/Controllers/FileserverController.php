@@ -18,13 +18,24 @@ class FileserverController extends Controller
             $request->file('fileinput')->storeAs(
                 'public/storage/', $filename
             );
-            $this->readFile($file,$path.$filename);
 
-            return [
-                'msg'       => 'ok',
-                'status'    => '200',
-                'filename'  => $filename
-            ];
+            if($this->readFile($file,$path.$filename))
+            {
+                return [
+                    'msg'       => 'ok',
+                    'status'    => '200',
+                    'filename'  => $filename
+                ];
+            }
+            else{
+                return [
+                    'msg'       => 'Error: data format',
+                    'status'    => '400'
+                ];
+            }
+
+
+
         }
         else{
             return [
@@ -81,5 +92,7 @@ class FileserverController extends Controller
             Data::insertData($insertData);
 
         }
+
+        return true;
     }
 }
