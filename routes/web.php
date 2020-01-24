@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('auction', 'AuctionController@index')->name('auction_index');
+Route::post('import_csv', 'AuctionController@importCSV')->name('auction_import_csv');
+Route::get('total_spending', 'AuctionController@totalSpending')->name('auction_total_spending');
