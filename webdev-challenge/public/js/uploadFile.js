@@ -10,7 +10,7 @@
 // });
 $(document).ready(function() {
     $("#input-b2").fileinput({
-        allowedFileExtensions: ['csv','pdf','jpg'],
+        allowedFileExtensions: ['csv'],
         uploadUrl: 'http://127.0.0.1:8000/api/fileupload',
     });
 });
