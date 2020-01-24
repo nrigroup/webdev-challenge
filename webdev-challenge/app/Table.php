@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Table extends Model
 {
 
-    public function fetchData()
+    public static function fetchData()
     {
 
         $content = DB::select('SELECT  date_format(date,\'%Y-%m\') as yyyymm, category, SUM(tax_amount) as amount
@@ -17,6 +17,6 @@ class Table extends Model
                                             GROUP BY category, date_format(date,\'%Y-%m\')
                                             ORDER BY category, yyyymm DESC;');
 
-        return [table_content => $content];
+        return $content;
     }
 }
