@@ -9,6 +9,7 @@ class MainController extends Controller
     protected $id = '';
     public function index()
     {
+
         return view('index');
     }
 

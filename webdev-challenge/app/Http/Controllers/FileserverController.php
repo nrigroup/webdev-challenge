@@ -83,12 +83,12 @@ class FileserverController extends Controller
             $insertData = array(
                 "date"=>$importData[0],
                 "category"=>$importData[1],
-                "lot title"=>$importData[2],
-                "lot location"=>$importData[3],
-                "lot condition"=>$importData[4],
-                "pre-tax amount"=>$importData[5],
-                "tax name"=>$importData[6],
-                "tax amount"=>$importData[7]);
+                "lot_title"=>$importData[2],
+                "lot_location"=>$importData[3],
+                "lot_condition"=>$importData[4],
+                "pre-tax_amount"=>$importData[5],
+                "tax_name"=>$importData[6],
+                "tax_amount"=>$importData[7]);
             Data::insertData($insertData);
 
         }
