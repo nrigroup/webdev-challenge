@@ -1,3 +1,26 @@
+
+
+
+# Summary
+
+There is more I can do to improve the code quality, but I have almost run out of time. I decided to complete all the basic requirements first. 
+
+At this moment, I would like to say I have completed the basic requirements of the challenge, and I am going to introduce to you what I have done.
+
+### Done: 
+1. A nice user interface -  I got a bootstrap templet from the internet to free myself from customizing the CSS.
+2. I used a file upload plug-in to enable this component's font-end
+3. I used a table generating plug-in to generate the table for me.
+4. Contructed a basic MVC structure with some models and comtrollers.
+5. This project uses Laravel framework, MySQL database and little Jquery
+6. separated the front-end into layout and components.
+
+
+Best regards
+
+
+
+
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
