@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('import') }}">Docs</a>
+                    <a href="{{ url('import') }}">Insert Auction Data</a>
                    </div>
             </div>
         </div>
