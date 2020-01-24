@@ -14,6 +14,10 @@
     <link href="{{asset('inspinia/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('inspinia/css/style.css')}}" rel="stylesheet">
 
+    @section('css')
+
+    @show
+
 </head>
 
 <body class="">
@@ -150,10 +154,10 @@
 
             <div class="footer">
                 <div class="float-right">
-                    10GB of <strong>250GB</strong> Free.
+                    felipeapastana<strong>@</strong>gmail.com
                 </div>
                 <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2018
+                    <strong>Copyright</strong> linkedin.com/in/felipepastana &copy; {{date('Y')}}
                 </div>
             </div>
 
@@ -167,9 +171,17 @@
     <script src="{{asset('inspinia/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
+    <!-- Morris -->
+    <script src="{{asset('inspinia/js/plugins/morris/raphael-2.1.0.min.js')}}"></script>
+    <script src="{{asset('inspinia/js/plugins/morris/morris.js')}}"></script>
+
     <!-- Custom and plugin javascript -->
     <script src="{{asset('inspinia/js/inspinia.js')}}"></script>
     <script src="{{asset('inspinia/js/plugins/pace/pace.min.js')}}"></script>
+
+    @section('js')
+
+    @show
 
 
 </body>

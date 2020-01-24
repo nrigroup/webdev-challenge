@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class AuctionData extends Model
 {
     protected $table = 'auction_data';
@@ -31,5 +33,20 @@ class AuctionData extends Model
         $insert_auction->save();
 
         return $insert_auction;
+    }
+
+    public function getAllAuctions()
+    {
+        $auction_data = AuctionData::select()
+        ->orderBy('date', 'asc')
+        ->get()
+        ->map(function($auction_data){
+
+            $auction_data->month_year = Carbon::parse($auction_data->date)->format('m-Y');
+
+            return $auction_data;
+        });
+
+        return $auction_data;
     }
 }

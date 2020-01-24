@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\AuctionData;
-
 use Illuminate\Support\Facades\Storage;
-
 use App\Libraries\Csv;
 
 class AuctionController extends Controller
@@ -33,10 +30,11 @@ class AuctionController extends Controller
 
     public function totalSpending()
     {
-        $auction_data = AuctionData::select()
+        $auction_data = new AuctionData();
+        $all_auctions = $auction_data->getAllAuctions();
 
-        ->get();
-
-        dd($auction_data);
+        return view('auction.result', [
+            'all_auctions' => $all_auctions
+        ]);
     }
 }
