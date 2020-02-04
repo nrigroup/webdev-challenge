@@ -3,7 +3,7 @@ Framework used : LARAVEL
 
 PACKAGES used
 1. maatwebsite/excel : To Process a CSV and then importing the data to the RDB.
-2. consoletvs/charts : To show the final imported data from the mysql.(category wise and monthly totals).
+2. consoletvs/charts : To show the final imported data from mysql to CHARTS.(category wise[BAR Chart] and monthly [LINE Chart] totals).
 3. Toaster.js : For notifications
 
 OPEN laravel.png from root to view final output.
