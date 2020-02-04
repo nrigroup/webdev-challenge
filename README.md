@@ -1,56 +1,101 @@
-# NRI Web Development Challenge
-To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
+Framework used : LARAVEL
 
-At this time, we require you to use a PHP MVC framework, preferably Laravel to complete the challenge. If you don't yet know Laravel, [give it a try](https://laravel.com/), it has a gentle learning curve. For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, we use Laravel, Bootstrap & jQuery, and it would help us to evaluate what we know and use.
 
-## Submission Instructions
-1. Fork this project on github. You will need to create an account if you don't already have one
-2. Complete the challenge within your fork after reading below details.
-3. Push all of your changes to your fork on github and submit a pull request.
+PACKAGES used
+1. maatwebsite/excel : To Process a CSV and then importing the data to the RDB.
+2. consoletvs/charts : To show the final imported data from the mysql.(category wise and monthly totals).
+3. Toaster.js : For notifications
 
-## Project Description
-Imagine that NRI has won some items from an auction. From the auctioneer, we have received the item details electronically. We would like to import this dataset into our central inventory system. Your task is to create a simple web interface that will accept a `.csv` file and then store them in a relation database.
+OPEN laravel.png from root to view final output.
 
-### What your web application must do:
-1. Observe MVC structure in your code.
-2. Show a simple, attractive web interface that allows users to upload a file.
-3. Gets the uploaded csv file, parses it and saves it into a RDB.
-4. After saving into the RDB, displays the total spending amount per-month and per-category.
-5. These are the basic requirements of this challenge. Other features you implement will count as bonus.
+How to run
+1.clone or download from git.
+2.Run xampp or any other server
+3.Run following commands on terminal in root directory.
+ composer install
+ php artisan migrate (don't forget to create databse in phpmyadmin first - named nri)
+ php artisan serve
+4.open localhost:8000 in browser
+:)
 
-* Your app must accept a comma separated file with the following columns:date, category, lot title, lot location, lot condition, pre-tax amount, tax name, tax amount
-* You can make the following assumptions
-     - Columns will always be in that order
-     - There will always be data in each column
-     - There will always be a header line
 
- An example input file named `data.csv` is included in this repo.
 
-Your application should be easy to set up, and should run on Linux distros such as ubuntu, centos or debian. It should not require any non open-source software.
 
-There are many ways that this application could be built; we ask that you build it in a way that showcases one of your strengths (OOP, clean interface, clean code, extensible code, high code quailty, beautiful frontend...etc). If you you enjoy front-end development, do something interesting with the interface. If you like object-oriented design, feel free to dive deeper into the domain model of this problem. We're happy to tweak the requirements slightly if it helps you show off one of your strengths.
+<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-Once you're done, please submit a paragraph or two in your `README` about what you are particularly proud of in your implementation, and why.
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-## Evaluation
-Evaluation of your submission will be based on the following criteria. 
+## About Laravel
 
-1. Did your application fulfill the basic requirements?
-2. Did you document the method for setting up and running your application?
-3. Did you follow the instructions for submission?
-4. Did you style your code in a way that it's easy to read and understand?
-5. Did you go above and beyond? (Did your submission surprise us?)
-6. Did you maintain clean code (indentation, comments, naming conventions)
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Note
-Please submit clean code with proper indentation. Understand that the first thing we do is  
-read your code, not run your code. If you fail to keep consistant indentation and  
-the best practices in defining your functions and variable names, chances are  
-we will not need to run your code to evaluate your skills.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## What's Next?
-Once when you have submitted your work we will review your submission as soon as possible. 
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-Please note we will only contact the selected candidates for further consideration.
+## Learning Laravel
 
-We thank you for taking the time to complete this development challenge and appreciate your interest in pursuing a career with NRI. 
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+
+## Laravel Sponsors
+
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- [UserInsights](https://userinsights.com)
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
+- [Invoice Ninja](https://www.invoiceninja.com)
+- [iMi digital](https://www.imi-digital.de/)
+- [Earthlink](https://www.earthlink.ro/)
+- [Steadfast Collective](https://steadfastcollective.com/)
+- [We Are The Robots Inc.](https://watr.mx/)
+- [Understand.io](https://www.understand.io/)
+- [Abdel Elrafa](https://abdelelrafa.com)
+- [Hyper Host](https://hyper.host)
+- [Appoly](https://www.appoly.co.uk)
+- [OP.GG](https://op.gg)
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
