@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NRI Auction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- // HEADER STARTS HERE// -->
+    <header>
+        <h1>NRI Auction <span>Expenses</span></h1>
+    </header>
+
+    <!-- //MAIN STARTS HERE// -->
+
+    <main>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="files">Upload file</label>
+                <input type="file" id="files" class="form-control" accept=".csv" required />
+            </div>
+
+            <div class="expenses-btn">
+                <div class="form-group">
+                    <button type="submit" id="submit-file" class="btn btn-primary">Expenses per month</button>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" id="submit-file" class="btn btn-primary">Expenses per category</button>
+                </div>
+            </div>
+            <!-- // expenses-btn ends here // -->
+        </form>
+
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="papaparse.min.js"></script>
+
+</body>
+
+<footer>
+    Created and designed by Puja Neupane
+</footer>
+
+</html>
