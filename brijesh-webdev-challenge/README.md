@@ -1,4 +1,4 @@
-#How to configure locally
+##How to configure locally
 
 1. Download composer https://getcomposer.org/download/
 2. Download & install XAMPP on local machine (XAMPP is cross-platform and available for Windows, MAC OSX and Linux operating system).
@@ -8,11 +8,13 @@
 6. Clone webdev-challenge Git repository
 7. Navigate to folder "brijesh-webdev-challenge" in order to run this challenge which is done in Laravel framework.
 8. Run ```composer install``` or ```php composer.phar install```
-9. Rename .env.example file to .env inside folder "brijesh-webdev-challenge" and fill the database information. See the below note#2.
-8. Run ```php artisan migrate``` to create relevant tables of this challenge in MySQL database "webdev-challenge".
-9. Run this challenge in browser through this given url "http://localhost/webdev-challenge/brijesh-webdev-challenge/public/".
+9. Run ```php artisan key:generate```
+10. Rename .env.example file to .env inside folder "brijesh-webdev-challenge" and fill the database information. See the below note#2.
+11. Run ```php artisan migrate``` to create relevant tables of this challenge in MySQL database "webdev-challenge".
+12. Run ```php artisan serve```
+13. Run this challenge in browser through this given url "http://localhost/webdev-challenge/brijesh-webdev-challenge/public/".
 
-#Notes:
+##Notes:
 1. MySQL default credentials are:
       1. Hostname: localhost
       2. Username: root
@@ -28,6 +30,6 @@
      DB_PASSWORD=
      ```
      
-#Proud moment
+##Proud moment
 
 I successfully completed this task by recalling my knowledge of Laravel as I haven't touched Laravel for 1.4 years because I had been working on Wordpress, React.js which were the major needs of my previous employer (King Business Development Solutions). The successfulness of this challenge shows one of the mandatory trait of developer i.e developer must able to adapt new technologies, tools, environments, etc quickly.  
