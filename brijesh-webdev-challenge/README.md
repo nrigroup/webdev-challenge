@@ -33,4 +33,4 @@
      
 ##Proud moment
 
-I successfully completed this task by recalling my knowledge of Laravel as I haven't touched Laravel for 1.4 years; because, I had been working on Wordpress, React.js which were the major needs of my previous employer (King Business Development Solutions). The successfulness of this challenge shows one of the mandatory trait of developer i.e developer must able to adapt new technologies, tools, environments, etc quickly.  
+I successfully completed this task by recalling my knowledge of Laravel as I haven't touched Laravel for 1.4 years; because, I had been working on Wordpress, React.js which were the major needs of my previous employer (King Business Development Solutions). The successfulness of this challenge shows one of the mandatory traits of developer i.e developer must able to adopt new technologies, tools, environments, etc quickly.  
