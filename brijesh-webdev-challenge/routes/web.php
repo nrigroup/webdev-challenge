@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', 'ChallengeController');
+Route::post('/save-csv-data', 'ChallengeController@store');
