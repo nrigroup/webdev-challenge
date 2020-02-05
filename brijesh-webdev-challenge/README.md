@@ -11,7 +11,9 @@
 9. Rename .env.example file to .env inside folder "brijesh-webdev-challenge" and fill the database information. See the below note#2.
 10. Run ```php artisan key:generate```
 11. Run ```php artisan migrate``` to create relevant tables of this challenge in MySQL database "webdev_challenge".
-12. Run ```php artisan serve```, this command will generate url to serve application on browser. ```OR``` The application also serves on browser through this given url "http://localhost/webdev-challenge/brijesh-webdev-challenge/public/".
+12. Move image file "laravel_logo.png" from path "XAMPP/htdocs/webdev-challenge/" to "XAMPP/htdocs/webdev-challenge/brijesh-webdev-challenge/storage/app/public/" 
+13. Run command ```php artisan storage:link``` to sync storage folder to make it public available.
+14. Run ```php artisan serve```, this command will generate url to serve application on browser. ```OR``` The application also serves on browser through this given url "http://localhost/webdev-challenge/brijesh-webdev-challenge/public/".
 
 ##Notes:
 1. MySQL default credentials are:
