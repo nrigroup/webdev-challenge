@@ -90,7 +90,7 @@ class ChallengeController extends Controller
             }
             // check all the rows are successfully inserted or not into array
             // size of the array == number of rows of csv - header row
-            if (sizeof($readyToInsertData) == $row - 1) {
+            if (isset($readyToInsertData) && (sizeof($readyToInsertData) == $row - 1)) {
 
                 // if all the csv data stored into array without any error then insert data into database
                 Challenge::insert($readyToInsertData);
