@@ -11,7 +11,7 @@
 9. Run ```php artisan key:generate```
 10. Rename .env.example file to .env inside folder "brijesh-webdev-challenge" and fill the database information. See the below note#2.
 11. Run ```php artisan migrate``` to create relevant tables of this challenge in MySQL database "webdev-challenge".
-12. Run ```hp artisan serve```
+12. Run ```php artisan serve```
 13. Run this challenge in browser through this given url "http://localhost/webdev-challenge/brijesh-webdev-challenge/public/".
 
 ##Notes:
