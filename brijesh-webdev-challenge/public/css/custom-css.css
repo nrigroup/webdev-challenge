@@ -1,0 +1,33 @@
+html{
+    position:relative;
+    min-height: 100%;
+}
+.body-padding{
+    padding-top:85px;
+    padding-bottom: 85px;
+}
+.navbar-custom-style{
+    background-color: #e3f2fd;
+    border-bottom:5px solid red;
+}
+.vertical-align{
+    vertical-align: bottom;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.card-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 78vh;
+}
+@media only screen and (max-width: 768px) {
+    .hidden-span-xs {
+        display: none;
+    }
+}
