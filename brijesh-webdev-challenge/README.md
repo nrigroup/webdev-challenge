@@ -1,4 +1,4 @@
-#How to configure task locally
+#How to configure locally
 
 1. Download composer https://getcomposer.org/download/
 2. Download & install XAMPP on local machine (XAMPP is cross-platform and available for Windows, MAC OSX and Linux operating system).
@@ -7,7 +7,9 @@
 5. Open terminal, navigate to htdocs folder of xampp.
 6. Clone webdev-challenge Git repository
 7. Navigate to folder "brijesh-webdev-challenge" in order to run this challenge which is done in Laravel framework.
-8. Run Laravel artisan command "php artisan migrate" to create relevant tables of this challenge in MySQL database "webdev-challenge".
+8. Run ```composer install``` or ```php composer.phar install```
+9. Rename .env.example file to .env inside folder "brijesh-webdev-challenge" and fill the database information. See the below note#2.
+8. Run ```php artisan migrate``` to create relevant tables of this challenge in MySQL database "webdev-challenge".
 9. Run this challenge in browser through this given url "http://localhost/webdev-challenge/brijesh-webdev-challenge/public/".
 
 #Notes:
