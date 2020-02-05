@@ -59,8 +59,10 @@ class ChallengeController extends Controller
 
         // check header is present or not
         // check header columns are in order
-        if ($header[0] == "date" && $header[1] == "category" && $header[2] == "lot title" && $header[3] == "lot location" &&
-            $header[4] == "lot condition" && $header[5] == "pre-tax amount" && $header[6] == "tax name" && $header[7] == "tax amount") {
+         if ((isset($header[0]) && isset($header[1]) && isset($header[2]) && isset($header[3]) &&
+            isset($header[4]) && isset($header[5]) && isset($header[6]) && isset($header[7])) &&
+            ($header[0] == "date" && $header[1] == "category" && $header[2] == "lot title" && $header[3] == "lot location" &&
+            $header[4] == "lot condition" && $header[5] == "pre-tax amount" && $header[6] == "tax name" && $header[7] == "tax amount")) {
 
             // initialize increment
             $row = 1;
