@@ -81,11 +81,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    NRI Group
+                    X
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('import') }}">Insert Auction Data</a>
+                    <a href="{{ url('import') }}">Insert Data</a>
                    </div>
             </div>
         </div>

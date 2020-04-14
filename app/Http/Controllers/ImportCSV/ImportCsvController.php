@@ -15,8 +15,8 @@ class ImportCsvController extends Controller
     public function index()
     {
         $data = Data_items::orderBy('created_at','DESC')->get();
-        $Total_amount = DB::table('data__items')->select(DB::raw('SUM(pre_tax_amount) + SUM(tax_amount) as total, category'))->groupBy('category')->get();
-        return view('upload',compact('data','Total_amount'));
+        
+        return view('upload',compact('data'));
     }
 
     public function store(Request $request)
@@ -50,18 +50,12 @@ class ImportCsvController extends Controller
         $data= array_combine($escapedHeader, $columns);
 
            // Table update
-           $date=$data['date'];
-           $dateformated= Carbon::createFromFormat('m/d/Y',$date)->format('Y-m-d'); // Changing date format for mysql
-           $category=$data['category'];
-           $lot_title=$data['lot_title'];
-           $lot_location=$data['lot_location'];
-           $lot_condition=$data['lot_condition'];
-           $pre_tax_amount=$data['pre_tax_amount'];
-           $tax_name=$data['tax_name'];
-           $tax_amount=$data['tax_amount'];
-        
-           $budget= Data_Items::firstOrNew(['date'=>$dateformated,'category'=>$category,'lot_title'=>$lot_title,'lot_location'=>$lot_location,'lot_condition'=>$lot_condition,'pre_tax_amount'=>$pre_tax_amount,'tax_name'=>$tax_name,'tax_amount'=>$tax_amount]);
-           $budget->save();
+           $fname=$data['first_name'];
+           $lname=$data['last_name'];
+           $address=$data['address'];
+           $province=$data['province'];
+           $info= Data_Items::firstOrNew(['first_name'=>$fname,'last_name'=>lname,'address'=>$address,'province'=>$province]);
+           $info->save();
         }
         
         

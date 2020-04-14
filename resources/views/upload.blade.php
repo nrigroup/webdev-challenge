@@ -51,40 +51,22 @@
      <div class="table-responsive">
       <table class="table table-bordered table-striped">
        <tr>
-        <th>Date</th>
-        <th>Category</th>
-        <th>Lot Title</th>
-        <th>Lot Location</th>
-        <th>Lot Condition</th>
-        <th>Amount</th>
-        <th>Tax Name</th>
-        <th>Tax</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Address</th>
+        <th>Province</th>
                </tr>
         @foreach($data as $c)
        <tr> 
-       <td>{{ $c->date}}</td>
-        <td>{{ $c->category }}</td>
-        <td>{{ $c->lot_title }}</td>
-        <td>{{ $c->lot_location}}</td>
-        <td>{{ $c->lot_condition}}</td>
-        <td>{{ $c->pre_tax_amount}}</td>
-        <td>{{ $c->tax_name}}</td>
-        <td>{{ $c->tax_amount}}</td>
+       <td>{{ $c->first_name}}</td>
+        <td>{{ $c->last_name }}</td>
+        <td>{{ $c->address }}</td>
+        <td>{{ $c->province}}</td>
+       
        </tr>
        @endforeach
       </table>
-      <table class="table table-bordered table-striped">
-       <tr>
-        <th>Category</th>
-        <th>Total Amount Spent</th>
-       </tr>
-        @foreach($Total_amount as $t)
-       <tr> 
-       <td>{{ $t->category}}</td>
-        <td>{{ $t->total }}</td>
-        </tr>
-       @endforeach
-      </table>
+      
      </div>
     </div>
 </div>

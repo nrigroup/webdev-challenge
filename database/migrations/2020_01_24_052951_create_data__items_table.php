@@ -15,14 +15,10 @@ class CreateDataItemsTable extends Migration
     {
         Schema::create('data__items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date');
-            $table->string('category');
-            $table->string('lot_title');
-            $table->string('lot_location');
-            $table->string('lot_condition');
-            $table->float('pre_tax_amount');
-            $table->string('tax_name');
-            $table->float('tax_amount');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('address');
+            $table->string('province');
             $table->timestamps();
         });
     }

@@ -16,14 +16,10 @@ class ImportData_Items implements ToModel
     {
         return new Data_Items([
             //
-            'date' => @row[0],
-            'category' => @row[1],
-            'lot_title' => @row[2],
-            'lot_location' => @row[3],
-            'lot_condition' => @row[4],
-            'pre_tax_amount' => @row[5],
-            'tax_name' => @row[6],
-            'tax_amount' => @row[7]
+            'First name' => @row[0],
+            'Last name' => @row[1],
+            'Address' => @row[2],
+            'Province' => @row[3]
         ]);
     }
 }
