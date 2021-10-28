@@ -15,15 +15,14 @@ Imagine that NRI has won some items from an auction. From the auctioneer, we hav
 1. Observe MVC structure in your code.
 2. Show a simple, attractive web interface that allows users to upload a file.
 3. Gets the uploaded csv file, parses it and saves it into a RDB.
-4. After saving into the RDB, displays the total spending amount per-month and per-category.
+4. After saving into the RDB, the "dashboard" displays a simple report - the total amount (pre tax amount) per day in a bar graph, as well as two pie charts displaying the overall total (pre tax amount) per category and total per condition.
 5. These are the basic requirements of this challenge. Other features you implement will count as bonus.
 
-* Your app must accept a comma separated file with the following columns:date, category, lot title, lot location, lot condition, pre-tax amount, tax name, tax amount
-* You can make the following assumptions
-     - Columns will always be in that order
-     - There will always be data in each column
-     - There will always be a header line
-
+* Your app must accept a comma separated file with the following columns:date (required), category (required), lot title (required), lot location (required), lot condition (required), pre-tax amount (required), tax name, tax amount
+* Please keep mind of the following:
+     - Column names may or may not exist and may nota be in that order specified above (there will always be a headline/row)
+     - There may or may not be data in each column in the data (required fields must have data)
+  
  An example input file named `data.csv` is included in this repo.
 
 Your application should be easy to set up, and should run on Linux distros such as ubuntu, centos or debian. It should not require any non open-source software.
