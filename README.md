@@ -23,7 +23,7 @@ Imagine that NRI has won some items from an auction. From the auctioneer, we hav
      - Column names may or may not exist and may nota be in that order specified above (there will always be a headline/row)
      - There may or may not be data in each column in the data (required fields must have data)
   
- An example input file named `data.csv` is included in this repo.
+ An example input file named `data.csv` is included in this repo. However, we may or may not use the same data file to test your work. 
 
 Your application should be easy to set up, and should run on Linux distros such as ubuntu, centos or debian. It should not require any non open-source software.
 
