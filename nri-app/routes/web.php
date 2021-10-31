@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    Log::info("dashboard route");
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::post('/upload', [Controller::class, "upload_file"]);
 
 require __DIR__.'/auth.php';

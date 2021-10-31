@@ -12,7 +12,7 @@ export default function Dashboard(props) {
         >
             <Head title="Dashboard" />
 
-            <Upload />
+            <Upload props={props}/>
         </Authenticated>
     );
 }
