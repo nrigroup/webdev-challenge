@@ -53,4 +53,13 @@ class Controller extends BaseController
 
         return json_encode($response);
     }
+    
+    public function fetch_data(Request $request) {
+        $rows = DB::table("items")->get();       
+
+        $response = new \stdClass();
+        $response->status = "ok";
+        $response->result = $rows;
+        return json_encode($response);
+    }
 }
