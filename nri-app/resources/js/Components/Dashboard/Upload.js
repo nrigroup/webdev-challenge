@@ -16,8 +16,7 @@ const options = {
 };
 
 export default function Upload(props) {
-  const [data, setData] = useState(null);
-  const [date, setDate] = useState(new Date());
+  const [data, setData] = useState(null);  
 
   useEffect(() => {
     axios.get('/fetch_data').then(response => {

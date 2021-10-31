@@ -53,13 +53,21 @@ class Controller extends BaseController
 
         return json_encode($response);
     }
-    
-    public function fetch_data(Request $request) {
-        $rows = DB::table("items")->get();       
+
+    public function fetch_data()
+    {
+        $rows = DB::table("items")->get()->toArray();
+        $rpt_total_amt_by_date = $this->generate_report($rows, "date", "pre-tax amount");
+        $rpt_total_amt_by_category = $this->generate_report($rows, "category", "pre-tax amount");
+        $rpt_total_amt_by_condition = $this->generate_report($rows, "lot condition", "pre-tax amount");
 
         $response = new \stdClass();
         $response->status = "ok";
-        $response->result = $rows;
+        $response->result = array(
+            "amt_date" => $rpt_total_amt_by_date,
+            "amt_categroy" => $rpt_total_amt_by_category,
+            "amt_condition" => $rpt_total_amt_by_condition
+        );
         return json_encode($response);
     }
 }
