@@ -1,52 +1,26 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import axios from "axios";
-import { Bar } from "react-chartjs-2";
 
-const options = {
-  // scales: {
-  //   yAxes: [
-  //     {
-  //       ticks: {
-  //         beginAtZero: true,
-  //       },
-  //     },
-  //   ],
-  // },
-};
+import BarChart from "./BarChart";
+import PieChart from "./PieChart";
 
 export default function Upload(props) {
-  const [data, setData] = useState(null);  
+  const [barData, setBarData] = useState(null);
+  const [cateData, setCateData] = useState(null);
+  const [condData, setCondData] = useState(null);
 
   useEffect(() => {
     axios.get('/fetch_data').then(response => {
       console.log(response);
-      setData({
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
-          },
-        ],
-      });
+      const { data } = response;
+      if (data.status === "ok") {
+        const { amt_date, amt_category, amt_condition } = data.result;
+        setBarData(amt_date);
+        setCateData(amt_category);
+        setCondData(amt_condition);
+      }
+
     })
   }, []);
 
@@ -62,9 +36,13 @@ export default function Upload(props) {
       <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div className="p-6 bg-white border-b border-gray-200">
           <FileUploader name="file" handleChange={handleChange} type={["csv"]} />
-        </div>        
-        <div className="p-6 bg-white border-b border-gray-200">
-          {data && <Bar data={data} options={options} />}
+        </div>
+        <div className="p-6 bg-white border-b border-gray-200 ">
+          {barData && <BarChart data={barData} />}
+        </div>
+        <div className="p-6 bg-white border-b border-gray-200 grid sm:gap-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+          {cateData && <PieChart data={cateData} label="the overall total (pre tax amount) per category" />}
+          {condData && <PieChart data={condData} label="the overall total (pre tax amount) per condition" />}
         </div>
       </div>
     </div>

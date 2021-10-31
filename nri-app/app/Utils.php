@@ -21,14 +21,23 @@ trait Utils {
     return $line_of_text;
   }
 
-  function generate_report($array, $cate, $val) {
-    return array_reduce($array, function($carry, $item) use($cate, $val) {
+  function generate_report($array, $cate, $val, $sort_by_date=false) {
+    $report = array_reduce($array, function($carry, $item) use($cate, $val) {
       if (array_key_exists($item->{$cate}, $carry)) {
         $carry[$item->{$cate}] += $item->{$val};
       } else {
         $carry[$item->{$cate}] = $item->{$val};
       }
+      
       return $carry;
     }, []);
+
+    if ($sort_by_date) {
+      uksort($report, function($a, $b) {        
+        return (strtotime($a) - strtotime($b));
+      });
+    }
+    
+    return $report;
   }
 }
