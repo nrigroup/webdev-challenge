@@ -1,21 +1,20 @@
 import React, { useMemo } from "react";
 import { Pie } from "react-chartjs-2";
-import { interpolateRgb } from "d3-interpolate";
+import { scaleOrdinal } from "d3-scale";
+import { schemeSet3 } from "d3-scale-chromatic";
 
 
 const PieChart = (props) => {
-  console.log(props);
+  
   const pieData = useMemo(() => {
 
     const { data, label } = props;
     const amt_pie_lbl = Object.keys(data);
     const amt_pie_val = Object.values(data);    
 
-    const interpolate = interpolateRgb("steelblue", "brown");
-    const total_val = amt_pie_val.reduce((sum, item) => sum += item, 0);
-    // console.log(total_val);
-    const color = amt_pie_val.map(val => interpolate(val / total_val));
-    console.log(color);    
+    const intp_fn = scaleOrdinal().domain(amt_pie_lbl).range(schemeSet3);    
+    const total_val = amt_pie_val.reduce((sum, item) => sum += item, 0);    
+    const color = amt_pie_val.map(val => intp_fn(val / total_val) + "99");    
 
     return {
       labels: amt_pie_lbl,

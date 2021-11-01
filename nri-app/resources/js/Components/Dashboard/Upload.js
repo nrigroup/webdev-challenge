@@ -9,6 +9,7 @@ export default function Upload(props) {
   const [barData, setBarData] = useState(null);
   const [cateData, setCateData] = useState(null);
   const [condData, setCondData] = useState(null);
+  const [newData, setNewData] = useState(false);
 
   useEffect(() => {
     axios.get('/fetch_data').then(response => {
@@ -22,13 +23,15 @@ export default function Upload(props) {
       }
 
     })
-  }, []);
+  }, [newData]);
 
   const handleChange = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    const response = await axios.post("/upload", formData);
-    console.log(response);
+    const response = await axios.post("/upload", formData);    
+    if (response.data.status === "ok") {
+      setNewData(!newData);
+    }
   }
 
   return <div className="py-12">
