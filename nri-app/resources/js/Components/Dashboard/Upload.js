@@ -4,6 +4,9 @@ import axios from "axios";
 
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
+import MessageBar from "./MessageBar";
+
+import "./styles.css";
 
 export default function Upload(props) {
   const [barData, setBarData] = useState(null);
@@ -28,7 +31,7 @@ export default function Upload(props) {
   const handleChange = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    const response = await axios.post("/upload", formData);    
+    const response = await axios.post("/upload", formData);
     if (response.data.status === "ok") {
       setNewData(!newData);
     }
@@ -37,11 +40,12 @@ export default function Upload(props) {
   return <div className="py-12">
     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div className="p-6 bg-white border-b border-gray-200">
+        <div className="md:p-6 bg-white border-b border-gray-200">
           <FileUploader name="file" handleChange={handleChange} type={["csv"]} />
         </div>
         <div className="p-6 bg-white border-b border-gray-200 ">
           {barData && <BarChart data={barData} />}
+          {!barData && <MessageBar lbl="You haven't uploaded any data file." />}
         </div>
         <div className="p-6 bg-white border-b border-gray-200 grid sm:gap-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
           {cateData && <PieChart data={cateData} label="the overall total (pre tax amount) per category" />}

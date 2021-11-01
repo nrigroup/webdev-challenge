@@ -56,7 +56,7 @@ class Controller extends BaseController
 
     public function fetch_data()
     {
-        $rows = DB::table("items")->orderBy("date", "desc")->get()->toArray();        
+        $rows = DB::table("items")->orderBy("date", "desc")->get()->toArray();
 
         $rpt_total_amt_by_date = $this->generate_report($rows, "date", "pre-tax amount", true);
         Log::info($rpt_total_amt_by_date);
@@ -66,9 +66,9 @@ class Controller extends BaseController
         $response = new \stdClass();
         $response->status = "ok";
         $response->result = array(
-            "amt_date" => $rpt_total_amt_by_date,
-            "amt_category" => $rpt_total_amt_by_category,
-            "amt_condition" => $rpt_total_amt_by_condition
+            "amt_date" => empty($rpt_total_amt_by_date) ? null : $rpt_total_amt_by_date,
+            "amt_category" => empty($rpt_total_amt_by_category) ? null : $rpt_total_amt_by_category,
+            "amt_condition" => empty($rpt_total_amt_by_condition) ? null : $rpt_total_amt_by_condition
         );
         return json_encode($response);
     }

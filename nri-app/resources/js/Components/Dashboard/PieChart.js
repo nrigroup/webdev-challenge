@@ -30,7 +30,7 @@ const PieChart = (props) => {
     };
   }, [props.data]);
 
-  return <div className="flex-1 text-center px-4 py-2 m-2">
+  return <div className="flex-1 text-center md:px-4 md:py-2 m-2">
     <Pie data={pieData} />
   </div>
 }

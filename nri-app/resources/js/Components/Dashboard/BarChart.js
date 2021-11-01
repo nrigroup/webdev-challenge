@@ -2,13 +2,14 @@ import React, { useMemo, useState } from "react";
 import { Bar, Chart } from "react-chartjs-2";
 import { scaleLog } from "d3-scale";
 import zoomPlugin from "chartjs-plugin-zoom";
+import MessageBar from "./MessageBar";
 
 Chart.register(zoomPlugin);
 
 const BarChart = (props) => {
-  console.log("Bar chart update?");
   const [currentPos, setCurrentPos] = useState(0);
   const [panDir, setPanDir] = useState(1);
+
 
   const barData = useMemo(() => {
     const { data } = props;
@@ -83,7 +84,8 @@ const BarChart = (props) => {
     }
   }, [props.data, currentPos, panDir]);
 
-  return <div className="p-6 bg-white border-b border-gray-200">
+  return <div className="md:p-6 bg-white border-b border-gray-200">
+    <MessageBar lbl="Please pan (drag) left or right to view more data."/>
     <Bar data={barData.data} options={barData.options} />
   </div>
 }
