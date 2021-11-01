@@ -4424,7 +4424,6 @@ function Upload(props) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_3___default().get('/fetch_data').then(function (response) {
-      console.log(response);
       var data = response.data;
 
       if (data.status === "ok") {
@@ -5291,6 +5290,10 @@ function Login(_ref) {
       reset = _useForm.reset;
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // axios.get('/sanctum/csrf-cookie').then(response => {
+    //     // Login...
+    //     console.log(response);
+    // });
     return function () {
       reset('password');
     };
@@ -5934,11 +5937,6 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-var token = window.document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
-}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

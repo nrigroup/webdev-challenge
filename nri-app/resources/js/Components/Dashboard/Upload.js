@@ -15,8 +15,7 @@ export default function Upload(props) {
   const [newData, setNewData] = useState(false);
 
   useEffect(() => {
-    axios.get('/fetch_data').then(response => {
-      console.log(response);
+    axios.get('/fetch_data').then(response => {      
       const { data } = response;
       if (data.status === "ok") {
         const { amt_date, amt_category, amt_condition } = data.result;
