@@ -41,3 +41,6 @@ Construction,12/01/2013,350,Hauling Transfer Trailers,"783 Park Ave, New York, N
 Construction,12/15/2013,235,Roll-of trucks,"1 Infinite Loop, Cupertino, CA 95014",Like Brand New
 ```
 * Duplicate item. Since there is no requirement mentioned about how to avoid duplicate item in the challenge, we regard all items as unique. Once upload file successfully, we save all data into RDB directly.
+
+## UI instruction
+* Since we don't know how many date could be presented in data files, we add pagination on bar chart by only showing 5 dates per page, please drag left or right to scroll forward or backward to check more data items.
