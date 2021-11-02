@@ -15,7 +15,10 @@ trait Utils {
   function parse_csv($file, $delimiter) {
     $file_handle = fopen($file, 'r');
     while(!feof($file_handle)) {
-      $line_of_text[] = fgetcsv($file_handle, 0, $delimiter);
+      $line = fgetcsv($file_handle, 0, $delimiter);
+      if (!empty($line)) {
+        $line_of_text[] = $line;
+      }      
     }
     fclose($file_handle);
     return $line_of_text;
