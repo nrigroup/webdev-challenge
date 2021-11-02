@@ -32,7 +32,7 @@ DB_PASSWORD="YOUR DATABASE PASSWORD"
 * We integrate login/registration module by using Laravel authentication facilities. You can click __Register__ on top right corner to create an account. Obviousely, different user should only view his/her own dataset. 
 
 ## Data file 
-* Based on challenge description, _Column names may or may not exist and may nota be in that order specified above (there will always be a headline/row)_, the following data file is regarded as invalid since the number of headline column does not match with dataset.
+* Based on challenge description, _Column names may or may not exist and may nota be in that order specified above (there will always be a headline/row)_, the following data file is regarded as invalid because the last two column names are missing but their values are presented.
 ```
 date,category,lot title,lot location,lot condition,pre-tax amount,,
 12/01/2013,Construction,Hauling Transfer Trailers,"783 Park Ave, New York, NY 10021",Brand New,350,NY Sales tax,31.06
