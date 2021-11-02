@@ -37,6 +37,7 @@ class Controller extends BaseController
                         "tax amount" => isset($row[7]) ? floatval($row[7]) : 0,
                         "created_at" => $datetime->format("Y-m-d H:i:s"),
                         "updated_at" => $datetime->format("Y-m-d H:i:s"),
+                        "user_id" => auth()->user()->id
                     );
                     try {
                         DB::table("items")->insert($data);
@@ -54,12 +55,14 @@ class Controller extends BaseController
         return json_encode($response);
     }
 
+    /**
+     * Fetch existing data from database
+     */
     public function fetch_data()
     {
-        $rows = DB::table("items")->orderBy("date", "desc")->get()->toArray();
+        $rows = DB::table("items")->where("user_id", auth()->user()->id)->orderBy("date", "desc")->get()->toArray();
 
-        $rpt_total_amt_by_date = $this->generate_report($rows, "date", "pre-tax amount", true);
-        Log::info($rpt_total_amt_by_date);
+        $rpt_total_amt_by_date = $this->generate_report($rows, "date", "pre-tax amount", true);        
         $rpt_total_amt_by_category = $this->generate_report($rows, "category", "pre-tax amount");
         $rpt_total_amt_by_condition = $this->generate_report($rows, "lot condition", "pre-tax amount");
 
