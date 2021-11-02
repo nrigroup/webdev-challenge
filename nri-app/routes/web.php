@@ -32,6 +32,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get("/fetch_data", [Controller::class, "fetch_data"]);
-Route::post('/upload', [Controller::class, "upload_file"]);
+// Route::post('/upload', [Controller::class, "upload_file"]);
 
 require __DIR__.'/auth.php';

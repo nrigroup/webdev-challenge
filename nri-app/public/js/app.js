@@ -4448,7 +4448,7 @@ function Upload(props) {
               formData = new FormData();
               formData.append("file", file);
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/api/file", formData);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/api/upload", formData);
 
             case 4:
               response = _context.sent;
