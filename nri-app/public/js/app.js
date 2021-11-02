@@ -4448,7 +4448,7 @@ function Upload(props) {
               formData = new FormData();
               formData.append("file", file);
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/upload", formData);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/api/file", formData);
 
             case 4:
               response = _context.sent;
@@ -5290,10 +5290,7 @@ function Login(_ref) {
       reset = _useForm.reset;
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // axios.get('/sanctum/csrf-cookie').then(response => {
-    //     // Login...
-    //     console.log(response);
-    // });
+    axios.get('/sanctum/csrf-cookie');
     return function () {
       reset('password');
     };
@@ -5937,6 +5934,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

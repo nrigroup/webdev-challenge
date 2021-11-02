@@ -15,6 +15,7 @@ export default function Login({ status, canResetPassword }) {
     });
 
     useEffect(() => {
+        axios.get('/sanctum/csrf-cookie');
         return () => {
             reset('password');
         };

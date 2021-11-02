@@ -30,7 +30,7 @@ export default function Upload(props) {
   const handleChange = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    const response = await axios.post("/upload", formData);
+    const response = await axios.post("/api/file", formData);
     if (response.data.status === "ok") {
       setNewData(!newData);
     }

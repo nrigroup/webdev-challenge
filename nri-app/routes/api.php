@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::middleware("auth:sanctum")->post('/file', [Controller::class, "upload_file"]);
+Route::middleware("auth:sanctum")->post('/file', [Controller::class, "upload_file"]);
