@@ -24,12 +24,19 @@ trait Utils {
     return $line_of_text;
   }
 
-  function generate_report($array, $cate, $val, $sort_by_date=false) {
-    $report = array_reduce($array, function($carry, $item) use($cate, $val) {
-      if (array_key_exists($item->{$cate}, $carry)) {
-        $carry[$item->{$cate}] += $item->{$val};
+  /**
+   * Generate report based on column name
+   * @param $array: data source
+   * @param $column: class name
+   * @param $val: the property where its value is accumulated
+   * @param $sort_by_date: if true, the report will be sorted by date
+   */
+  function generate_report($array, $column, $val, $sort_by_date=false) {
+    $report = array_reduce($array, function($carry, $item) use($column, $val) {
+      if (array_key_exists($item->{$column}, $carry)) {
+        $carry[$item->{$column}] += $item->{$val};
       } else {
-        $carry[$item->{$cate}] = $item->{$val};
+        $carry[$item->{$column}] = $item->{$val};
       }
       
       return $carry;

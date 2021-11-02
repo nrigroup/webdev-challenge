@@ -9,13 +9,15 @@ import MessageBar from "./MessageBar";
 import "./styles.css";
 
 export default function Upload(props) {
+  const [errMsg, setErrMsg] = useState(null);
+
   const [barData, setBarData] = useState(null);
   const [cateData, setCateData] = useState(null);
   const [condData, setCondData] = useState(null);
   const [newData, setNewData] = useState(false);
 
   useEffect(() => {
-    axios.get('/api/fetch_data').then(response => {      
+    axios.get('/api/fetch_data').then(response => {
       const { data } = response;
       if (data.status === "ok") {
         const { amt_date, amt_category, amt_condition } = data.result;
@@ -33,10 +35,21 @@ export default function Upload(props) {
     const response = await axios.post("/api/upload", formData);
     if (response.data.status === "ok") {
       setNewData(!newData);
+      setErrMsg(null);
+    } else if (response.data.status === "error") {
+      setErrMsg(response.data.data);
     }
   }
 
   return <div className="py-12">
+    {errMsg && <div role="alert" className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-2">
+      <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+        Oops ...
+      </div>
+      <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+        <p>{errMsg}</p>
+      </div>
+    </div>}
     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div className="md:p-6 bg-white border-b border-gray-200">

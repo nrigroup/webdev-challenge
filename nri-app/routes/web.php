@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -25,8 +24,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    Log::info("dashboard route");
+Route::get('/dashboard', function () {    
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 

@@ -4404,23 +4404,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Upload(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
-      barData = _useState2[0],
-      setBarData = _useState2[1];
+      errMsg = _useState2[0],
+      setErrMsg = _useState2[1];
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      cateData = _useState4[0],
-      setCateData = _useState4[1];
+      barData = _useState4[0],
+      setBarData = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState6 = _slicedToArray(_useState5, 2),
-      condData = _useState6[0],
-      setCondData = _useState6[1];
+      cateData = _useState6[0],
+      setCateData = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState8 = _slicedToArray(_useState7, 2),
-      newData = _useState8[0],
-      setNewData = _useState8[1];
+      condData = _useState8[0],
+      setCondData = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      newData = _useState10[0],
+      setNewData = _useState10[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_3___default().get('/api/fetch_data').then(function (response) {
@@ -4455,6 +4460,9 @@ function Upload(props) {
 
               if (response.data.status === "ok") {
                 setNewData(!newData);
+                setErrMsg(null);
+              } else if (response.data.status === "error") {
+                setErrMsg(response.data.data);
               }
 
             case 6:
@@ -4470,9 +4478,21 @@ function Upload(props) {
     };
   }();
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     className: "py-12",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    children: [errMsg && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      role: "alert",
+      className: "max-w-7xl mx-auto sm:px-6 lg:px-8 mb-2",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        className: "bg-red-500 text-white font-bold rounded-t px-4 py-2",
+        children: "Oops ..."
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        className: "border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          children: errMsg
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
@@ -4501,7 +4521,7 @@ function Upload(props) {
           })]
         })]
       })
-    })
+    })]
   });
 }
 

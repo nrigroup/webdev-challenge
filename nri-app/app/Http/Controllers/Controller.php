@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,28 +22,38 @@ class Controller extends BaseController
         if ($file) {
             $rows = $this->parse_csv($file, ",");
             $datetime = new DateTime();
-            $headline = $rows[0];                        
+            $headline = $rows[0];
             $amt_item = count($headline);
 
-            foreach (array_slice($rows, 1) as $row) {                
-                $data = array();                
-                for ($i = 0; $i < $amt_item; $i++) {                    
-                    $data[$headline[$i]] = $row[$i];
-                }
-                $data["user_id"] = auth()->user()->id;
-                $data["created_at"] = $datetime->format("Y-m-d H:i:s");
-                $data["updated_at"] = $datetime->format("Y-m-d H:i:s");
+            foreach (array_slice($rows, 1) as $row) {
+                $data = array();
                 try {
+                    for ($i = 0; $i < $amt_item; $i++) {
+                        if (empty($headline[$i])) {
+                            throw new \Exception("Headline contain empty name at column $i, index starts from 0.");
+                        }
+                        $data[$headline[$i]] = $row[$i];
+                    }
+
+                    $data["user_id"] = auth()->user()->id;
+                    $data["created_at"] = $datetime->format("Y-m-d H:i:s");
+                    $data["updated_at"] = $datetime->format("Y-m-d H:i:s");
+
                     DB::table("items")->insert($data);
-                } catch(\Exception $e) {
+                    $response->status = "ok";
+                } catch (\Exception $e) {
                     $this->print_to_log(__FILE__, __FUNCTION__, __LINE__, $e->getMessage());
-                }                
+                    $response->status = "error";
+                    $response->data = $e->getMessage();
+                }
             }
         } else {
             $this->print_to_error(__FILE__, __FUNCTION__, __LINE__, "file upload fail.");
+            $response->status = "error";
+            $response->data = "file uploaded failed.";
         }
 
-        $response->status = "ok";
+
 
         return json_encode($response);
     }
