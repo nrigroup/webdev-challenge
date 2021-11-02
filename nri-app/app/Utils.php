@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 trait Utils
 {
   /**
-   * Print info message to log 
+   * Print info message to log.
    * @param string: $filename: caller file name.
    * @param string: $function: caller function name.
    * @param string: $line_number: the line number of the message.
@@ -19,7 +19,7 @@ trait Utils
   }
 
   /**
-   * Print error message to log 
+   * Print error message to log.
    * @param string: $filename: caller file name.
    * @param string: $function: caller function name.
    * @param string: $line_number: the line number of the message.
