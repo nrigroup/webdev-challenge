@@ -24,6 +24,7 @@ DB_PASSWORD="YOUR DATABASE PASSWORD"
 8. Update `SESSION_DRIVER=cookie`, since I am using ReactJS to build frontend app.
 1. Update log setting to use Laravel daily log. `LOG_CHANNEL=daily`
 1. Run `npm install` to install ReactJS dependency library.
+1. Run `npm run prod` (optional).
 1. Run `php artisan serve` to start local server.
 
 ## Data file 
