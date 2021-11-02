@@ -10,7 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use stdClass;
 
 class Controller extends BaseController
 {
@@ -58,7 +58,7 @@ class Controller extends BaseController
             } catch (\Exception $e) {
                 $this->print_to_log(__FILE__, __FUNCTION__, __LINE__, $e->getMessage());
                 $response->status = "error";
-                $response->data = $e->getMessage();
+                $response->result = $e->getMessage();
                 return json_encode($response);
             }
             
@@ -69,7 +69,7 @@ class Controller extends BaseController
         } else {
             $this->print_to_error(__FILE__, __FUNCTION__, __LINE__, "file upload fail.");
             $response->status = "error";
-            $response->data = "file uploaded failed.";
+            $response->result = "file uploaded failed.";
         }
 
         return json_encode($response);
@@ -80,19 +80,28 @@ class Controller extends BaseController
      */
     public function fetch_data()
     {
-        $rows = DB::table("items")->where("user_id", auth()->user()->id)->orderBy("date", "desc")->get()->toArray();
+        try {
+            $rows = DB::table("items")->where("user_id", auth()->user()->id)->orderBy("date", "desc")->get()->toArray();
 
-        $rpt_total_amt_by_date = $this->generate_report($rows, "date", "pre-tax amount", true);
-        $rpt_total_amt_by_category = $this->generate_report($rows, "category", "pre-tax amount");
-        $rpt_total_amt_by_condition = $this->generate_report($rows, "lot condition", "pre-tax amount");
-
-        $response = new \stdClass();
-        $response->status = "ok";
-        $response->result = array(
-            "amt_date" => empty($rpt_total_amt_by_date) ? null : $rpt_total_amt_by_date,
-            "amt_category" => empty($rpt_total_amt_by_category) ? null : $rpt_total_amt_by_category,
-            "amt_condition" => empty($rpt_total_amt_by_condition) ? null : $rpt_total_amt_by_condition
-        );
-        return json_encode($response);
+            $rpt_total_amt_by_date = $this->generate_report($rows, "date", "pre-tax amount", true);
+            $rpt_total_amt_by_category = $this->generate_report($rows, "category", "pre-tax amount");
+            $rpt_total_amt_by_condition = $this->generate_report($rows, "lot condition", "pre-tax amount");            
+    
+            $response = new \stdClass();
+            $response->status = "ok";
+            $response->result = array(
+                "amt_date" => empty($rpt_total_amt_by_date) ? null : $rpt_total_amt_by_date,
+                "amt_category" => empty($rpt_total_amt_by_category) ? null : $rpt_total_amt_by_category,
+                "amt_condition" => empty($rpt_total_amt_by_condition) ? null : $rpt_total_amt_by_condition
+            );
+            
+            return json_encode($response);
+        } catch(\Exception $e) {
+            $response = new stdClass();
+            $response->status = "error";
+            $response->result = $e->getMessage();
+            return json_encode($response);
+        }
+        
     }
 }

@@ -6,11 +6,25 @@ use Illuminate\Support\Facades\Log;
 
 trait Utils
 {
+    /**
+   * Print info message to log 
+   * @param string: $filename: caller file name.
+   * @param string: $function: caller function name.
+   * @param string: $line_number: the line number of the message.
+   * @param string: $info: message.
+   */
   function print_to_log($filename, $function, $line_number, $info)
   {
     Log::info("$filename::$function::$line_number::$info");
   }
 
+  /**
+   * Print error message to log 
+   * @param string: $filename: caller file name.
+   * @param string: $function: caller function name.
+   * @param string: $line_number: the line number of the message.
+   * @param string: $info: message.
+   */
   function print_to_error($filename, $function, $line_number, $info)
   {
     Log::error("$filename::$function::$line_number::$info");

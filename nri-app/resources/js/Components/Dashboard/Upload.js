@@ -24,8 +24,10 @@ export default function Upload(props) {
         setBarData(amt_date);
         setCateData(amt_category);
         setCondData(amt_condition);
+        setErrMsg(null);
+      } else {
+        setErrMsg(data.result);
       }
-
     })
   }, [newData]);
 
@@ -33,11 +35,12 @@ export default function Upload(props) {
     const formData = new FormData();
     formData.append("file", file);
     const response = await axios.post("/api/upload", formData);
-    if (response.data.status === "ok") {
+    const {status, result} = response.data;
+    if (status === "ok") {
       setNewData(!newData);
       setErrMsg(null);
-    } else if (response.data.status === "error") {
-      setErrMsg(response.data.data);
+    } else if (status === "error") {
+      setErrMsg(result);
     }
   }
 
