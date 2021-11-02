@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Log;
 
 trait Utils
 {
-    /**
+  /**
    * Print info message to log 
    * @param string: $filename: caller file name.
    * @param string: $function: caller function name.
