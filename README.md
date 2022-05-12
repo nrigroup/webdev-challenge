@@ -17,11 +17,11 @@ To run this application follow these steps:
 -   create a copy of the `.env.exanple` file and rename it to `.env`
 -   in the `.env` file, please change:
     -   DB_CONNECTION=mysql
-    -   DB_HOST= <Your DB host> ~ usually `localhost`
-    -   DB_PORT= <Your DB Port>
-    -   DB_DATABASE= <Your DB name>
-    -   DB_USERNAME= <Your DB Username>
-    -   DB_PASSWORD= <Your DB Password>
+    -   DB_HOST= `<Your DB host>` ~ usually `localhost`
+    -   DB_PORT= `<Your DB Port>`
+    -   DB_DATABASE= `<Your DB name>`
+    -   DB_USERNAME= `<Your DB Username>`
+    -   DB_PASSWORD= `<Your DB Password>`
 -   run `php artisan key:generate`
 -   run `php artisan migrate`
 -   run `php artisan serve`
