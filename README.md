@@ -21,7 +21,6 @@ To run this application follow these steps:
     -   DB_DATABASE=
     -   DB_USERNAME=
     -   DB_PASSWORD=
-    -   
 -   run `php artisan key:generate`
 -   run `php artisan migrate`
 -   run `php artisan serve`
