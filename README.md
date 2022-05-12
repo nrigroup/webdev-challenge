@@ -1,13 +1,36 @@
 # How to run
 
+Frameworks and impors:
+-   Framework Used: Larvel v9
+-   PHP Version: 8.1
+-   MySQL database Version: 8.0
+-   Design pattern: MVC
+-   Graphs: Chart JS
+-   CSS : Custom CSS
+-   jQuery
+
 
 To run this application follow these steps:
 -   Clone the project
 -   cd into the Dashboard directory
+-   run `composer install`
+-   in the `.env` file, please change the
+    -   DB_CONNECTION=mysql
+    -   DB_HOST=127.0.0.1
+    -   DB_PORT=3306
+    -   DB_DATABASE=
+    -   DB_USERNAME=
+    -   DB_PASSWORD=
+    -   
+-   run `php artisan key:generate`
+-   run `php artisan migrate`
 -   run `php artisan serve`
+-   go to localhost:8000 to view the application
 
 # Things I am proud of
-Once you're done, please submit a paragraph or two in your `README` about what you are particularly proud of in your implementation, and why.
+-   With the data that I got I was able to create a dashboard that showed all the graphs as well as allowing the line and bar graph to be filtered by the years currently in the database. Although I could've used Bootstrap, I opted to show my knowledge in CSS by creating a custom css file. Although due to the time, I couldnn't add media quieries to make it mobile responsive. The web app currently allows you to view reports, show the data in a table view ~ alloing for sorting, searching and filtering. It also allows for deleting records and also adding new singular records.  View the demo below:
 
-#Demo
+
+
+# Demo
 ![Demo](demo.gif)
