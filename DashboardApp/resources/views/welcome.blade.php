@@ -375,7 +375,7 @@
 
         </script>
     @else
-        <p>There's currently no data at the moment. Please upload your file to view the reports</p>
+        <p>There's currently no data at the moment. Please <a href="/upload">upload</a> your file to view the reports</p>
     @endif
 
 </div>
