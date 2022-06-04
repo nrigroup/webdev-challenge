@@ -53,3 +53,17 @@ Once when you have submitted your work we will review your submission as soon as
 Please note we will only contact the selected candidates for further consideration.
 
 We thank you for taking the time to complete this development challenge and appreciate your interest in pursuing a career with NRI. 
+
+## Steps to imstall application
+1. Start apache and mysql in xampp (you can use your favorite server)
+2. pull the code from repository
+3. Run php artisan serve command on command line
+4. Copy the address for server from command line. In my case it was http://127.0.0.1:8000 address and copy this address on web browser
+5. Create a database in mysql
+6. Change the database details in .env file
+7. Run php artisan migrate command to install db table
+8. On dashboard click on Upload CSV button to upload data
+
+I am proud of myself I have implemented the clean code with proper identation and comments. I tried following all the instructions and test cases to be checked before submitting the code. I am willing to work on latest version of laravel and in canadian company to grow more myself as a web developer.
+
+
