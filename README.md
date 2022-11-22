@@ -1,7 +1,9 @@
 # NRI Web Development Challenge
 To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
-At this time, we require you to use Laravel framework to complete the challenge. For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, we use Laravel, Bootstrap & jQuery, and it would help us to evaluate what we know and use.
+You can use any framework to complete the challenge. For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, we use Laravel, Bootstrap & jQuery, and it would help us to evaluate what we know and use.
+
+Bonus points if you can deploy and give us a demo link.
 
 ## Submission Instructions
 1. Fork this project on github. You will need to create an account if you don't already have one
