@@ -12,11 +12,9 @@ datasource db {
 
 model AuctionItem {
   id            Int          @id @default(autoincrement())
-  title         String
-  condition     String
+  name          String
   dateSold      DateTime
   preTaxAmount  Decimal      @db.Money
-  taxName       String
   taxAmount     Decimal      @db.Money
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
@@ -24,11 +22,15 @@ model AuctionItem {
   categoryId    Int?
   LotLocation   LotLocation? @relation(fields: [lotLocationId], references: [id])
   lotLocationId Int?
+  Tax           Tax?         @relation(fields: [taxId], references: [id])
+  taxId         Int?
+  Condition     Condition?   @relation(fields: [conditionId], references: [id])
+  conditionId   Int?
 }
 
 model Category {
   id          Int           @id @default(autoincrement())
-  title       String
+  name        String
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   auctionItem AuctionItem[]
@@ -36,10 +38,27 @@ model Category {
 
 model LotLocation {
   id          Int           @id @default(autoincrement())
+  name        String?
   address     String
   city        String
   state       String
   zip         String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  auctionItem AuctionItem[]
+}
+
+model Tax {
+  id          Int           @id @default(autoincrement())
+  name        String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  auctionItem AuctionItem[]
+}
+
+model Condition {
+  id          Int           @id @default(autoincrement())
+  description String
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   auctionItem AuctionItem[]
