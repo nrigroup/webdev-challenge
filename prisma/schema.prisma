@@ -9,3 +9,38 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model AuctionItem {
+  id            Int          @id @default(autoincrement())
+  title         String
+  condition     String
+  dateSold      DateTime
+  preTaxAmount  Decimal      @db.Money
+  taxName       String
+  taxAmount     Decimal      @db.Money
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  category      Category?    @relation(fields: [categoryId], references: [id])
+  categoryId    Int?
+  LotLocation   LotLocation? @relation(fields: [lotLocationId], references: [id])
+  lotLocationId Int?
+}
+
+model Category {
+  id          Int           @id @default(autoincrement())
+  title       String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  auctionItem AuctionItem[]
+}
+
+model LotLocation {
+  id          Int           @id @default(autoincrement())
+  address     String
+  city        String
+  state       String
+  zip         String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  auctionItem AuctionItem[]
+}
