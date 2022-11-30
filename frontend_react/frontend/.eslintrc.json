@@ -1,0 +1,12 @@
+{
+ "extends":   ["airbnb", "prettier", "plugin:react/jsx-runtime"] ,
+ "plugins" : ["prettier"],
+ "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-vars": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+}
+}
