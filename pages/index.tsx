@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { Button } from 'react-bootstrap'
 import styles from '../styles/Home.module.scss'
 
 export default function Home() {
