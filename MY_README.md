@@ -8,3 +8,4 @@
 1. How can I deploy these for development easily: May be make a separate branch for frontend and backend?
 1. How can I deploy these in production easily: May be use a single docker file in root if single server deployment or use separate docker files in each and deploy on separate servers.
 1. How can I test these easily: Make separate workflows for each branch?
+1. How can I manage linters for each:
