@@ -6,7 +6,7 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend_react/frontend/:/app
-  
+    restart: always
   django:
     build: ./backend_django/
     ports:
@@ -14,4 +14,4 @@ services:
     volumes:
       - ./backend_django/backend:/backend/
     command: "python3 manage.py runserver 0.0.0.0:8000"
-      
+    restart: always
