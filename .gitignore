@@ -202,3 +202,7 @@ packages/react-devtools-timeline/dist
 
 #Webpack
 frontend/static/js/*.js
+
+
+# Virtual env
+webdev_venv
