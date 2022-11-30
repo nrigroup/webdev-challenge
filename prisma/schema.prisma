@@ -11,21 +11,21 @@ datasource db {
 }
 
 model AuctionItem {
-  id            Int          @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   name          String
   dateSold      DateTime
-  preTaxAmount  Decimal      @db.Money
-  taxAmount     Decimal      @db.Money
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  category      Category?    @relation(fields: [categoryId], references: [id])
-  categoryId    Int?
-  LotLocation   LotLocation? @relation(fields: [lotLocationId], references: [id])
-  lotLocationId Int?
-  Tax           Tax?         @relation(fields: [taxId], references: [id])
+  preTaxAmount  Decimal     @db.Money
+  taxAmount     Decimal?     @db.Money
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  category      Category    @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  LotLocation   LotLocation @relation(fields: [lotLocationId], references: [id])
+  lotLocationId Int
+  Tax           Tax?        @relation(fields: [taxId], references: [id])
   taxId         Int?
-  Condition     Condition?   @relation(fields: [conditionId], references: [id])
-  conditionId   Int?
+  Condition     Condition   @relation(fields: [conditionId], references: [id])
+  conditionId   Int
 }
 
 model Category {
@@ -38,11 +38,7 @@ model Category {
 
 model LotLocation {
   id          Int           @id @default(autoincrement())
-  name        String?
   address     String
-  city        String
-  state       String
-  zip         String
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   auctionItem AuctionItem[]
