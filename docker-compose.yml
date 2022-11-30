@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  react:
+    build: ./frontend_react/
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend_react/frontend/:/app
+  
+  django:
+    build: ./backend_django/
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend_django/backend:/backend/
+    command: "python3 manage.py runserver 0.0.0.0:8000"
+      
