@@ -9,3 +9,10 @@
 1. How can I deploy these in production easily: May be use a single docker file in root if single server deployment or use separate docker files in each and deploy on separate servers.
 1. How can I test these easily: Make separate workflows for each branch?
 1. How can I manage linters for each:
+
+# Features:
+1.Uses SASS
+2. Uses Linting for javascript and python
+3. Builds an MVC architecture with microservices implemented by separating frontend and backend.
+4.Code is extensible
+5. Code is high quality.
