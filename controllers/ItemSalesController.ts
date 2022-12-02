@@ -14,31 +14,36 @@ const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextAp
   })
 })
 
-const handleAuctionItem = async (itemTitle: string, categoryName: string) => {
-  const lowerCaseItemTitle = itemTitle.toLowerCase()
-  const lowerCaseCategory = categoryName.toLowerCase()
-  let item = await prisma.auctionItem.findFirst({
-    where: {
-      name: lowerCaseItemTitle,
-    },
-  })
+const handleCategory = async (name: string) => {
+  const lowerCaseName = name.toLowerCase()
   let category = await prisma.category.findFirst({
     where: {
-      name: lowerCaseCategory,
+      name: lowerCaseName,
     },
   })
   if (!category) {
     category = await prisma.category.create({
       data: {
-        name: lowerCaseCategory,
+        name: lowerCaseName,
       },
     })
   }
+  return category
+}
+
+const handleAuctionItem = async (itemTitle: string, categoryId: number) => {
+  const lowerCaseItemTitle = itemTitle.toLowerCase()
+
+  let item = await prisma.auctionItem.findFirst({
+    where: {
+      name: lowerCaseItemTitle,
+    },
+  })
   if (!item) {
     item = await prisma.auctionItem.create({
       data: {
         name: lowerCaseItemTitle,
-        categoryId: category.id,
+        categoryId,
       },
     })
   }
@@ -97,13 +102,20 @@ const handleCondition = async (description: string) => {
   return condition
 }
 
+const handleItemSaleRelations = async (itemSale: ItemSaleData) => {
+  const category = await handleCategory(itemSale.category)
+  const item = await handleAuctionItem(itemSale.auctionItem, category.id)
+  const location = await handleLocation(itemSale.location)
+  const tax = await handleTaxName(itemSale.tax)
+  const condition = await handleCondition(itemSale.condition)
+
+  return { item, location, tax, condition }
+}
+
 const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
   const itemSalesData = await Promise.all(
     req.body.data.map(async (itemSale: ItemSaleData) => {
-      const item = await handleAuctionItem(itemSale.auctionItem, itemSale.category)
-      const location = await handleLocation(itemSale.location)
-      const tax = await handleTaxName(itemSale.tax)
-      const condition = await handleCondition(itemSale.condition)
+      const { item, location, tax, condition } = await handleItemSaleRelations(itemSale)
       return {
         date: itemSale.date,
         preTaxAmount: itemSale.preTaxAmount,

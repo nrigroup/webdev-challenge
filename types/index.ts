@@ -8,3 +8,11 @@ export interface ItemSaleData {
   tax?: string
   taxAmount?: number
 }
+
+export enum ItemSaleRelation {
+  auctionItem = "auctionItem",
+  category = "category",
+  location = "location",
+  tax = "tax",
+  condition = "condition",
+}
