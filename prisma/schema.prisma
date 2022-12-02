@@ -11,21 +11,27 @@ datasource db {
 }
 
 model AuctionItem {
-  id            Int         @id @default(autoincrement())
-  name          String
-  dateSold      DateTime
-  preTaxAmount  Decimal     @db.Money
-  taxAmount     Decimal?     @db.Money
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  category      Category    @relation(fields: [categoryId], references: [id])
-  categoryId    Int
-  LotLocation   LotLocation @relation(fields: [lotLocationId], references: [id])
-  lotLocationId Int
-  Tax           Tax?        @relation(fields: [taxId], references: [id])
-  taxId         Int?
-  Condition     Condition   @relation(fields: [conditionId], references: [id])
+  id         Int      @id @default(autoincrement())
+  name       String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model ItemSale {
+  id            Int       @id @default(autoincrement())
+  date          DateTime
+  preTaxAmount  Decimal   @db.Money
+  withTaxAmount Decimal?  @db.Money
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  location      Location  @relation(fields: [locationId], references: [id])
+  locationId    Int
+  condition     Condition @relation(fields: [conditionId], references: [id])
   conditionId   Int
+  tax           Tax?      @relation(fields: [taxId], references: [id])
+  taxId         Int?
 }
 
 model Category {
@@ -36,26 +42,26 @@ model Category {
   auctionItem AuctionItem[]
 }
 
-model LotLocation {
-  id          Int           @id @default(autoincrement())
-  address     String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  auctionItem AuctionItem[]
+model Location {
+  id        Int        @id @default(autoincrement())
+  address   String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  itemSale  ItemSale[]
 }
 
 model Tax {
-  id          Int           @id @default(autoincrement())
-  name        String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  auctionItem AuctionItem[]
+  id        Int        @id @default(autoincrement())
+  name      String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  itemSale  ItemSale[]
 }
 
 model Condition {
-  id          Int           @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   description String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  auctionItem AuctionItem[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  itemSale    ItemSale[]
 }
