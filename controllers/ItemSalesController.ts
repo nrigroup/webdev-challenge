@@ -127,8 +127,18 @@ const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiR
       }
     }),
   )
-  const itemSales = await prisma.itemSale.createMany({
+  // create new item sale records
+  const { count } = await prisma.itemSale.createMany({
     data: itemSalesData,
+  })
+  // fetch new item sales
+  const itemSales = await prisma.itemSale.findMany({
+    orderBy: [
+      {
+        updatedAt: "desc",
+      },
+    ],
+    take: count,
   })
   res.status(200).json({
     status: "success",
