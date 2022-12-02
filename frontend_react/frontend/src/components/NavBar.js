@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
     return (
-        <nav className="navbar navbar-expand-md bg-dark navbar-dark">
+        <nav className="navbar navbar-expand-md bg-dark navbar-dark py-3">
             <div className="container">
                 <Link to="/" className="navbar-brand">
-                    NavBar
+                    CSV Reader
                 </Link>
                 <button
                     className="navbar-toggler"

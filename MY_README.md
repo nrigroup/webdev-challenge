@@ -16,3 +16,4 @@
 3. Builds an MVC architecture with microservices implemented by separating frontend and backend.
 4.Code is extensible
 5. Code is high quality.
+6. Uses bootstrap
