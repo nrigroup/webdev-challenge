@@ -1,7 +1,8 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors"
 import { NextApiRequest, NextApiResponse } from "next"
 import prisma from "../lib/prisma"
-import { ItemSaleData } from "../types"
+import { ItemSaleData, ItemSaleRelation } from "../types"
+import { Prisma } from "@prisma/client"
 
 const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
   const itemSales = await prisma.itemSale.findMany()
@@ -14,17 +15,21 @@ const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextAp
   })
 })
 
+// TODO merge these into one handleitemSaleRelations func to dry up code
+
 const handleCategory = async (name: string) => {
-  const lowerCaseName = name.toLowerCase()
   let category = await prisma.category.findFirst({
     where: {
-      name: lowerCaseName,
+      name: {
+        equals: name,
+        mode: "insensitive",
+      },
     },
   })
   if (!category) {
     category = await prisma.category.create({
       data: {
-        name: lowerCaseName,
+        name,
       },
     })
   }
@@ -32,17 +37,18 @@ const handleCategory = async (name: string) => {
 }
 
 const handleAuctionItem = async (itemTitle: string, categoryId: number) => {
-  const lowerCaseItemTitle = itemTitle.toLowerCase()
-
   let item = await prisma.auctionItem.findFirst({
     where: {
-      name: lowerCaseItemTitle,
+      name: {
+        equals: itemTitle,
+        mode: "insensitive",
+      },
     },
   })
   if (!item) {
     item = await prisma.auctionItem.create({
       data: {
-        name: lowerCaseItemTitle,
+        name: itemTitle,
         categoryId,
       },
     })
@@ -51,16 +57,18 @@ const handleAuctionItem = async (itemTitle: string, categoryId: number) => {
 }
 
 const handleLocation = async (address: string) => {
-  const lowerCaseAddress = address.toLowerCase()
   let location = await prisma.location.findFirst({
     where: {
-      address: lowerCaseAddress,
+      address: {
+        equals: address,
+        mode: "insensitive",
+      },
     },
   })
   if (!location) {
     location = await prisma.location.create({
       data: {
-        address: lowerCaseAddress,
+        address,
       },
     })
   }
@@ -69,16 +77,18 @@ const handleLocation = async (address: string) => {
 
 const handleTaxName = async (taxName: string | undefined) => {
   if (taxName === undefined) return
-  const lowerCaseName = taxName.toLowerCase()
   let tax = await prisma.tax.findFirst({
     where: {
-      name: lowerCaseName,
+      name: {
+        equals: taxName,
+        mode: "insensitive",
+      },
     },
   })
   if (!tax) {
     tax = await prisma.tax.create({
       data: {
-        name: lowerCaseName,
+        name: taxName,
       },
     })
   }
@@ -86,20 +96,53 @@ const handleTaxName = async (taxName: string | undefined) => {
 }
 
 const handleCondition = async (description: string) => {
-  const lowerCaseDesc = description.toLowerCase()
   let condition = await prisma.condition.findFirst({
     where: {
-      description: lowerCaseDesc,
+      description: {
+        equals: description,
+        mode: "insensitive",
+      },
     },
   })
   if (!condition) {
     condition = await prisma.condition.create({
       data: {
-        description: lowerCaseDesc,
+        description,
       },
     })
   }
   return condition
+}
+
+const handleRelation = async (
+  modelName: ItemSaleRelation,
+  propName: string,
+  propValue: string,
+  categoryId?: number,
+) => {
+  if (modelName === ItemSaleRelation.tax && propValue === undefined) return
+  let record = await prisma[modelName].findFirst({
+    where: {
+      [propName]: propValue,
+    },
+  })
+  if (!record) {
+    if (modelName === ItemSaleRelation.auctionItem && categoryId !== undefined) {
+      record = await prisma[modelName].create({
+        data: {
+          name: propValue,
+          categoryId,
+        },
+      })
+    } else {
+      record = await prisma[modelName].create({
+        data: {
+          [propName]: propValue,
+        },
+      })
+    }
+  }
+  return record
 }
 
 const handleItemSaleRelations = async (itemSale: ItemSaleData) => {
