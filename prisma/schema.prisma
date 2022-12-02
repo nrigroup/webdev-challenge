@@ -20,18 +20,18 @@ model AuctionItem {
 }
 
 model ItemSale {
-  id            Int       @id @default(autoincrement())
-  date          DateTime
-  preTaxAmount  Decimal   @db.Money
-  withTaxAmount Decimal?  @db.Money
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  location      Location  @relation(fields: [locationId], references: [id])
-  locationId    Int
-  condition     Condition @relation(fields: [conditionId], references: [id])
-  conditionId   Int
-  tax           Tax?      @relation(fields: [taxId], references: [id])
-  taxId         Int?
+  id           Int       @id @default(autoincrement())
+  date         DateTime
+  preTaxAmount Decimal   @db.Money
+  taxAmount    Decimal?  @db.Money
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  location     Location  @relation(fields: [locationId], references: [id])
+  locationId   Int
+  condition    Condition @relation(fields: [conditionId], references: [id])
+  conditionId  Int
+  tax          Tax?      @relation(fields: [taxId], references: [id])
+  taxId        Int?
 }
 
 model Category {

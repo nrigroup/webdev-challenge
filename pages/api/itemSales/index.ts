@@ -1,9 +1,11 @@
-import nc from "next-connect";
-import { getAllItemSales } from "../../../controllers/ItemSalesController";
-import onError from "../../../middlewares/errors";
+import nc from "next-connect"
+import { getAllItemSales, postItemSales } from "../../../controllers/ItemSalesController"
+import onError from "../../../middlewares/errors"
 
-const handler = nc({ onError });
+const handler = nc({ onError })
 
-handler.get(getAllItemSales);
+handler.get(getAllItemSales)
 
-export default handler;
+handler.post(postItemSales)
+
+export default handler

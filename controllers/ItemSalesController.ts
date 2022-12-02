@@ -13,4 +13,14 @@ const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextAp
   })
 })
 
-export { getAllItemSales }
+const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
+  const itemSales = await prisma.itemSale.createMany({
+    data: req.body.data,
+  })
+  res.status(200).json({
+    status: "success",
+    data: itemSales,
+  })
+})
+
+export { getAllItemSales, postItemSales }
