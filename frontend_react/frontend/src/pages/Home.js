@@ -1,5 +1,17 @@
 import { useState } from 'react';
 
+function checkFileFormat(file, pattern) {
+    let validity = true;
+    // Check file format
+    if (!file.name.match(pattern)) {
+        validity = false;
+        return validity;
+    }
+
+    return validity;
+}
+
+function checkDataValidity(file) {}
 function Home() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -9,15 +21,27 @@ function Home() {
         }
         e.target.classList.add('was-validated');
     };
-    const handleFileUpload = (e) => {
-        e.target.setCustomValidity('');
+    const handleFileValidity = (e) => {
+        // Get div for error display
+        const error = e.target.nextElementSibling;
         // Check if file is csv or not
-        if (!e.target.files[0].name.match(/\.(csv)$/i)) {
-            console.log('Not a csv file');
-
+        if (!checkFileFormat(e.target.files[0], /\.(csv)$/i)) {
+            // Set error message inside textContent of error
+            error.textContent = 'Not a cssv file';
             // Set validity of this element to false so that form becomes invalid
-            e.target.setCustomValidity('Must be a CSV file');
+            e.target.setCustomValidity('Error');
+
+            return;
         }
+        // Check if data is valid or not
+        if (!checkDataValidity(e.target.files[0])) {
+            error.textContent = 'Data format is incorrect';
+            // Set validity of this element to false so that form becomes invalid
+            e.target.setCustomValidity('Error');
+            return;
+        }
+
+        e.target.setCustomValidity('');
     };
     return (
         <div className="bg-light text-dark p-5 text-center">
@@ -28,13 +52,12 @@ function Home() {
                 onSubmit={handleFormSubmit}
             >
                 <input
-                    className="form-control mx-auto form-fileInput "
+                    className="form-control mx-auto form-fileInput"
                     type="file"
-                    onChange={handleFileUpload}
+                    onChange={handleFileValidity}
                     required
                 />
-                <div className="invalid-feedback">Must be a CSV file!</div>
-                <div className="valid-feedback">Success!</div>
+                <div className="invalid-feedback" />
 
                 <button type="submit" className="btn btn-primary my-3">
                     Upload
