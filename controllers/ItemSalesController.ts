@@ -15,6 +15,33 @@ const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextAp
   })
 })
 
+const getItemSale = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
+  const { itemSaleId } = req.query
+  if (itemSaleId === undefined) return
+  if (typeof itemSaleId === typeof "string") {
+    const itemSales = await prisma.itemSale.findUnique({
+      where: {
+        id: parseInt(itemSaleId as string),
+      },
+      include: {
+        item: {
+          include: {
+            category: true,
+          },
+        },
+        location: true,
+        tax: true,
+        condition: true,
+      },
+    })
+
+    res.status(200).json({
+      status: "success",
+      data: itemSales,
+    })
+  }
+})
+
 // TODO merge these into one handleitemSaleRelations func to dry up code
 
 const handleCategory = async (name: string) => {
@@ -189,4 +216,4 @@ const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiR
   })
 })
 
-export { getAllItemSales, postItemSales }
+export { getAllItemSales, postItemSales, getItemSale }
