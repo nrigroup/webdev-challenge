@@ -17,3 +17,4 @@
 4.Code is extensible
 5. Code is high quality.
 6. Uses bootstrap
+7. USes guard clauses
