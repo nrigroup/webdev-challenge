@@ -2,10 +2,15 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors"
 import { NextApiRequest, NextApiResponse } from "next"
 import prisma from "../lib/prisma"
 import { ItemSaleData, ItemSaleRelation } from "../types"
-import { Prisma } from "@prisma/client"
+import { ItemSale } from "@prisma/client"
 
 const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
-  const itemSales = await prisma.itemSale.findMany()
+  const { orderBy, direction } = req.query
+  const itemSales = await prisma.itemSale.findMany({
+    orderBy: {
+      [orderBy ? (orderBy as string) : "id"]: direction ? direction : "asc",
+    },
+  })
 
   res.status(200).json({
     status: "success",
