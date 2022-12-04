@@ -2,38 +2,18 @@ import { useCallback } from "react"
 import { useDropzone } from "react-dropzone"
 import axios from "axios"
 import { BACKEND_URL } from "../config"
-import { parse } from "csv-parse/browser/esm"
-
-const csvToArray = (str: string, delimiter = ",") => {
-  // get column names
-  const headers = str.slice(0, str.indexOf("\n")).split(delimiter)
-  // get rows
-  const rows = str.slice(str.indexOf("\n") + 1).split("\n")
-
-  const arr = rows
-    // filter out empty lines
-    .filter((row) => row.length > 0)
-    .map((row) => {
-      // TODO refactor to ignore delimeters inside of quotation marks for location
-      const values = row.split(delimiter)
-      const el = headers.reduce((object: { [key: string]: any }, header, index) => {
-        object[header] = values[index]
-        return object
-      }, {})
-      return el
-    })
-
-  return arr
-}
+import Papa from "papaparse"
 
 const FileDropzone = () => {
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    try {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const text = e.target?.result
-        const data = csvToArray(text as string)
-        data.map((row) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    Papa.parse(acceptedFiles[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: async (results: { data: { [key: string]: string | Date }[] }) => {
+        const parsedResults = results.data.map((row) => {
+          if (row.date) {
+            row.date = new Date(row.date)
+          }
           if (row["lot title"]) {
             row["auctionItem"] = row["lot title"]
             delete row["lot title"]
@@ -58,17 +38,19 @@ const FileDropzone = () => {
             row["tax"] = row["tax name"]
             delete row["tax name"]
           }
+          // TODO write validation to check for required columns
           return row
         })
-        console.log(data)
-        // axios.post(`${BACKEND_URL}itemSales`, {
-        //   data,
-        // })
-      }
-      reader.readAsText(acceptedFiles[0])
-    } catch (err) {
-      console.log(err)
-    }
+        try {
+          const res = await axios.post(`${BACKEND_URL}/itemSales`, {
+            data: parsedResults,
+          })
+          console.log(res)
+        } catch (err) {
+          console.log(err)
+        }
+      },
+    })
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
