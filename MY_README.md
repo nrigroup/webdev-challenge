@@ -18,3 +18,4 @@
 5. Code is high quality.
 6. Uses bootstrap
 7. USes guard clauses
+8 USes mostly functional programming style and pure functions.
