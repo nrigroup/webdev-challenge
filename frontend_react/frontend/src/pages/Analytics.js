@@ -2,6 +2,16 @@ import { useEffect, useState } from 'react';
 import BarChart from '../components/BarChart';
 import { useData } from '../contexts/DataContext';
 
+// Gets all the unique fields in the data array based on the field type requested
+export function getUniqueFields(dataArray, fieldType) {
+    const uniqueFields = new Set([]);
+    dataArray.forEach((row) => {
+        const field = row[fieldType];
+        uniqueFields.add(field);
+    });
+    return Array.from(uniqueFields);
+}
+
 // Gets all the unique dates in the array of data
 export function getUniqueDates(dataArray) {
     const uniqueDates = new Set([]);
@@ -35,29 +45,33 @@ function mapTwoArrays(array1, array2) {
 function Analytics() {
     const { data } = useData();
     const [dates, setDates] = useState();
-    const [amounts, setAmounts] = useState();
-
-    const [bargraphData, setBargraphData] = useState();
+    const [amountsPerDate, setAmountsPerDate] = useState();
+    const [categories, setCategories] = useState();
     useEffect(() => {
         if (data !== undefined) {
-            const uniqueDates = getUniqueDates(data);
+            // const uniqueDates = getUniqueDates(data);
+            const uniqueDates = getUniqueFields(data, 'date');
+            console.log(uniqueDates);
+            const uniqueCategories = getUniqueFields(data, 'category');
+            console.log(uniqueCategories);
             const amountForDates = uniqueDates.map((date) => {
                 const amount = getAmountForDate(date, data);
                 return amount;
             });
-            // Map dates to amounts
-            const datesToAmount = mapTwoArrays(uniqueDates, amountForDates);
-            console.log(datesToAmount);
-            setBargraphData(datesToAmount);
             setDates(uniqueDates);
-            setAmounts(amountForDates);
+            setAmountsPerDate(amountForDates);
         }
     }, [data]);
     return (
         <div className="container">
             <div className="row">
                 <div className="col w-25">
-                    <BarChart labels={dates} datasets={amounts} />;
+                    <BarChart labels={dates} datasets={amountsPerDate} />;
+                </div>
+            </div>
+            <div className="row">
+                <div className="col w-25">
+                    <BarChart labels={dates} datasets={amountsPerDate} />;
                 </div>
             </div>
         </div>
