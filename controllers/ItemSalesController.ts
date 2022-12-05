@@ -5,20 +5,20 @@ import { ItemSaleData } from "../types"
 import * as fs from "fs"
 import csv from "csv-parser"
 import { handleItemSaleRelations } from "../utils/recordUpdateHandlers"
+import stripBom from "strip-bom-stream"
 
 const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { orderBy, direction } = req.query
+  const { orderBy, direction, limit } = req.query
   const itemSales = await prisma.itemSale.findMany({
     orderBy: {
       [orderBy ? (orderBy as string) : "id"]: direction ? direction : "asc",
     },
+    take: limit ? parseInt(limit as string) : undefined,
   })
 
   res.status(200).json({
     status: "success",
-    data: {
-      itemSales,
-    },
+    data: itemSales,
   })
 })
 
@@ -53,6 +53,7 @@ const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiR
   fs.writeFileSync("data", req.body)
   const results: ItemSaleData[] = []
   fs.createReadStream("data")
+    .pipe(stripBom())
     .pipe(
       csv({
         skipComments: true,
@@ -79,7 +80,7 @@ const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiR
           // TODO write validation to check for required columns
           if (header === "date") {
             return new Date(value)
-          } else if (header === "preTaxAmount" || header === "taxAmount") {
+          } else if (!isNaN(value)) {
             return parseFloat(value)
           }
           return value
@@ -88,8 +89,10 @@ const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiR
     )
     .on("data", (data) => results.push(data))
     .on("end", async () => {
+      // delete file
       fs.unlinkSync("data")
 
+      // filter out invalid rows
       const filteredResults = results.filter((row) => {
         if (Object.prototype.toString.call(row.date) === "[object Date]") {
           if (isNaN(row.date as unknown as number)) {
