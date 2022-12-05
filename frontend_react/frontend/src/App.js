@@ -9,8 +9,8 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
+                <NavBar />
                 <DataProvider>
-                    <NavBar />
                     <Routes>
                         <Route exact path="/" element={<Home />} />
                         <Route exact path="/show" element={<Analytics />} />

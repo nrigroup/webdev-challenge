@@ -24,11 +24,12 @@ export function DataProvider({ children }) {
             console.log(jsonData);
         } catch (err) {
             console.log(err);
+            return FAIL_RESPONSE_CODE;
         }
         setData(jsonData);
         return SUCCESS_RESPONSE_CODE;
     }
-    const providerValues = useMemo(() => ({ data, uploadData }), []);
+    const providerValues = useMemo(() => ({ data, uploadData }), [data]);
     return (
         <DataContext.Provider value={providerValues}>
             {children}

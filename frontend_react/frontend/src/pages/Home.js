@@ -50,7 +50,6 @@ function Home() {
 
         const responseCode = await uploadData(jsonConverted);
         if (responseCode !== SUCCESS_RESPONSE_CODE) {
-            setError('Error in uploading!');
             return;
         }
 
