@@ -37,7 +37,7 @@ export function findElementInArray(element, arr) {
 // Returns an array of objects where each object represents a row with header matched with each element
 // Assumes each number of headers match with number of elements in each row
 // Returns an empty array if there is an empty column in a row for a required header
-export function mapHeadersToRows(headers, rows, requiredHeaders) {
+export function mapHeadersToRows(headers, rows, requiredHeaders = undefined) {
     const finalArray = [];
 
     if (headers.length === 0) {

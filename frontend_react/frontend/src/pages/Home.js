@@ -40,15 +40,7 @@ function Home() {
             return;
         }
 
-        let jsonConverted;
-        try {
-            jsonConverted = JSON.stringify(csvData);
-        } catch (err) {
-            setError('Error in Serializing!');
-            return;
-        }
-
-        const responseCode = await uploadData(jsonConverted);
+        const responseCode = await uploadData(csvData);
         if (responseCode !== SUCCESS_RESPONSE_CODE) {
             return;
         }

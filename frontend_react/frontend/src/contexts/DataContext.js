@@ -23,7 +23,6 @@ export function DataProvider({ children }) {
         try {
             console.log(jsonData);
         } catch (err) {
-            console.log(err);
             return FAIL_RESPONSE_CODE;
         }
         setData(jsonData);
