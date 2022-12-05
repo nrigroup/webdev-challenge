@@ -22,11 +22,6 @@ function NavBar() {
                                 Home
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to="show" className="nav-link">
-                                Analytics
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </div>
