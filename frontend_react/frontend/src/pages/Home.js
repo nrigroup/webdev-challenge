@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useData } from '../contexts/DataContext';
 import {
     fileToString,
     checkFileExtension,
@@ -16,24 +18,51 @@ const REQUIRED_HEADERS = [
     'lot condition',
     'pre-tax amount',
 ];
+const SUCCESS_RESPONSE_CODE = 200;
 
 function Home() {
     // State for maintaining error
     const [error, setError] = useState('');
     const [csvData, setCsvData] = useState([]);
 
+    /* ******Navigation hooks ******** */
+    const navigate = useNavigate();
+    /* *******Data Context ************* */
+    const { uploadData } = useData();
+
     // The function uploads the data to backend if the data passes validity checks
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
+        // Set uploaded state to be false
         e.preventDefault();
 
         if (!e.target.checkValidity()) {
             e.stopPropagation();
+            return;
         }
+
+        let jsonConverted;
+        try {
+            jsonConverted = JSON.stringify(csvData);
+        } catch (err) {
+            setError('Error in Serializing!');
+            return;
+        }
+
+        const responseCode = await uploadData(jsonConverted);
+        if (responseCode !== SUCCESS_RESPONSE_CODE) {
+            setError('Error in uploading!');
+            return;
+        }
+
+        // If upload was successful, navigate to analytics page
+        navigate('/show');
     };
 
     // This function is basically a wrapper that makes all the validation checks
     // If all validity checks pass, the state for csvData is valid and is set at end.
     const handleFileValidity = async (e) => {
+        // Initialize csvData state
+        setCsvData([]);
         // Add was validated class to parent form,so that UI starts displaying feedback
         e.target.parentElement.classList.add('was-validated');
 

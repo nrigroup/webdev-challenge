@@ -1,20 +1,37 @@
-import { useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
-import {
-    fileToString,
-    checkFileExtension,
-    findRuleViolation,
-    findElementInArray,
-} from '../utils';
+const FAIL_RESPONSE_CODE = 400;
+const SUCCESS_RESPONSE_CODE = 200;
 
-function checkFileValidity(file) {
-    if (!checkFileExtension(file, /\.(csv)$/i)) {
-        return false;
-    }
+const DataContext = createContext();
 
-    return true;
+// Custom Hook to use the context for authentication
+export function useData() {
+    return useContext(DataContext);
 }
 // dataContext: Provides the data along with the functionality to validate data
+// eslint-disable-line no-use-before-define
 export function DataProvider({ children }) {
-    const [data, updateData] = useState();
+    /* ***** State variables ********** */
+    const [data, setData] = useState();
+
+    // This function assumes data passed is json data
+    // Returns the response received from server
+    async function uploadData(jsonData) {
+        if (!jsonData) return FAIL_RESPONSE_CODE;
+
+        try {
+            console.log(jsonData);
+        } catch (err) {
+            console.log(err);
+        }
+        setData(jsonData);
+        return SUCCESS_RESPONSE_CODE;
+    }
+    const providerValues = useMemo(() => ({ data, uploadData }), []);
+    return (
+        <DataContext.Provider value={providerValues}>
+            {children}
+        </DataContext.Provider>
+    );
 }

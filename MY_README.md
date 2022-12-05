@@ -20,4 +20,4 @@
 7. USes guard clauses
 8. USes mostly functional programming style and pure functions.
 9. Uses jest for testing React code
-
+10. Uses context api to provide data and methods to various routes
