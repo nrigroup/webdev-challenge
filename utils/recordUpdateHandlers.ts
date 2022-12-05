@@ -136,5 +136,5 @@ export const handleItemSaleRelations = async (itemSale: ItemSaleData) => {
   const tax = await handleTaxName(itemSale.tax)
   const condition = await handleCondition(itemSale.condition)
 
-  return { item, location, tax, condition }
+  return { item, category, location, tax, condition }
 }

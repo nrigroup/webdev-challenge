@@ -7,6 +7,9 @@ const server = axios.create({
     "Content-Type": "application/json",
     "accept-encoding": null,
   },
+  paramsSerializer: {
+    indexes: null
+  },
 })
 
 export default server

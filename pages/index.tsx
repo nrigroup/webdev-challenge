@@ -11,16 +11,25 @@ import { BACKEND_URL } from "../config"
 import styles from "../styles/Home.module.scss"
 
 const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: false })
+const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
 
-const Home = ({ data }: { data: { data: { [key: string]: any }[] } }) => {
+const Home = ({
+  totalSalesPerDay,
+  totalSalesByCategory,
+  totalSalesByCondition,
+}: {
+  totalSalesPerDay: { data: { [key: string]: any }[] }
+  totalSalesByCategory: { data: { [key: string]: any }[] }
+  totalSalesByCondition: { data: { [key: string]: any }[] }
+}) => {
   const router = useRouter()
-  const itemSalesData = useMemo(
+  const totalSalesPerDayData = useMemo(
     () =>
-      data.data.map((itemSale) => {
-        itemSale.date = new Date(itemSale.date).toDateString()
-        return itemSale
+      totalSalesPerDay.data.map((row) => {
+        row.date = new Date(row.date).toLocaleDateString("en-US")
+        return row
       }),
-    [data.data],
+    [totalSalesPerDay.data],
   )
 
   const refreshData = useCallback(() => {
@@ -36,7 +45,14 @@ const Home = ({ data }: { data: { data: { [key: string]: any }[] } }) => {
       </Head>
 
       <main className={styles.main}>
-        <BarRechartWithoutSSR data={itemSalesData} />
+        <BarRechartWithoutSSR
+          data={totalSalesPerDayData}
+          barDataKey="_sum.preTaxAmount"
+          xAxisDataKey="date"
+          xAxisLabel="Daily Total Pre-Tax Amount"
+        />
+        <PieRechartWithoutSSR data={totalSalesByCategory.data} dataKey="categoryId" />
+        <PieRechartWithoutSSR data={totalSalesByCondition.data} dataKey="conditionId" />
         <FileDropzone refreshData={refreshData} />
       </main>
 
@@ -58,10 +74,29 @@ const Home = ({ data }: { data: { data: { [key: string]: any }[] } }) => {
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59")
 
-  const response = await server.get(`${BACKEND_URL}/itemSales`)
-  const data = response.data
+  const { data: totalSalesPerDay } = await server.get(`${BACKEND_URL}/itemSales`, {
+    params: {
+      groupBy: "date",
+      orderBy: "date",
+      sum: "preTaxAmount",
+    },
+  })
 
-  return { props: { data } }
+  const { data: totalSalesByCategory } = await server.get(`${BACKEND_URL}/itemSales`, {
+    params: {
+      groupBy: ["categoryId"],
+      sum: "preTaxAmount",
+    },
+  })
+
+  const { data: totalSalesByCondition } = await server.get(`${BACKEND_URL}/itemSales`, {
+    params: {
+      groupBy: ["conditionId"],
+      sum: "preTaxAmount",
+    },
+  })
+
+  return { props: { totalSalesPerDay, totalSalesByCategory, totalSalesByCondition } }
 }
 
 export default Home

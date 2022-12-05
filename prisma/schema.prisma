@@ -15,9 +15,9 @@ model AuctionItem {
   name       String
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+  ItemSale   ItemSale[]
   category   Category   @relation(fields: [categoryId], references: [id])
   categoryId Int
-  ItemSale   ItemSale[]
 }
 
 model ItemSale {
@@ -29,6 +29,8 @@ model ItemSale {
   updatedAt    DateTime    @updatedAt
   item         AuctionItem @relation(fields: [itemId], references: [id])
   itemId       Int
+  category     Category    @relation(fields: [categoryId], references: [id])
+  categoryId   Int
   location     Location    @relation(fields: [locationId], references: [id])
   locationId   Int
   condition    Condition   @relation(fields: [conditionId], references: [id])
@@ -42,6 +44,7 @@ model Category {
   name        String
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  itemSale    ItemSale[]
   auctionItem AuctionItem[]
 }
 

@@ -8,13 +8,27 @@ import { handleItemSaleRelations } from "../utils/recordUpdateHandlers"
 import stripBom from "strip-bom-stream"
 
 const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { orderBy, direction, limit } = req.query
-  const itemSales = await prisma.itemSale.findMany({
-    orderBy: {
-      [orderBy ? (orderBy as string) : "id"]: direction ? direction : "asc",
-    },
-    take: limit ? parseInt(limit as string) : undefined,
-  })
+  const { orderBy, direction, limit, groupBy, sum } = req.query
+  const itemSales = groupBy
+    ? await prisma.itemSale.groupBy({
+        by: Array.isArray(groupBy) ? groupBy : ([groupBy] as any),
+        orderBy: orderBy ? { [orderBy as string]: direction ? direction : "asc" } : undefined,
+        take: limit ? parseInt(limit as string) : undefined,
+        _sum: sum ? { [sum as string]: true } : undefined,
+      })
+    : await prisma.itemSale.findMany({
+        orderBy: orderBy ? { [orderBy as string]: direction ? direction : "asc" } : undefined,
+        take: limit ? parseInt(limit as string) : undefined,
+        include: {
+          item: true,
+          category: true,
+          location: true,
+          tax: true,
+          condition: true,
+        },
+      })
+
+  console.log("req.query: ", req.query)
 
   res.status(200).json({
     status: "success",
@@ -26,7 +40,7 @@ const getItemSale = catchAsyncErrors(async (req: NextApiRequest, res: NextApiRes
   const { itemSaleId } = req.query
   if (itemSaleId === undefined) return
   if (typeof itemSaleId === typeof "string") {
-    const itemSales = await prisma.itemSale.findUnique({
+    const itemSale = await prisma.itemSale.findUnique({
       where: {
         id: parseInt(itemSaleId as string),
       },
@@ -44,7 +58,7 @@ const getItemSale = catchAsyncErrors(async (req: NextApiRequest, res: NextApiRes
 
     res.status(200).json({
       status: "success",
-      data: itemSales,
+      data: itemSale,
     })
   }
 })
@@ -104,20 +118,21 @@ const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiR
         }
       })
 
-      const itemSalesData = await Promise.all(
-        filteredResults.map(async (itemSale: ItemSaleData) => {
-          const { item, location, tax, condition } = await handleItemSaleRelations(itemSale)
-          return {
-            date: itemSale.date,
-            preTaxAmount: itemSale.preTaxAmount,
-            taxAmount: itemSale.taxAmount,
-            itemId: item.id,
-            locationId: location.id,
-            conditionId: condition.id,
-            taxId: tax ? tax.id : undefined,
-          }
-        }),
-      )
+      const itemSalesData: any[] = []
+      for (const itemSale of filteredResults) {
+        const { item, category, location, tax, condition } = await handleItemSaleRelations(itemSale)
+        itemSalesData.push({
+          date: itemSale.date,
+          preTaxAmount: itemSale.preTaxAmount,
+          taxAmount: itemSale.taxAmount,
+          itemId: item.id,
+          categoryId: category.id,
+          locationId: location.id,
+          conditionId: condition.id,
+          taxId: tax ? tax.id : undefined,
+        })
+      }
+
       // create new item sale records
       const { count } = await prisma.itemSale.createMany({
         data: itemSalesData,
