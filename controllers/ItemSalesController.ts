@@ -2,6 +2,8 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors"
 import { NextApiRequest, NextApiResponse } from "next"
 import prisma from "../lib/prisma"
 import { ItemSaleData, ItemSaleRelation } from "../types"
+import * as fs from "fs"
+import csv from "csv-parser"
 
 const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
   const { orderBy, direction } = req.query
@@ -145,36 +147,36 @@ const handleCondition = async (description: string) => {
   return condition
 }
 
-const handleRelation = async (
-  modelName: ItemSaleRelation,
-  propName: string,
-  propValue: string,
-  categoryId?: number,
-) => {
-  if (modelName === ItemSaleRelation.tax && propValue === undefined) return
-  let record = await prisma[modelName].findFirst({
-    where: {
-      [propName]: propValue,
-    },
-  })
-  if (!record) {
-    if (modelName === ItemSaleRelation.auctionItem && categoryId !== undefined) {
-      record = await prisma[modelName].create({
-        data: {
-          name: propValue,
-          categoryId,
-        },
-      })
-    } else {
-      record = await prisma[modelName].create({
-        data: {
-          [propName]: propValue,
-        },
-      })
-    }
-  }
-  return record
-}
+// const handleRelation = async (
+//   modelName: ItemSaleRelation,
+//   propName: string,
+//   propValue: string,
+//   categoryId?: number,
+// ) => {
+//   if (modelName === ItemSaleRelation.tax && propValue === undefined) return
+//   let record = await prisma[modelName].findFirst({
+//     where: {
+//       [propName]: propValue,
+//     },
+//   })
+//   if (!record) {
+//     if (modelName === ItemSaleRelation.auctionItem && categoryId !== undefined) {
+//       record = await prisma[modelName].create({
+//         data: {
+//           name: propValue,
+//           categoryId,
+//         },
+//       })
+//     } else {
+//       record = await prisma[modelName].create({
+//         data: {
+//           [propName]: propValue,
+//         },
+//       })
+//     }
+//   }
+//   return record
+// }
 
 const handleItemSaleRelations = async (itemSale: ItemSaleData) => {
   const category = await handleCategory(itemSale.category)
@@ -187,37 +189,89 @@ const handleItemSaleRelations = async (itemSale: ItemSaleData) => {
 }
 
 const postItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
-  const itemSalesData = await Promise.all(
-    req.body.data.map(async (itemSale: ItemSaleData) => {
-      const { item, location, tax, condition } = await handleItemSaleRelations(itemSale)
-      return {
-        date: itemSale.date,
-        preTaxAmount: itemSale.preTaxAmount,
-        taxAmount: itemSale.taxAmount,
-        itemId: item.id,
-        locationId: location.id,
-        conditionId: condition.id,
-        taxId: tax ? tax.id : undefined,
-      }
-    }),
-  )
-  // create new item sale records
-  const { count } = await prisma.itemSale.createMany({
-    data: itemSalesData,
-  })
-  // fetch new item sales
-  const itemSales = await prisma.itemSale.findMany({
-    orderBy: [
-      {
-        updatedAt: "desc",
-      },
-    ],
-    take: count,
-  })
-  res.status(200).json({
-    status: "success",
-    data: itemSales,
-  })
+  fs.writeFileSync("data", req.body)
+  const results: ItemSaleData[] = []
+  fs.createReadStream("data")
+    .pipe(
+      csv({
+        skipComments: true,
+        skipLines: 4,
+        mapHeaders: ({ header }) => {
+          switch (header) {
+            case "lot title":
+              return "auctionItem"
+            case "lot location":
+              return "location"
+            case "lot condition":
+              return "condition"
+            case "pre-tax amount":
+              return "preTaxAmount"
+            case "tax amount":
+              return "taxAmount"
+            case "tax name":
+              return "tax"
+            default:
+              return header
+          }
+        },
+        mapValues: ({ header, value }) => {
+          // TODO write validation to check for required columns
+          if (header === "date") {
+            return new Date(value)
+          } else if (header === "preTaxAmount" || header === "taxAmount") {
+            return parseFloat(value)
+          }
+          return value
+        },
+      }),
+    )
+    .on("data", (data) => results.push(data))
+    .on("end", async () => {
+      fs.unlinkSync("data")
+
+      const filteredResults = results.filter((row) => {
+        if (Object.prototype.toString.call(row.date) === "[object Date]") {
+          if (isNaN(row.date as unknown as number)) {
+            return false
+          }
+          return true
+        } else {
+          return false
+        }
+      })
+
+      const itemSalesData = await Promise.all(
+        filteredResults.map(async (itemSale: ItemSaleData) => {
+          const { item, location, tax, condition } = await handleItemSaleRelations(itemSale)
+          return {
+            date: itemSale.date,
+            preTaxAmount: itemSale.preTaxAmount,
+            taxAmount: itemSale.taxAmount,
+            itemId: item.id,
+            locationId: location.id,
+            conditionId: condition.id,
+            taxId: tax ? tax.id : undefined,
+          }
+        }),
+      )
+      // create new item sale records
+      const { count } = await prisma.itemSale.createMany({
+        data: itemSalesData,
+      })
+      // fetch new item sales
+      const itemSales = await prisma.itemSale.findMany({
+        orderBy: [
+          {
+            updatedAt: "desc",
+          },
+        ],
+        take: count,
+      })
+      res.status(200).json({
+        status: "success",
+        data: itemSales,
+      })
+    })
 })
 
 export { getAllItemSales, postItemSales, getItemSale }
