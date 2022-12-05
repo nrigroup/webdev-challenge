@@ -34,6 +34,9 @@ function mapTwoArrays(array1, array2) {
 }
 function Analytics() {
     const { data } = useData();
+    const [dates, setDates] = useState();
+    const [amounts, setAmounts] = useState();
+
     const [bargraphData, setBargraphData] = useState();
     useEffect(() => {
         if (data !== undefined) {
@@ -46,9 +49,19 @@ function Analytics() {
             const datesToAmount = mapTwoArrays(uniqueDates, amountForDates);
             console.log(datesToAmount);
             setBargraphData(datesToAmount);
+            setDates(uniqueDates);
+            setAmounts(amountForDates);
         }
     }, [data]);
-    return <BarChart chartData={bargraphData} />;
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col w-25">
+                    <BarChart labels={dates} datasets={amounts} />;
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default Analytics;
