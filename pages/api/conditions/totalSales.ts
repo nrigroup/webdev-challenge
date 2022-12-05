@@ -1,9 +1,9 @@
 import nc from "next-connect"
-import { getCategoriesSaleTotals } from "../../../controllers/CategoriesController"
+import { getConditionsSaleTotals } from "../../../controllers/ConditionsController"
 import onError from "../../../middlewares/errors"
 
 const handler = nc({ onError })
 
-handler.get(getCategoriesSaleTotals)
+handler.get(getConditionsSaleTotals)
 
 export default handler

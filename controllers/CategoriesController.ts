@@ -26,15 +26,15 @@ const getAllCategories = catchAsyncErrors(async (req: NextApiRequest, res: NextA
   })
 })
 
-const getCategorySaleTotals = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
+const getCategoriesSaleTotals = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
   const results = []
-  const categorySalesSums = await prisma.itemSale.groupBy({
+  const categoriesSaleTotals = await prisma.itemSale.groupBy({
     by: ["categoryId"],
     _sum: {
       preTaxAmount: true,
     },
   })
-  for (const sum of categorySalesSums) {
+  for (const sum of categoriesSaleTotals) {
     const category = await prisma.category.findUnique({
       where: {
         id: sum.categoryId,
@@ -69,4 +69,4 @@ const getCategory = catchAsyncErrors(async (req: NextApiRequest, res: NextApiRes
   }
 })
 
-export { getAllCategories, getCategory, getCategorySaleTotals }
+export { getAllCategories, getCategory, getCategoriesSaleTotals }

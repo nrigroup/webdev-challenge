@@ -52,7 +52,7 @@ const Home = ({
           xAxisLabel="Daily Total Pre-Tax Amount"
         />
         <PieRechartWithoutSSR data={totalSalesByCategory.data} dataKey="categoryId" nameKey="category.name" />
-        <PieRechartWithoutSSR data={totalSalesByCondition.data} dataKey="conditionId" nameKey="" />
+        <PieRechartWithoutSSR data={totalSalesByCondition.data} dataKey="conditionId" nameKey="condition.description" />
         <FileDropzone refreshData={refreshData} />
       </main>
 
@@ -84,12 +84,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
   const { data: totalSalesByCategory } = await server.get(`${BACKEND_URL}/categories/totalSales`)
 
-  const { data: totalSalesByCondition } = await server.get(`${BACKEND_URL}/itemSales`, {
-    params: {
-      groupBy: ["conditionId"],
-      sum: "preTaxAmount",
-    },
-  })
+  const { data: totalSalesByCondition } = await server.get(`${BACKEND_URL}/conditions/totalSales`)
 
   return { props: { totalSalesPerDay, totalSalesByCategory, totalSalesByCondition } }
 }
