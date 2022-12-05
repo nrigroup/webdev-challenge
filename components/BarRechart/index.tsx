@@ -1,4 +1,4 @@
-import { Bar, BarChart, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts"
 
 const BarRechart = ({
   data,
@@ -16,6 +16,7 @@ const BarRechart = ({
       <Bar dataKey={barDataKey} />
       <XAxis dataKey={xAxisDataKey} fontSize="0.5rem" label={xAxisLabel} />
       <YAxis />
+      <Tooltip />
     </BarChart>
   )
 }

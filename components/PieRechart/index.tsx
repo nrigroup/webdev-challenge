@@ -1,9 +1,18 @@
-import { Pie, PieChart } from "recharts"
+import { Pie, PieChart, Tooltip } from "recharts"
 
-const PieRechart = ({ data, dataKey }: { data: { [key: string]: any }[]; dataKey: string }) => {
+const PieRechart = ({
+  data,
+  dataKey,
+  nameKey,
+}: {
+  data: { [key: string]: any }[]
+  dataKey: string
+  nameKey: string
+}) => {
   return (
     <PieChart width={500} height={500}>
-      <Pie dataKey={dataKey} data={data} />
+      <Pie dataKey={dataKey} data={data} nameKey={nameKey} />
+      <Tooltip />
     </PieChart>
   )
 }
