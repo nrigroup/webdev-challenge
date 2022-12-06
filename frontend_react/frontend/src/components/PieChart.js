@@ -20,7 +20,6 @@ function PieChart({ title, labels, datasets }) {
             {
                 label: title,
                 data: datasets,
-                // backgroundColor,
             },
         ],
     });
@@ -30,7 +29,6 @@ function PieChart({ title, labels, datasets }) {
             labels !== undefined &&
             datasets !== undefined
         ) {
-            console.log(labels);
             const backgroundColor = datasets.map(() => getRandomColor());
             const chartParameters = {
                 labels,

@@ -100,7 +100,7 @@ function Analytics() {
     return (
         <div className="container">
             <div className="row">
-                <div className="col w-25">
+                <div className="col d-flex justify-content-center">
                     <BarChart
                         title="Pre-tax amount per category"
                         labels={dates}
@@ -110,19 +110,23 @@ function Analytics() {
             </div>
 
             <div className="row mt-5">
-                <div className="col-6">
-                    <PieChart
-                        title="Pre-tax amount per category"
-                        labels={categories}
-                        datasets={amountsPerCategory}
-                    />
+                <div className="col-sm col-md-6 d-flex justify-content-center">
+                    <div className="chart-wrapper">
+                        <PieChart
+                            title="Pre-tax amount per category"
+                            labels={categories}
+                            datasets={amountsPerCategory}
+                        />
+                    </div>
                 </div>
-                <div className="col-6">
-                    <PieChart
-                        title="Pre-tax amount per condition"
-                        labels={conditions}
-                        datasets={amountsPerCondtion}
-                    />
+                <div className="col-md-6 col-sm d-flex justify-content-center">
+                    <div className="chart-wrapper">
+                        <PieChart
+                            title="Pre-tax amount per condition"
+                            labels={conditions}
+                            datasets={amountsPerCondtion}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
