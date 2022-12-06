@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BarChart from '../components/BarChart';
 import { useData } from '../contexts/DataContext';
 
+const CSV_INT_BASE = 10;
 // Gets all the unique fields in the data array based on the field type requested
 export function getUniqueFields(dataArray, fieldType) {
     const uniqueFields = new Set([]);
@@ -12,14 +13,17 @@ export function getUniqueFields(dataArray, fieldType) {
     return Array.from(uniqueFields);
 }
 
-// Gets all the unique dates in the array of data
-export function getUniqueDates(dataArray) {
-    const uniqueDates = new Set([]);
-    dataArray.forEach((row) => {
-        const { date } = row;
-        uniqueDates.add(date);
+// Returns the total pre-tax amount based on the queryType and query for that queryType
+// Eg: Get total pre tax amount for 'category' 'Construction'. Here query is 'Construction' and queryType is 'category'
+export function getAmountPerType(dataArray, query, queryType) {
+    let totalAmount = 0;
+    dataArray.forEach((element) => {
+        if (element[queryType] === query) {
+            totalAmount += parseInt(element['pre-tax amount'], CSV_INT_BASE);
+        }
     });
-    return Array.from(uniqueDates);
+
+    return totalAmount;
 }
 
 // Returns the total pre-tax amount in the data for particular date
@@ -51,15 +55,19 @@ function Analytics() {
         if (data !== undefined) {
             // const uniqueDates = getUniqueDates(data);
             const uniqueDates = getUniqueFields(data, 'date');
-            console.log(uniqueDates);
             const uniqueCategories = getUniqueFields(data, 'category');
-            console.log(uniqueCategories);
-            const amountForDates = uniqueDates.map((date) => {
-                const amount = getAmountForDate(date, data);
+            const amountPerDate = uniqueDates.map((date) => {
+                const amount = getAmountPerType(data, date, 'date');
                 return amount;
             });
+
+            const amountPerCategory = uniqueCategories.map((category) => {
+                const amount = getAmountPerType(data, category, 'category');
+                return amount;
+            });
+
             setDates(uniqueDates);
-            setAmountsPerDate(amountForDates);
+            setAmountsPerDate(amountPerDate);
         }
     }, [data]);
     return (
