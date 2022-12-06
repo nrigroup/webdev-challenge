@@ -7,11 +7,13 @@ const PieRechart = ({
   dataKey,
   nameKey,
   title,
+  tooltipFormatter,
 }: {
   data?: { [key: string]: any }[]
   dataKey: string
   nameKey: string
   title: string
+  tooltipFormatter: (value: string, name: string, props: any) => string
 }) => {
   // const [hoverCellIndex, setHoverCellIndex] = useState<number | null>(null)
   const colors = useMemo(() => {
@@ -23,7 +25,7 @@ const PieRechart = ({
   }, [data?.length])
 
   return (
-    <ResponsiveContainer minHeight={"50vh"}>
+    <ResponsiveContainer minHeight={"25vh"}>
       <PieChart title={title}>
         <Pie
           dataKey={dataKey}
@@ -66,7 +68,7 @@ const PieRechart = ({
             })}
         </Pie>
         <Legend />
-        <Tooltip formatter={(value, name, props) => `$${value}`} />
+        <Tooltip formatter={tooltipFormatter} />
       </PieChart>
     </ResponsiveContainer>
   )

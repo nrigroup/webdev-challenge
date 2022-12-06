@@ -9,6 +9,7 @@ const BarRechart = ({
   xAxisLabel,
   barName,
   title,
+  tooltipFormatter,
 }: {
   data?: { [key: string]: any }[]
   barDataKey: string
@@ -16,6 +17,7 @@ const BarRechart = ({
   xAxisLabel: string
   barName: string
   title: string
+  tooltipFormatter: (value: string, name: string, props: any) => string
 }) => {
   // const [hoverCellIndex, setHoverCellIndex] = useState<number | null>(null)
   const color = useMemo(() => {
@@ -25,7 +27,7 @@ const BarRechart = ({
     })
   }, [])
   return (
-    <ResponsiveContainer minWidth={"50vw"} minHeight={"50vh"}>
+    <ResponsiveContainer minHeight={"25vh"}>
       <BarChart data={data} title={title}>
         <Bar dataKey={barDataKey} name={barName}>
           {data &&
@@ -45,8 +47,8 @@ const BarRechart = ({
             })}
         </Bar>
         <XAxis dataKey={xAxisDataKey} fontSize="0.5rem" label={xAxisLabel} />
-        <YAxis />
-        <Tooltip formatter={(value, name, props) => `$${value}`} />
+        <YAxis tickFormatter={(value, index) => `$${value}`} />
+        <Tooltip formatter={tooltipFormatter} />
       </BarChart>
     </ResponsiveContainer>
   )

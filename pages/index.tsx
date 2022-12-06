@@ -9,11 +9,14 @@ import { useCategories, useConditions, useItemSales } from "../hooks/queries"
 import { withCSR } from "../utils/withCSR"
 import { dehydrate, QueryClient } from "@tanstack/react-query"
 import { get } from "../utils"
+import { useAddItemSales } from "../hooks/mutations"
 
 const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: false })
 const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
 
 const Home = () => {
+  const addItemSales = useAddItemSales()
+
   const totalSalesPerDay = useItemSales(
     {
       groupBy: "date",
@@ -65,6 +68,18 @@ const Home = () => {
     totalSalesByCondition.refetch()
   }, [totalSalesPerDay, totalSalesByCategory, totalSalesByCondition])
 
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      const formData = new FormData()
+      formData.append("dataFile", acceptedFiles[0])
+      await addItemSales.mutateAsync(formData)
+      refreshData()
+    },
+    [refreshData, addItemSales],
+  )
+
+  const tooltipFormatter = useCallback((value: string, name: string, props: any) => `$${value}`, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -81,20 +96,23 @@ const Home = () => {
           xAxisDataKey="date"
           xAxisLabel="Day"
           title="Pre-Tax Amount Totals By Day"
+          tooltipFormatter={tooltipFormatter}
         />
         <PieRechartWithoutSSR
           data={totalSalesByCategoryData}
           dataKey="_sum.preTaxAmount"
           nameKey="category.name"
           title="Pre-Tax Amount Totals By Item Category"
+          tooltipFormatter={tooltipFormatter}
         />
         <PieRechartWithoutSSR
           data={totalSalesByConditionData}
           dataKey="_sum.preTaxAmount"
           nameKey="condition.description"
           title="Pre-Tax Amount Totals By Item Condition"
+          tooltipFormatter={tooltipFormatter}
         />
-        <FileDropzone refreshData={refreshData} />
+        <FileDropzone onDrop={onDrop} />
       </main>
 
       <footer className={styles.footer}>
