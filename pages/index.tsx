@@ -35,6 +35,7 @@ const Home = () => {
     () =>
       totalSalesPerDay.data?.data.map((row) => {
         row.date = new Date(row.date).toLocaleDateString("en-US")
+        row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
         return row
       }),
     [totalSalesPerDay.data],
@@ -43,9 +44,7 @@ const Home = () => {
   const totalSalesByCategoryData = useMemo(
     () =>
       totalSalesByCategory.data?.data.map((row) => {
-        if (row._sum.preTaxAmount) {
-          row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
-        }
+        row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
         return row
       }),
     [totalSalesByCategory.data],
@@ -54,9 +53,7 @@ const Home = () => {
   const totalSalesByConditionData = useMemo(
     () =>
       totalSalesByCondition.data?.data.map((row) => {
-        if (row._sum.preTaxAmount) {
-          row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
-        }
+        row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
         return row
       }),
     [totalSalesByCondition.data],
