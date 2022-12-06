@@ -3,12 +3,12 @@ import { Bar } from 'react-chartjs-2';
 /* eslint-enable */
 import { Chart as ChartJS } from 'chart.js/auto';
 
-function BarChart({ labels, datasets }) {
+function BarChart({ title, labels, datasets }) {
     const chartData = {
         labels,
         datasets: [
             {
-                label: 'Pre-Tax Amount per date',
+                label: title,
                 data: datasets,
             },
         ],
