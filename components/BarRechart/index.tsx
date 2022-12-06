@@ -10,7 +10,7 @@ const BarRechart = ({
   barName,
   title,
 }: {
-  data: { [key: string]: any }[]
+  data?: { [key: string]: any }[]
   barDataKey: string
   xAxisDataKey: string
   xAxisLabel: string
@@ -27,7 +27,7 @@ const BarRechart = ({
   return (
     <BarChart width={800} height={600} data={data} title={title}>
       <Bar dataKey={barDataKey} name={barName}>
-        {data.map((entry, index) => {
+        {data && data.map((entry, index) => {
           return (
             <Cell
               key={`cell-${index}`}

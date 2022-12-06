@@ -98,37 +98,6 @@ const handleCondition = async (description: string) => {
   return condition
 }
 
-// const handleRelation = async (
-//   modelName: ItemSaleRelation,
-//   propName: string,
-//   propValue: string,
-//   categoryId?: number,
-// ) => {
-//   if (modelName === ItemSaleRelation.tax && propValue === undefined) return
-//   let record = await prisma[modelName].findFirst({
-//     where: {
-//       [propName]: propValue,
-//     },
-//   })
-//   if (!record) {
-//     if (modelName === ItemSaleRelation.auctionItem && categoryId !== undefined) {
-//       record = await prisma[modelName].create({
-//         data: {
-//           name: propValue,
-//           categoryId,
-//         },
-//       })
-//     } else {
-//       record = await prisma[modelName].create({
-//         data: {
-//           [propName]: propValue,
-//         },
-//       })
-//     }
-//   }
-//   return record
-// }
-
 export const handleItemSaleRelations = async (itemSale: ItemSaleData) => {
   const category = await handleCategory(itemSale.category)
   const item = await handleAuctionItem(itemSale.auctionItem, category.id)

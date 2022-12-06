@@ -1,48 +1,39 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query"
+import { useQuery, UseQueryOptions, UseQueryResult } from "@tanstack/react-query"
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
-import instance from "../../lib/axios"
+import { get } from "../../utils"
 
-export const useItemSales = ({
-  params = {},
-  useQueryOptions = {},
-}: {
-  params: Params
-  useQueryOptions: UseQueryOptions
-}) => {
+export const useItemSales = (
+  params: Params = {},
+  useQueryOptions: UseQueryOptions = {},
+): UseQueryResult<{ success: string; data: { [key: string]: any }[] }> => {
   return useQuery({
     queryKey: ["itemSales"],
-    queryFn: () => instance.get("/itemSales", { params }),
+    queryFn: () => get({ route: "/itemSales", params }),
     enabled: true,
     ...useQueryOptions,
-  })
+  }) as UseQueryResult<{ success: string; data: { [key: string]: any }[] }>
 }
 
-export const useCategoriesPreTaxTotals = ({
-  params = {},
-  useQueryOptions = {},
-}: {
-  params: Params
-  useQueryOptions: UseQueryOptions
-}) => {
+export const useCategories = (
+  params: Params = {},
+  useQueryOptions: UseQueryOptions = {},
+): UseQueryResult<{ success: string; data: { [key: string]: any }[] }> => {
   return useQuery({
     queryKey: ["categories"],
-    queryFn: () => instance.get("/categories", { params }),
+    queryFn: () => get({ route: "/categories", params }),
     enabled: true,
     ...useQueryOptions,
-  })
+  }) as UseQueryResult<{ success: string; data: { [key: string]: any }[] }>
 }
 
-export const useConditionsPreTaxTotals = ({
-  params = {},
-  useQueryOptions = {},
-}: {
-  params: Params
-  useQueryOptions: UseQueryOptions
-}) => {
+export const useConditions = (
+  params: Params = {},
+  useQueryOptions: UseQueryOptions = {},
+): UseQueryResult<{ success: string; data: { [key: string]: any }[] }> => {
   return useQuery({
     queryKey: ["conditions"],
-    queryFn: () => instance.get("/conditions", { params }),
+    queryFn: () => get({ route: "/conditions", params }),
     enabled: true,
     ...useQueryOptions,
-  })
+  }) as UseQueryResult<{ success: string; data: { [key: string]: any }[] }>
 }

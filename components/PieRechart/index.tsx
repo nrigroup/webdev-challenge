@@ -8,7 +8,7 @@ const PieRechart = ({
   nameKey,
   title,
 }: {
-  data: { [key: string]: any }[]
+  data?: { [key: string]: any }[]
   dataKey: string
   nameKey: string
   title: string
@@ -16,11 +16,11 @@ const PieRechart = ({
   // const [hoverCellIndex, setHoverCellIndex] = useState<number | null>(null)
   const colors = useMemo(() => {
     return randomColor({
-      count: data.length,
+      count: data?.length ? data.length : 1,
       luminosity: "dark",
       format: "hsl",
     })
-  }, [data.length])
+  }, [data?.length])
 
   return (
     <PieChart width={500} height={500} title={title}>
@@ -28,27 +28,41 @@ const PieRechart = ({
         dataKey={dataKey}
         data={data}
         nameKey={nameKey}
-        label={(props) => {
-          const { value } = props
-          return <text {...props}>{"$" + value}</text>
+        label={({ cx, cy, midAngle, innerRadius, outerRadius, value, fill }) => {
+          const RADIAN = Math.PI / 180
+          const radius = 25 + innerRadius + (outerRadius - innerRadius)
+          const x = cx + radius * Math.cos(-midAngle * RADIAN)
+          const y = cy + radius * Math.sin(-midAngle * RADIAN)
+
+          return (
+            <text
+              x={x}
+              y={y}
+              fill={fill}
+              textAnchor={x > cx ? "start" : "end"}
+              dominantBaseline="central">
+              {`$${value}`}
+            </text>
+          )
         }}
         legendType="circle">
-        {data.map((entry, index) => {
-          return (
-            <Cell
-              key={`cell-${index}`}
-              fill={colors[index]}
-              stroke={colors[index]}
-              // strokeWidth={index === hoverCellIndex ? 4 : 1}
-              // onMouseOver={() => {
-              //   setHoverCellIndex(index)
-              // }}
-              // onMouseLeave={() => {
-              //   setHoverCellIndex(null)
-              // }}
-            />
-          )
-        })}
+        {data &&
+          data.map((entry, index) => {
+            return (
+              <Cell
+                key={`cell-${index}`}
+                fill={colors[index]}
+                stroke={colors[index]}
+                // strokeWidth={index === hoverCellIndex ? 4 : 1}
+                // onMouseOver={() => {
+                //   setHoverCellIndex(index)
+                // }}
+                // onMouseLeave={() => {
+                //   setHoverCellIndex(null)
+                // }}
+              />
+            )
+          })}
       </Pie>
       <Legend />
       <Tooltip formatter={(value, name, props) => `$${value}`} />

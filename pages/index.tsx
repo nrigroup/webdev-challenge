@@ -1,30 +1,39 @@
-import { GetServerSideProps } from "next"
+import { GetServerSideProps, GetServerSidePropsContext } from "next"
 import dynamic from "next/dynamic"
 import Head from "next/head"
 import Image from "next/image"
-import { useRouter } from "next/router"
 import { useCallback, useMemo } from "react"
-import instance from "../lib/axios"
 import FileDropzone from "../components/FileDropzone"
-import { BACKEND_URL } from "../config"
 import styles from "../styles/Home.module.scss"
+import { useCategories, useConditions, useItemSales } from "../hooks/queries"
+import { withCSR } from "../utils/withCSR"
+import { dehydrate, QueryClient } from "@tanstack/react-query"
+import { get } from "../utils"
 
 const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: false })
 const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
 
-const Home = ({
-  totalSalesPerDay,
-  totalSalesByCategory,
-  totalSalesByCondition,
-}: {
-  totalSalesPerDay: { data: { [key: string]: any }[] }
-  totalSalesByCategory: { data: { [key: string]: any }[] }
-  totalSalesByCondition: { data: { [key: string]: any }[] }
-}) => {
-  const router = useRouter()
+const Home = () => {
+  const totalSalesPerDay = useItemSales(
+    {
+      groupBy: "date",
+      orderBy: "date",
+      sum: "preTaxAmount",
+    },
+    { queryKey: ["itemSalesDailyTotals"] },
+  )
+  const totalSalesByCategory = useCategories(
+    {},
+    { queryKey: ["categoriesTotalSales"], queryFn: () => get({ route: "/categories/totalSales" }) },
+  )
+  const totalSalesByCondition = useConditions(
+    {},
+    { queryKey: ["conditionsTotalSales"], queryFn: () => get({ route: "/conditions/totalSales" }) },
+  )
+
   const totalSalesPerDayData = useMemo(
     () =>
-      totalSalesPerDay.data.map((row) => {
+      totalSalesPerDay.data?.data.map((row) => {
         row.date = new Date(row.date).toLocaleDateString("en-US")
         return row
       }),
@@ -33,7 +42,7 @@ const Home = ({
 
   const totalSalesByCategoryData = useMemo(
     () =>
-      totalSalesByCategory.data.map((row) => {
+      totalSalesByCategory.data?.data.map((row) => {
         if (row._sum.preTaxAmount) {
           row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
         }
@@ -44,7 +53,7 @@ const Home = ({
 
   const totalSalesByConditionData = useMemo(
     () =>
-      totalSalesByCondition.data.map((row) => {
+      totalSalesByCondition.data?.data.map((row) => {
         if (row._sum.preTaxAmount) {
           row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
         }
@@ -54,8 +63,10 @@ const Home = ({
   )
 
   const refreshData = useCallback(() => {
-    router.replace(router.asPath)
-  }, [router])
+    totalSalesPerDay.refetch()
+    totalSalesByCategory.refetch()
+    totalSalesByCondition.refetch()
+  }, [totalSalesPerDay, totalSalesByCategory, totalSalesByCondition])
 
   return (
     <div className={styles.container}>
@@ -104,28 +115,34 @@ const Home = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59")
+export const getServerSideProps: GetServerSideProps = withCSR(
+  async (ctx: GetServerSidePropsContext) => {
+    const queryClient = new QueryClient()
 
-  const { data: totalSalesPerDay } = await instance.get(`${BACKEND_URL}/itemSales`, {
-    params: {
-      groupBy: "date",
-      orderBy: "date",
-      sum: "preTaxAmount",
-    },
-  })
+    await queryClient.prefetchQuery(["itemSalesDailyTotals"], () =>
+      get({
+        route: "/itemSales",
+        params: {
+          groupBy: "date",
+          orderBy: "date",
+          sum: "preTaxAmount",
+        },
+      }),
+    )
 
-  const { data: totalSalesByCategory } = await instance.get(`${BACKEND_URL}/categories/totalSales`)
+    await queryClient.prefetchQuery(["categoriesTotalSales"], () =>
+      get({ route: "/categories/totalSales" }),
+    )
+    await queryClient.prefetchQuery(["conditionsTotalSales"], () =>
+      get({ route: "/conditions/totalSales" }),
+    )
 
-  const { data: totalSalesByCondition } = await instance.get(`${BACKEND_URL}/conditions/totalSales`)
-
-  return {
-    props: {
-      totalSalesPerDay,
-      totalSalesByCategory,
-      totalSalesByCondition,
-    },
-  }
-}
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+    }
+  },
+)
 
 export default Home
