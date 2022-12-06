@@ -5,6 +5,5 @@ import onError from "../../../middlewares/errors"
 const handler = nc({ onError })
 
 handler.get(getAllCategories)
-handler.get(getCategory)
 
 export default handler

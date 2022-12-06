@@ -4,7 +4,6 @@ import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useCallback, useMemo } from "react"
-import { Button } from "react-bootstrap"
 import server from "../clients/server"
 import FileDropzone from "../components/FileDropzone"
 import { BACKEND_URL } from "../config"
@@ -32,6 +31,28 @@ const Home = ({
     [totalSalesPerDay.data],
   )
 
+  const totalSalesByCategoryData = useMemo(
+    () =>
+      totalSalesByCategory.data.map((row) => {
+        if (row._sum.preTaxAmount) {
+          row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
+        }
+        return row
+      }),
+    [totalSalesByCategory.data],
+  )
+
+  const totalSalesByConditionData = useMemo(
+    () =>
+      totalSalesByCondition.data.map((row) => {
+        if (row._sum.preTaxAmount) {
+          row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
+        }
+        return row
+      }),
+    [totalSalesByCondition.data],
+  )
+
   const refreshData = useCallback(() => {
     router.replace(router.asPath)
   }, [router])
@@ -48,11 +69,23 @@ const Home = ({
         <BarRechartWithoutSSR
           data={totalSalesPerDayData}
           barDataKey="_sum.preTaxAmount"
+          barName="Total"
           xAxisDataKey="date"
-          xAxisLabel="Daily Total Pre-Tax Amount"
+          xAxisLabel="Day"
+          title="Pre-Tax Amount Totals By Day"
         />
-        <PieRechartWithoutSSR data={totalSalesByCategory.data} dataKey="categoryId" nameKey="category.name" />
-        <PieRechartWithoutSSR data={totalSalesByCondition.data} dataKey="conditionId" nameKey="condition.description" />
+        <PieRechartWithoutSSR
+          data={totalSalesByCategoryData}
+          dataKey="_sum.preTaxAmount"
+          nameKey="category.name"
+          title="Pre-Tax Amount Totals By Item Category"
+        />
+        <PieRechartWithoutSSR
+          data={totalSalesByConditionData}
+          dataKey="_sum.preTaxAmount"
+          nameKey="condition.description"
+          title="Pre-Tax Amount Totals By Item Condition"
+        />
         <FileDropzone refreshData={refreshData} />
       </main>
 
@@ -86,7 +119,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
   const { data: totalSalesByCondition } = await server.get(`${BACKEND_URL}/conditions/totalSales`)
 
-  return { props: { totalSalesPerDay, totalSalesByCategory, totalSalesByCondition } }
+  return {
+    props: {
+      totalSalesPerDay,
+      totalSalesByCategory,
+      totalSalesByCondition,
+    },
+  }
 }
 
 export default Home
