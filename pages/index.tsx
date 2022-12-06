@@ -4,7 +4,7 @@ import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useCallback, useMemo } from "react"
-import server from "../clients/server"
+import instance from "../lib/axios"
 import FileDropzone from "../components/FileDropzone"
 import { BACKEND_URL } from "../config"
 import styles from "../styles/Home.module.scss"
@@ -107,7 +107,7 @@ const Home = ({
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59")
 
-  const { data: totalSalesPerDay } = await server.get(`${BACKEND_URL}/itemSales`, {
+  const { data: totalSalesPerDay } = await instance.get(`${BACKEND_URL}/itemSales`, {
     params: {
       groupBy: "date",
       orderBy: "date",
@@ -115,9 +115,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     },
   })
 
-  const { data: totalSalesByCategory } = await server.get(`${BACKEND_URL}/categories/totalSales`)
+  const { data: totalSalesByCategory } = await instance.get(`${BACKEND_URL}/categories/totalSales`)
 
-  const { data: totalSalesByCondition } = await server.get(`${BACKEND_URL}/conditions/totalSales`)
+  const { data: totalSalesByCondition } = await instance.get(`${BACKEND_URL}/conditions/totalSales`)
 
   return {
     props: {

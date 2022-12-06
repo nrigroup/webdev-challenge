@@ -1,7 +1,7 @@
 import axios from "axios"
 import { BACKEND_URL } from "../config"
 
-const server = axios.create({
+const instance = axios.create({
   baseURL: BACKEND_URL,
   headers: {
     "Content-Type": "application/json",
@@ -12,4 +12,4 @@ const server = axios.create({
   },
 })
 
-export default server
+export default instance

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.7.1",
+    "@tanstack/react-query": "^4.19.1",
     "axios": "^1.2.0",
     "bootstrap": "^5.2.3",
     "csv-parser": "^3.0.0",

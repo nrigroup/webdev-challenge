@@ -1,6 +1,6 @@
 import { useCallback } from "react"
 import { useDropzone } from "react-dropzone"
-import server from "../../clients/server"
+import instance from "../../lib/axios"
 import { BACKEND_URL } from "../../config"
 
 const FileDropzone = ({ refreshData }: { refreshData: () => void }) => {
@@ -8,7 +8,7 @@ const FileDropzone = ({ refreshData }: { refreshData: () => void }) => {
     const formData = new FormData()
     formData.append("dataFile", acceptedFiles[0])
     try {
-      const res = await server.post(`${BACKEND_URL}/itemSales`, formData, {
+      const res = await instance.post(`${BACKEND_URL}/itemSales`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
