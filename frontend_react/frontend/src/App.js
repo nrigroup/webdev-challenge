@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Analytics from './pages/Analytics';
 import NavBar from './components/NavBar';
 import { DataProvider } from './contexts/DataContext';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
     return (
@@ -12,8 +13,15 @@ function App() {
                 <NavBar />
                 <DataProvider>
                     <Routes>
+                        {/* Home Page */}
                         <Route exact path="/" element={<Home />} />
-                        <Route exact path="/show" element={<Analytics />} />
+
+                        {/* Analytics Page */}
+                        {/* This private route ensures that analytics page is displayed only when data is available */}
+                        {/* Otherwise redirect to home page */}
+                        <Route exact path="/show" element={<PrivateRoute />}>
+                            <Route exact path="/show" element={<Analytics />} />
+                        </Route>
                     </Routes>
                 </DataProvider>
             </BrowserRouter>
