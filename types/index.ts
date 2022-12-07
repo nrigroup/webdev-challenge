@@ -16,3 +16,10 @@ export enum ItemSaleRelation {
   tax = "tax",
   condition = "condition",
 }
+
+export enum REQUEST_STATUS {
+	FETCHING,
+	IDLE,
+	SUCCESS,
+	ERROR,
+}

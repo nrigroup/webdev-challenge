@@ -10,14 +10,20 @@ import { withCSR } from "../utils/withCSR"
 import { dehydrate, QueryClient } from "@tanstack/react-query"
 import { get } from "../utils"
 import { useAddItemSales } from "../hooks/mutations"
-import CSVFileValidator from "csv-file-validator"
+import CSVFileValidator, { RowError } from "csv-file-validator"
 import { itemSaleFileParseConfig } from "../lib/csv-file-validator"
+import { ItemSaleData, REQUEST_STATUS } from "../types"
+import { Button } from "react-bootstrap"
 
 const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: false })
 const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
 
 const Home = () => {
-  const [file, setFile] = useState<undefined | File>()
+  const [fileName, setFileName] = useState<null | string>(null)
+  const [fileErrors, setFileErrors] = useState<(RowError | { message: string })[]>([])
+  const [numOfErrorsDisplayed, setNumOfErrorsDisplayed] = useState(6)
+  const [mutationStatus, setMutationStatus] = useState(REQUEST_STATUS.IDLE)
+  const [data, setData] = useState<null | ItemSaleData[]>(null)
   const addItemSales = useAddItemSales()
 
   const totalSalesPerDay = useItemSales(
@@ -71,28 +77,35 @@ const Home = () => {
     totalSalesByCondition.refetch()
   }, [totalSalesPerDay, totalSalesByCategory, totalSalesByCondition])
 
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      setFile(acceptedFiles[0])
-    },
-    [],
-  )
+  console.log(fileErrors)
+
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    try {
+      const { data, inValidData } = await CSVFileValidator(
+        acceptedFiles[0],
+        itemSaleFileParseConfig,
+      )
+
+      setFileErrors(inValidData)
+      setData(data)
+      setFileName(acceptedFiles[0].name)
+    } catch (error) {
+      // error with file parsing
+      setFileErrors([{ message: "There was an issue with parsing the data file" }])
+    }
+  }, [])
 
   const onSubmit = useCallback(async () => {
+    setMutationStatus(REQUEST_STATUS.FETCHING)
     try {
-      const { data, inValidData } = await CSVFileValidator(file!, itemSaleFileParseConfig)
-
-      if (inValidData.length > 0) {
-        console.log(inValidData)
-        return
-      }
-      console.log(data)
-      await addItemSales.mutateAsync(data)
+      await addItemSales.mutateAsync(data!)
+      setMutationStatus(REQUEST_STATUS.SUCCESS)
       refreshData()
     } catch (error) {
+      setMutationStatus(REQUEST_STATUS.ERROR)
       console.log(error)
     }
-  }, [addItemSales, refreshData, file])
+  }, [addItemSales, refreshData, data])
 
   const tooltipFormatter = useCallback((value: string, name: string, props: any) => `$${value}`, [])
 
@@ -128,7 +141,29 @@ const Home = () => {
           title="Pre-Tax Amount Totals By Item Condition"
           tooltipFormatter={tooltipFormatter}
         />
-        <FileDropzone onDrop={onDrop} onSubmit={onSubmit} file={file} />
+        <FileDropzone
+          onDrop={onDrop}
+          onSubmit={onSubmit}
+          fileType=".csv"
+          fileName={fileName}
+          fileErrors={fileErrors}
+          mutationStatus={mutationStatus}
+        />
+        <div>
+          {fileErrors.length > 0 &&
+            fileErrors.map((error, index) => {
+              if (index === numOfErrorsDisplayed) {
+                return (
+                  <Button key={index} onClick={() => setNumOfErrorsDisplayed((prev) => prev + 6)}>
+                    Show more
+                  </Button>
+                )
+              } else if (index > numOfErrorsDisplayed) {
+                return
+              }
+              return <p key={index}>{error.message}</p>
+            })}
+        </div>
       </main>
 
       <footer className={styles.footer}>

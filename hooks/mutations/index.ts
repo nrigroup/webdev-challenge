@@ -1,5 +1,6 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query"
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
+import { ItemSaleData } from "../../types"
 import { post } from "../../utils"
 
 export const useAddItemSales = (
@@ -7,13 +8,13 @@ export const useAddItemSales = (
   useMutationOptions: UseMutationOptions<
     any,
     unknown,
-    { [key: string]: string | number | Date }[],
+    ItemSaleData[],
     unknown
   > = {},
 ) => {
   return useMutation({
     mutationKey: ["itemSales"],
-    mutationFn: (itemSalesData: { [key: string]: string | number | Date }[]) =>
+    mutationFn: (itemSalesData: ItemSaleData[]) =>
       post({
         route: "/itemSales",
         body: JSON.stringify(itemSalesData),

@@ -1,5 +1,4 @@
 import { ValidatorConfig } from "csv-file-validator"
-import validator from "validator"
 
 export const itemSaleFileParseConfig: ValidatorConfig = {
   headers: [
@@ -29,7 +28,7 @@ export const itemSaleFileParseConfig: ValidatorConfig = {
       name: "pre-tax amount",
       inputName: "preTaxAmount",
       required: true,
-      validate: (value) => validator.isNumeric(value),
+      validate: (value) => !isNaN(parseFloat(value)),
       validateError: (headerName, rowNumber, columnNumber) =>
         `${headerName} in the ${rowNumber} / ${columnNumber} column is not a valid amount`,
     },
@@ -39,7 +38,7 @@ export const itemSaleFileParseConfig: ValidatorConfig = {
       inputName: "taxAmount",
       optional: true,
       required: false,
-      validate: (value) => validator.isNumeric(value),
+      validate: (value) => !isNaN(parseFloat(value)),
       validateError: (headerName, rowNumber, columnNumber) =>
         `${headerName} in the ${rowNumber} / ${columnNumber} column is not a valid amount`,
     },

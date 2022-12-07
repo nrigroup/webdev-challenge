@@ -1,11 +1,7 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors"
 import { NextApiRequest, NextApiResponse } from "next"
 import prisma from "../lib/prisma"
-import { ItemSaleData } from "../types"
-import * as fs from "fs"
-import csv from "csv-parser"
 import { handleItemSaleRelations } from "../utils/recordUpdateHandlers"
-import stripBom from "strip-bom-stream"
 
 const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
   const { orderBy, direction, limit, groupBy, sum } = req.query
