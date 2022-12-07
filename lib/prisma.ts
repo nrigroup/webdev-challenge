@@ -1,3 +1,4 @@
+/// <reference path="./../types/globals.d.ts" />
 import { PrismaClient } from "@prisma/client";
 
 let prisma: PrismaClient;
