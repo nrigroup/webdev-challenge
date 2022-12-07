@@ -2,7 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next"
 import dynamic from "next/dynamic"
 import Head from "next/head"
 import Image from "next/image"
-import { useCallback, useMemo } from "react"
+import { useCallback, useMemo, useState } from "react"
 import FileDropzone from "../components/FileDropzone"
 import styles from "../styles/Home.module.scss"
 import { useCategories, useConditions, useItemSales } from "../hooks/queries"
@@ -15,6 +15,7 @@ const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: 
 const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
 
 const Home = () => {
+  const [file, setFile] = useState<undefined | File>()
   const addItemSales = useAddItemSales()
 
   const totalSalesPerDay = useItemSales(
@@ -112,7 +113,7 @@ const Home = () => {
           title="Pre-Tax Amount Totals By Item Condition"
           tooltipFormatter={tooltipFormatter}
         />
-        <FileDropzone onDrop={onDrop} />
+        <FileDropzone onDrop={onDrop} fileDropped={!!file} />
       </main>
 
       <footer className={styles.footer}>

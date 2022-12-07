@@ -1,5 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 
+html {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
@@ -13,8 +17,10 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 @media (prefers-color-scheme: dark) {
