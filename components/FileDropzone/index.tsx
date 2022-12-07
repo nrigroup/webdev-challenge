@@ -1,26 +1,48 @@
-import { useState } from "react"
+import Image from "next/image"
 import { Button } from "react-bootstrap"
 import { useDropzone } from "react-dropzone"
 import styles from "./index.module.scss"
 
 const FileDropzone = ({
   onDrop,
-  fileDropped,
+  file,
+  onSubmit,
 }: {
   onDrop: (acceptedFiles: File[]) => void
-  fileDropped: boolean
+  file: File | undefined
+  onSubmit: () => void
 }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
-    <Button {...getRootProps()} className={styles.button}>
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>{"Drop the files here ..."}</p>
+    <div className={styles.container}>
+      {file ? (
+        <>
+          <div className={styles.file}>
+            <Image
+              className={styles.icon}
+              src="https://img.icons8.com/material-outlined/96/null/happy-file.png"
+              alt="happy file icon"
+              width={96}
+              height={96}
+            />
+            <span>{file.name}</span>
+          </div>
+          <Button onClick={onSubmit} className={styles.button}>
+            Upload file
+          </Button>
+        </>
       ) : (
-        <p>{"Drag 'n' drop some files here, or click to select files"}</p>
+        <Button {...getRootProps()} className={styles.button}>
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <p>{"Drop the files here ..."}</p>
+          ) : (
+            <p>{"Drag 'n' drop some files here, or click to select files"}</p>
+          )}
+        </Button>
       )}
-    </Button>
+    </div>
   )
 }
 

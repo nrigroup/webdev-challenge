@@ -1,7 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.file {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .button {
   padding: 1rem;
 
   p {
     margin: 0;
   }
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
 }
