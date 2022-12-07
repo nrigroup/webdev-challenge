@@ -10,6 +10,8 @@ import { withCSR } from "../utils/withCSR"
 import { dehydrate, QueryClient } from "@tanstack/react-query"
 import { get } from "../utils"
 import { useAddItemSales } from "../hooks/mutations"
+import CSVFileValidator from "csv-file-validator"
+import validator from "validator"
 
 const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: false })
 const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
@@ -71,10 +73,62 @@ const Home = () => {
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      const formData = new FormData()
-      formData.append("dataFile", acceptedFiles[0])
-      await addItemSales.mutateAsync(formData)
-      refreshData()
+      try {
+        const { data, inValidData } = await CSVFileValidator(acceptedFiles[0], {
+          headers: [
+            {
+              name: "date",
+              inputName: "date",
+              required: true,
+              validate: (value) => {
+                const date = new Date(value)
+                if (Object.prototype.toString.call(date) === "[object Date]") {
+                  if (isNaN(date as unknown as number)) {
+                    return false
+                  }
+                  return true
+                } else {
+                  return false
+                }
+              },
+              validateError: (headerName, rowNumber, columnNumber) =>
+                `${headerName} in the ${rowNumber} / ${columnNumber} column is not a valid date`,
+            },
+            { name: "category", inputName: "category", required: true },
+            { name: "lot title", inputName: "auctionItem", required: true },
+            { name: "lot location", inputName: "location", required: true },
+            { name: "lot condition", inputName: "condition", required: true },
+            {
+              name: "pre-tax amount",
+              inputName: "preTaxAmount",
+              required: true,
+              validate: (value) => validator.isNumeric(value),
+              validateError: (headerName, rowNumber, columnNumber) =>
+                `${headerName} in the ${rowNumber} / ${columnNumber} column is not a valid amount`,
+            },
+            { name: "tax name", inputName: "tax", optional: true, required: false },
+            {
+              name: "tax amount",
+              inputName: "taxAmount",
+              optional: true,
+              required: false,
+              validate: (value) => validator.isNumeric(value),
+              validateError: (headerName, rowNumber, columnNumber) =>
+                `${headerName} in the ${rowNumber} / ${columnNumber} column is not a valid amount`,
+            },
+          ],
+        })
+
+        if (inValidData.length > 0) {
+          console.log(inValidData)
+          return
+        }
+        console.log(data)
+        await addItemSales.mutateAsync(data)
+        refreshData()
+      } catch (error) {
+        console.log(error)
+      }
     },
     [refreshData, addItemSales],
   )

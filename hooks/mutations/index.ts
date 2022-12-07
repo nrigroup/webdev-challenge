@@ -4,17 +4,19 @@ import { post } from "../../utils"
 
 export const useAddItemSales = (
   params: Params = {},
-  useMutationOptions: UseMutationOptions<any, unknown, FormData, unknown> = {},
+  useMutationOptions: UseMutationOptions<
+    any,
+    unknown,
+    { [key: string]: string | number | Date }[],
+    unknown
+  > = {},
 ) => {
   return useMutation({
     mutationKey: ["itemSales"],
-    mutationFn: (itemSalesData: FormData) =>
+    mutationFn: (itemSalesData: { [key: string]: string | number | Date }[]) =>
       post({
         route: "/itemSales",
-        body: itemSalesData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        body: JSON.stringify(itemSalesData),
         params,
       }),
     ...useMutationOptions,

@@ -17,11 +17,11 @@ export const get = async ({
     headers: { "Content-Type": "application/json", ...headers },
   })
 
-  if (!response.ok) {
-    throw new Error("Network error: ", {
-      cause: response,
-    })
-  }
+  // if (!response.ok) {
+  //   throw new Error("Network error: ", {
+  //     cause: response,
+  //   })
+  // }
 
   const data = await response.json()
   return data
@@ -46,11 +46,11 @@ export const post = async ({
     headers: { "Content-Type": "application/json", ...headers },
   })
 
-  if (!response.ok) {
-    throw new Error("Network error: ", {
-      cause: response,
-    })
-  }
+  // if (!response.ok) {
+  //   throw new Error("Network error: ", {
+  //     cause: response,
+  //   })
+  // }
 
   const data = await response.json()
   return data
