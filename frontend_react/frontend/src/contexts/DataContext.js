@@ -4,6 +4,7 @@ const FAIL_RESPONSE_CODE = 400;
 const SUCCESS_RESPONSE_CODE = 200;
 
 const DataContext = createContext();
+const BACKEND_API_URL = 'http://localhost:8000/api/';
 
 // Custom Hook to use the context for authentication
 export function useData() {
@@ -21,7 +22,19 @@ export function DataProvider({ children }) {
         if (!jsonData) return FAIL_RESPONSE_CODE;
 
         try {
-            console.log(jsonData);
+            fetch(BACKEND_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify([{ name: 'Tom', height: 43 }]),
+            })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         } catch (err) {
             return FAIL_RESPONSE_CODE;
         }
