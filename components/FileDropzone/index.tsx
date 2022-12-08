@@ -65,7 +65,8 @@ const FileDropzone = ({
                   setNumOfErrorsDisplayed(6)
                   onSubmit()
                 }}
-                className={styles.button}>
+                className={styles.button}
+                variant="primary">
                 Upload file
               </Button>
             </>
@@ -86,7 +87,7 @@ const FileDropzone = ({
               ) : fileErrors.length > 0 ? (
                 <p>
                   {"Retry dropping "}
-                  <strong>{fileType}</strong> {" file here"}
+                  <strong>{fileType}</strong> {" file"}
                 </p>
               ) : (
                 <p>
@@ -98,9 +99,12 @@ const FileDropzone = ({
             </Button>
           ))}
         {mutationStatus === REQUEST_STATUS.FETCHING && (
-          <Spinner animation="grow" variant="primary">
-            <span style={{ visibility: "hidden" }}>Loading...</span>
-          </Spinner>
+          <div className={styles.loading}>
+            <Spinner variant="primary">
+              <span style={{ visibility: "hidden" }}>Loading...</span>
+            </Spinner>
+            <span>Uploading...</span>
+          </div>
         )}
         {mutationStatus === REQUEST_STATUS.ERROR && (
           <Alert variant="danger">Oops! There was an error uploading the file.</Alert>

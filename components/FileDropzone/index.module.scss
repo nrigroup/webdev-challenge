@@ -61,3 +61,12 @@
     margin-top: 2rem;
   }
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: rgba(13, 110, 253, 1);
+}
