@@ -1,0 +1,28 @@
+@import '@styles/mixins';
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    margin-bottom: 3rem;
+    font-size: 1.5rem;
+  }
+}
+
+.responsiveContainer {
+  min-height: 30rem;
+  max-width: 80rem;
+  @include for_breakpoint(tablet mobile) {
+    max-width: 100%;
+  }
+  margin-bottom: 5rem;
+}
+
+.xLabel {
+  height: 5rem;
+}

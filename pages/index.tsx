@@ -77,8 +77,6 @@ const Home = () => {
     totalSalesByCondition.refetch()
   }, [totalSalesPerDay, totalSalesByCategory, totalSalesByCondition])
 
-  console.log(fileErrors)
-
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     try {
       const { data, inValidData } = await CSVFileValidator(
@@ -108,6 +106,14 @@ const Home = () => {
   }, [addItemSales, refreshData, data])
 
   const tooltipFormatter = useCallback((value: string, name: string, props: any) => `$${value}`, [])
+  const tickFormatter = useCallback((value: string, index: number) => {
+    if (index === 0) {
+      return ""
+    } else if (parseInt(value) >= 1000) {
+      return `$${parseInt(value) / 1000}K`
+    }
+    return `$${value}`
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -126,21 +132,24 @@ const Home = () => {
           xAxisLabel="Day"
           title="Pre-Tax Amount Totals By Day"
           tooltipFormatter={tooltipFormatter}
+          tickFormatter={tickFormatter}
         />
-        <PieRechartWithoutSSR
-          data={totalSalesByCategoryData}
-          dataKey="_sum.preTaxAmount"
-          nameKey="category.name"
-          title="Pre-Tax Amount Totals By Item Category"
-          tooltipFormatter={tooltipFormatter}
-        />
-        <PieRechartWithoutSSR
-          data={totalSalesByConditionData}
-          dataKey="_sum.preTaxAmount"
-          nameKey="condition.description"
-          title="Pre-Tax Amount Totals By Item Condition"
-          tooltipFormatter={tooltipFormatter}
-        />
+        <section className={styles.pieCharts}>
+          <PieRechartWithoutSSR
+            data={totalSalesByCategoryData}
+            dataKey="_sum.preTaxAmount"
+            nameKey="category.name"
+            title="Pre-Tax Amount Totals By Item Category"
+            tooltipFormatter={tooltipFormatter}
+          />
+          <PieRechartWithoutSSR
+            data={totalSalesByConditionData}
+            dataKey="_sum.preTaxAmount"
+            nameKey="condition.description"
+            title="Pre-Tax Amount Totals By Item Condition"
+            tooltipFormatter={tooltipFormatter}
+          />
+        </section>
         <FileDropzone
           onDrop={onDrop}
           onSubmit={onSubmit}

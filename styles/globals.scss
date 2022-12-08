@@ -1,7 +1,20 @@
 @import "~bootstrap/scss/bootstrap";
+@import '@styles/mixins';
 
 html {
   box-sizing: border-box;
+  @include for_breakpoint(desktop) {
+    font-size: 16px;
+  }
+  @include for_breakpoint(fourK) {
+    font-size: 20px;
+  }
+  @include for_breakpoint(tablet) {
+    font-size: 14px;
+  }
+  @include for_breakpoint(mobile) {
+    font-size: 12px;
+  }
 }
 
 html,
@@ -31,4 +44,12 @@ a {
     color: white;
     background: black;
   }
+}
+
+// recharts override
+
+.recharts-legend-item {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
 }

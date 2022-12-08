@@ -1,6 +1,7 @@
 import randomColor from "randomcolor"
 import { useMemo, useState } from "react"
-import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, Cell, Label, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import styles from "./index.module.scss"
 
 const BarRechart = ({
   data,
@@ -10,6 +11,7 @@ const BarRechart = ({
   barName,
   title,
   tooltipFormatter,
+  tickFormatter,
 }: {
   data?: { [key: string]: any }[]
   barDataKey: string
@@ -18,8 +20,8 @@ const BarRechart = ({
   barName: string
   title: string
   tooltipFormatter: (value: string, name: string, props: any) => string
+  tickFormatter: (value: string, index: number) => string
 }) => {
-  // const [hoverCellIndex, setHoverCellIndex] = useState<number | null>(null)
   const color = useMemo(() => {
     return randomColor({
       luminosity: "dark",
@@ -27,30 +29,24 @@ const BarRechart = ({
     })
   }, [])
   return (
-    <ResponsiveContainer minHeight={"25vh"}>
-      <BarChart data={data} title={title}>
-        <Bar dataKey={barDataKey} name={barName}>
-          {data &&
-            data.map((entry, index) => {
-              return (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={color}
-                  // onMouseOver={() => {
-                  //   setHoverCellIndex(index)
-                  // }}
-                  // onMouseLeave={() => {
-                  //   setHoverCellIndex(null)
-                  // }}
-                />
-              )
-            })}
-        </Bar>
-        <XAxis dataKey={xAxisDataKey} fontSize="0.5rem" label={xAxisLabel} />
-        <YAxis tickFormatter={(value, index) => `$${value}`} />
-        <Tooltip formatter={tooltipFormatter} />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className={styles.container}>
+      <h2>{title}</h2>
+      <ResponsiveContainer className={styles.responsiveContainer}>
+        <BarChart data={data} title={title}>
+          <Bar dataKey={barDataKey} name={barName}>
+            {data &&
+              data.map((entry, index) => {
+                return <Cell key={`cell-${index}`} fill={color} />
+              })}
+          </Bar>
+          <XAxis dataKey={xAxisDataKey} fontSize="0.8rem">
+            <Label value={xAxisLabel} offset={0} position="insideBottom" />
+          </XAxis>
+          <YAxis tickFormatter={tickFormatter} padding={{ top: 5 }} />
+          <Tooltip formatter={tooltipFormatter} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 

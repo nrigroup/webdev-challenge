@@ -1,0 +1,55 @@
+$size__site_content_width: 1024px;
+
+$media_queries: (
+	mobile: (
+		max-width: 667px,
+	),
+	tablet: (
+		min-width: 668px,
+	)
+	and
+	(
+		max-width: $size__site_content_width,
+	),
+	desktop: (
+		min-width: calc($size__site_content_width + 1px),
+	)
+	and
+	(
+		max-width: 2160px,
+	),
+	retina2: (
+		-webkit-min-device-pixel-ratio: 2,
+	)
+	and
+	(
+		min-resolution: 192dpi,
+	),
+	retina3: (
+		-webkit-min-device-pixel-ratio: 3,
+	)
+	and
+	(
+		min-resolution: 288dpi,
+	),
+	landscape: (
+		orientation: landscape,
+	),
+	portrait: (
+		orientation: portrait,
+	),
+	fourK: (
+		min-width: 2161px,
+	),
+);
+
+@mixin for_breakpoint($breakpoints) {
+	$conditions: ();
+	@each $breakpoint in $breakpoints {
+		$conditions: append($conditions, #{inspect(map-get($media_queries, $breakpoint))}, comma);
+	}
+
+	@media #{$conditions} {
+		@content;
+	}
+}

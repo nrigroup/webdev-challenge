@@ -1,3 +1,5 @@
+@import '@styles/mixins';
+
 .container {
   padding: 0 2rem;
 }
@@ -8,7 +10,23 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+}
+
+.pieCharts {
+  height: 100%;
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  @include for_breakpoint(tablet mobile) {
+    flex-direction: column;
+    width: 100%;
+  }
+  flex-wrap: wrap;
+  gap: 5rem;
+  justify-content: space-around;
   align-items: center;
 }
 
