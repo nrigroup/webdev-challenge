@@ -60,9 +60,17 @@ const Home = () => {
       await addItemSales.mutateAsync(data!)
       setMutationStatus(REQUEST_STATUS.SUCCESS)
       refreshData()
+      setFileName(null)
+      setTimeout(() => {
+        setMutationStatus(REQUEST_STATUS.IDLE)
+      }, 5000)
     } catch (error) {
       setMutationStatus(REQUEST_STATUS.ERROR)
       console.log(error)
+      setFileName(null)
+      setTimeout(() => {
+        setMutationStatus(REQUEST_STATUS.IDLE)
+      }, 5000)
     }
   }, [addItemSales, refreshData, data])
 

@@ -100,9 +100,7 @@ const FileDropzone = ({
           ))}
         {mutationStatus === REQUEST_STATUS.FETCHING && (
           <div className={styles.loading}>
-            <Spinner variant="primary">
-              <span style={{ visibility: "hidden" }}>Loading...</span>
-            </Spinner>
+            <Spinner variant="primary" />
             <span>Uploading...</span>
           </div>
         )}
