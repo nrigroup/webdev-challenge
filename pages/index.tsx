@@ -73,8 +73,8 @@ const Home = () => {
         <meta name="description" content="Dusty Luck's web app for NRI's Web Dev Challenge." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
+        <h1>NRI Web Dev Challenge</h1>
         {totalSalesPerDayData && totalSalesPerDayData.length > 0 && (
           <BarRechartWithoutSSR
             data={totalSalesPerDayData}
@@ -115,7 +115,9 @@ const Home = () => {
           fileName={fileName}
           fileErrors={fileErrors}
           mutationStatus={mutationStatus}
-          removeFile={() => setFileName(null)}
+          removeFile={() => {
+            setFileName(null)
+          }}
         />
       </main>
 

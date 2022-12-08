@@ -45,7 +45,13 @@ const FileDropzone = ({
                     <em>{fileName}</em>
                   </span>
                 </div>
-                <button aria-label="Remove file" className={styles.delete} onClick={removeFile}>
+                <button
+                  aria-label="Remove file"
+                  className={styles.delete}
+                  onClick={() => {
+                    setNumOfErrorsDisplayed(6)
+                    removeFile()
+                  }}>
                   <Image
                     src="https://img.icons8.com/color/48/null/delete.png"
                     alt="trash can icon"
@@ -54,17 +60,34 @@ const FileDropzone = ({
                   />
                 </button>
               </div>
-              <Button onClick={onSubmit} className={styles.button}>
+              <Button
+                onClick={() => {
+                  setNumOfErrorsDisplayed(6)
+                  onSubmit()
+                }}
+                className={styles.button}>
                 Upload file
               </Button>
             </>
           ) : (
-            <Button {...getRootProps()} className={styles.button}>
+            <Button
+              {...getRootProps()}
+              onClick={(e) => {
+                setNumOfErrorsDisplayed(6)
+                const props = getRootProps()
+                if (props && props.onClick) {
+                  props.onClick(e)
+                }
+              }}
+              className={styles.button}>
               <input {...getInputProps()} />
               {isDragActive ? (
                 <p>{"Drop the file here ..."}</p>
               ) : fileErrors.length > 0 ? (
-                <p>{`Re-drop ${fileType} file`}</p>
+                <p>
+                  {"Retry dropping "}
+                  <strong>{fileType}</strong> {" file here"}
+                </p>
               ) : (
                 <p>
                   {"Drag 'n' drop "}
@@ -74,11 +97,17 @@ const FileDropzone = ({
               )}
             </Button>
           ))}
-        {mutationStatus === REQUEST_STATUS.FETCHING && <Spinner />}
-        {mutationStatus === REQUEST_STATUS.ERROR && (
-          <p>Oops! There was an error uploading the file.</p>
+        {mutationStatus === REQUEST_STATUS.FETCHING && (
+          <Spinner animation="grow" variant="primary">
+            <span style={{ visibility: "hidden" }}>Loading...</span>
+          </Spinner>
         )}
-        {mutationStatus === REQUEST_STATUS.SUCCESS && <p>Success!</p>}
+        {mutationStatus === REQUEST_STATUS.ERROR && (
+          <Alert variant="danger">Oops! There was an error uploading the file.</Alert>
+        )}
+        {mutationStatus === REQUEST_STATUS.SUCCESS && (
+          <Alert variant="success">File uploaded!</Alert>
+        )}
       </div>
       {fileErrors.length > 0 && (
         <div className={styles.errors}>
