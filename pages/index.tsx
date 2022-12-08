@@ -1,17 +1,17 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next"
 import dynamic from "next/dynamic"
 import Head from "next/head"
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useState } from "react"
 import FileDropzone from "../components/FileDropzone"
 import styles from "../styles/Home.module.scss"
-import { useCategories, useConditions, useItemSales } from "../hooks/queries"
 import { withCSR } from "../utils/withCSR"
 import { dehydrate, QueryClient } from "@tanstack/react-query"
 import { get } from "../utils"
-import { useAddItemSales } from "../hooks/mutations"
 import CSVFileValidator, { RowError } from "csv-file-validator"
 import { itemSaleFileParseConfig } from "../lib/csv-file-validator"
 import { ItemSaleData, REQUEST_STATUS } from "../types"
+import useHomeData from "../hooks/useHomeData"
+import { tickFormatter, tooltipFormatter } from "../utils/recharts"
 
 const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: false })
 const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
@@ -21,52 +21,16 @@ const Home = () => {
   const [fileErrors, setFileErrors] = useState<(RowError | { message: string })[]>([])
   const [mutationStatus, setMutationStatus] = useState(REQUEST_STATUS.IDLE)
   const [data, setData] = useState<null | ItemSaleData[]>(null)
-  const addItemSales = useAddItemSales()
 
-  const totalSalesPerDay = useItemSales(
-    {
-      groupBy: "date",
-      orderBy: "date",
-      sum: "preTaxAmount",
-    },
-    { queryKey: ["itemSalesDailyTotals"] },
-  )
-  const totalSalesByCategory = useCategories(
-    {},
-    { queryKey: ["categoriesTotalSales"], queryFn: () => get({ route: "/categories/totalSales" }) },
-  )
-  const totalSalesByCondition = useConditions(
-    {},
-    { queryKey: ["conditionsTotalSales"], queryFn: () => get({ route: "/conditions/totalSales" }) },
-  )
-
-  const totalSalesPerDayData = useMemo(
-    () =>
-      totalSalesPerDay.data?.data.map((row) => {
-        row.date = new Date(row.date).toLocaleDateString("en-US")
-        row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
-        return row
-      }),
-    [totalSalesPerDay.data],
-  )
-
-  const totalSalesByCategoryData = useMemo(
-    () =>
-      totalSalesByCategory.data?.data.map((row) => {
-        row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
-        return row
-      }),
-    [totalSalesByCategory.data],
-  )
-
-  const totalSalesByConditionData = useMemo(
-    () =>
-      totalSalesByCondition.data?.data.map((row) => {
-        row._sum.preTaxAmount = parseFloat(row._sum.preTaxAmount as unknown as string)
-        return row
-      }),
-    [totalSalesByCondition.data],
-  )
+  const {
+    addItemSales,
+    totalSalesPerDay,
+    totalSalesPerDayData,
+    totalSalesByCategory,
+    totalSalesByCategoryData,
+    totalSalesByCondition,
+    totalSalesByConditionData,
+  } = useHomeData()
 
   const refreshData = useCallback(() => {
     totalSalesPerDay.refetch()
@@ -101,19 +65,6 @@ const Home = () => {
       console.log(error)
     }
   }, [addItemSales, refreshData, data])
-
-  const tooltipFormatter = useCallback((value: string, name: string, props: any) => `$${value}`, [])
-  const tickFormatter = useCallback((value: string, index?: number) => {
-    if (index === 0) {
-      return ""
-    } else if (parseFloat(value) >= 1000) {
-      if (!Number.isInteger((parseFloat(value) / 1000))) {
-        return `$${(parseFloat(value) / 1000).toFixed(2)}K`
-      }
-      return `$${parseFloat(value) / 1000}K`
-    }
-    return `$${value}`
-  }, [])
 
   return (
     <div className={styles.container}>
