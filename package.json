@@ -22,7 +22,8 @@
     "react-bootstrap": "^2.6.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
-    "recharts": "^2.1.16"
+    "recharts": "^2.1.16",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@types/node": "18.11.9",

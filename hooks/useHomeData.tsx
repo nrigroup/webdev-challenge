@@ -1,9 +1,12 @@
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { get } from "../utils"
 import { useAddItemSales } from "./mutations"
 import { useCategories, useConditions, useItemSales } from "./queries"
+import { format } from "timeago.js"
+import ErrorToast from "../components/ErrorToast"
 
 const useHomeData = () => {
+  const [queryErrors, setQueryErrors] = useState()
   const addItemSales = useAddItemSales()
 
   const totalSalesPerDay = useItemSales(
@@ -51,6 +54,48 @@ const useHomeData = () => {
     [totalSalesByCondition.data],
   )
 
+  const errorToasts = useMemo(() => {
+    const errors = []
+
+    if (totalSalesPerDay.isError) {
+      const updated = format(totalSalesPerDay.errorUpdatedAt, "en_US")
+      errors.push(
+        <ErrorToast
+          key="error-1"
+          message="There was an error fetching daily pre-tax totals."
+          updatedAt={updated}
+        />,
+      )
+    } else if (totalSalesByCategory.isError) {
+      const updated = format(totalSalesByCategory.errorUpdatedAt, "en_US")
+      errors.push(
+        <ErrorToast
+          key="error-2"
+          message="There was an error fetching category pre-tax totals."
+          updatedAt={updated}
+        />,
+      )
+    } else if (totalSalesByCondition.isError) {
+      const updated = format(totalSalesByCondition.errorUpdatedAt, "en_US")
+      errors.push(
+        <ErrorToast
+          key="error-3"
+          message="There was an error fetching condition pre-tax totals."
+          updatedAt={updated}
+        />,
+      )
+    }
+
+    return errors
+  }, [
+    totalSalesByCategory.errorUpdatedAt,
+    totalSalesByCategory.isError,
+    totalSalesPerDay.errorUpdatedAt,
+    totalSalesPerDay.isError,
+    totalSalesByCondition.isError,
+    totalSalesByCondition.errorUpdatedAt,
+  ])
+
   return {
     addItemSales,
     totalSalesPerDay,
@@ -59,6 +104,7 @@ const useHomeData = () => {
     totalSalesByCategoryData,
     totalSalesByCondition,
     totalSalesByConditionData,
+    errorToasts,
   }
 }
 

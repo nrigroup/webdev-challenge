@@ -12,6 +12,7 @@ import { itemSaleFileParseConfig } from "../lib/csv-file-validator"
 import { ItemSaleData, REQUEST_STATUS } from "../types"
 import useHomeData from "../hooks/useHomeData"
 import { tickFormatter, tooltipFormatter } from "../utils/recharts"
+import { ToastContainer } from "react-bootstrap"
 
 const BarRechartWithoutSSR = dynamic(import("../components/BarRechart"), { ssr: false })
 const PieRechartWithoutSSR = dynamic(import("../components/PieRechart"), { ssr: false })
@@ -30,6 +31,7 @@ const Home = () => {
     totalSalesByCategoryData,
     totalSalesByCondition,
     totalSalesByConditionData,
+    errorToasts,
   } = useHomeData()
 
   const refreshData = useCallback(() => {
@@ -81,6 +83,11 @@ const Home = () => {
         <meta name="description" content="Dusty Luck's web app for NRI's Web Dev Challenge." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <ToastContainer position="top-end" className="p-3">
+        {errorToasts}
+      </ToastContainer>
+
       <main className={styles.main}>
         <h1>NRI Web Dev Challenge</h1>
         {totalSalesPerDayData && totalSalesPerDayData.length > 0 && (
