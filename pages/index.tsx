@@ -103,11 +103,14 @@ const Home = () => {
   }, [addItemSales, refreshData, data])
 
   const tooltipFormatter = useCallback((value: string, name: string, props: any) => `$${value}`, [])
-  const tickFormatter = useCallback((value: string, index: number) => {
+  const tickFormatter = useCallback((value: string, index?: number) => {
     if (index === 0) {
       return ""
-    } else if (parseInt(value) >= 1000) {
-      return `$${parseInt(value) / 1000}K`
+    } else if (parseFloat(value) >= 1000) {
+      if (!Number.isInteger((parseFloat(value) / 1000))) {
+        return `$${(parseFloat(value) / 1000).toFixed(2)}K`
+      }
+      return `$${parseFloat(value) / 1000}K`
     }
     return `$${value}`
   }, [])
@@ -140,6 +143,7 @@ const Home = () => {
               nameKey="category.name"
               title="Pre-Tax Amount Totals By Item Category"
               tooltipFormatter={tooltipFormatter}
+              tickFormatter={tickFormatter}
             />
           )}
           {totalSalesByConditionData && totalSalesByConditionData.length > 0 && (
@@ -149,6 +153,7 @@ const Home = () => {
               nameKey="condition.description"
               title="Pre-Tax Amount Totals By Item Condition"
               tooltipFormatter={tooltipFormatter}
+              tickFormatter={tickFormatter}
             />
           )}
         </section>

@@ -9,12 +9,14 @@ const PieRechart = ({
   nameKey,
   title,
   tooltipFormatter,
+  tickFormatter,
 }: {
   data?: { [key: string]: any }[]
   dataKey: string
   nameKey: string
   title: string
   tooltipFormatter: (value: string, name: string, props: any) => string
+  tickFormatter: (value: string, index?: number) => string
 }) => {
   const colors = useMemo(() => {
     return randomColor({
@@ -46,7 +48,7 @@ const PieRechart = ({
                   fill={fill}
                   textAnchor={x > cx ? "start" : "end"}
                   dominantBaseline="central">
-                  {`$${value}`}
+                  {tickFormatter(value)}
                 </text>
               )
             }}
