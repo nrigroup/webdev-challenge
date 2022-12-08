@@ -16,7 +16,7 @@ const BarRechart = ({
   data?: { [key: string]: any }[]
   barDataKey: string
   xAxisDataKey: string
-  xAxisLabel: string
+  xAxisLabel?: string
   barName: string
   title: string
   tooltipFormatter: (value: string, name: string, props: any) => string

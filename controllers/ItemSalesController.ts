@@ -24,8 +24,6 @@ const getAllItemSales = catchAsyncErrors(async (req: NextApiRequest, res: NextAp
         },
       })
 
-  console.log("req.query: ", req.query)
-
   res.status(200).json({
     status: "success",
     data: itemSales,

@@ -6,15 +6,23 @@
   gap: 1rem;
 }
 
-.file {
+.fileContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
 
+.file {
+  @extend .fileContainer;
+  margin-right: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background: #e2e3e579;
+}
+
 .button {
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 
   p {
     margin: 0;
@@ -24,4 +32,30 @@
 .icon {
   width: 2.5rem;
   height: 2.5rem;
+}
+
+.delete {
+  outline: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-right: -3rem;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.errors {
+  margin-top: 3rem;
+  max-width: 100%;
+  overflow: hidden;
+
+  button {
+    width: fit-content;
+    align-self: center;
+    padding: 1rem 1.5rem;
+    margin-top: 2rem;
+  }
 }

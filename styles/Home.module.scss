@@ -28,6 +28,7 @@
   gap: 5rem;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 5rem;
 }
 
 .footer {
@@ -37,13 +38,11 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
-}
+  gap: 1rem;
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  a {
+    font-weight: 600;
+  }
 }
 
 .title a {
