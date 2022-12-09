@@ -1,24 +1,29 @@
-const path = require('path');
+const path = require("path")
+const withTM = require("next-transpile-modules")([
+  "swagger-ui-react",
+  "react-syntax-highlighter",
+  "swagger-client",
+])
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   webpack(config) {
-		config.resolve.alias = {
-			...config.resolve.alias,
-			'@styles': path.resolve(__dirname, 'styles'),
-		};
-		return config;
-	},
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@styles": path.resolve(__dirname, "styles"),
+    }
+    return config
+  },
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'img.icons8.com',
-      }
-    ]
-  }
+        protocol: "https",
+        hostname: "img.icons8.com",
+      },
+    ],
+  },
 }
 
-module.exports = nextConfig
+module.exports = withTM(nextConfig)

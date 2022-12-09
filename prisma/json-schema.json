@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "AuctionItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ItemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        }
+      }
+    },
+    "ItemSale": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "preTaxAmount": {
+          "type": "number"
+        },
+        "taxAmount": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "item": {
+          "$ref": "#/definitions/AuctionItem"
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
+        },
+        "condition": {
+          "$ref": "#/definitions/Condition"
+        },
+        "tax": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Tax"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        },
+        "auctionItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuctionItem"
+          }
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "address": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        }
+      }
+    },
+    "Tax": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        }
+      }
+    },
+    "Condition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "auctionItem": {
+      "$ref": "#/definitions/AuctionItem"
+    },
+    "itemSale": {
+      "$ref": "#/definitions/ItemSale"
+    },
+    "category": {
+      "$ref": "#/definitions/Category"
+    },
+    "location": {
+      "$ref": "#/definitions/Location"
+    },
+    "tax": {
+      "$ref": "#/definitions/Tax"
+    },
+    "condition": {
+      "$ref": "#/definitions/Condition"
+    }
+  }
+}
