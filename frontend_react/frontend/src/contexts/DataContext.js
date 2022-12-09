@@ -27,10 +27,24 @@ export function DataProvider({ children }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify([{ name: 'Tom', height: 43 }]),
+                body: JSON.stringify([
+                    {
+                        date: '2013-09-22',
+                        category: 'Construction',
+                        'lot title': 'Hauling Transfer Trailers',
+                        'lot location': '"783 Park Ave, New York, NY 10021"',
+                        'lot condition': 'Brand New',
+                        'pre-tax amount': '2.3',
+                        'tax name': '',
+                        'tax amount': '',
+                    },
+                ]),
             })
-                .then((response) => {
-                    console.log(response);
+                .then((response) => response.json())
+                .then((responseData) => {
+                    console.log(responseData);
+                    // Here code for setting data state can be written if display
+                    // of data from database is desired.
                 })
                 .catch((err) => {
                     console.log(err);
