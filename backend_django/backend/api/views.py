@@ -133,9 +133,8 @@ def index(request):
     if request.method == "POST":
 
         try:
-            receivedDataString = request.body.decode(
-                "ASCII")  # Because its a byte string
-
+            receivedDataString = request.body  # Because its a byte string
+            print(receivedDataString)
             listOfDataEntries = json.loads(receivedDataString)
 
             if listOfDataEntries == []:

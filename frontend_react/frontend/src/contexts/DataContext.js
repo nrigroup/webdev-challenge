@@ -19,41 +19,33 @@ export function DataProvider({ children }) {
     // This function assumes data passed is json data
     // Returns the response received from server
     async function uploadData(jsonData) {
-        if (!jsonData) return FAIL_RESPONSE_CODE;
+        if (!jsonData) return 0;
 
         try {
-            fetch(BACKEND_API_URL, {
+            console.log(jsonData);
+            await fetch(BACKEND_API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify([
-                    {
-                        date: '09/22/2013',
-                        category: 'Construction',
-                        'lot title': 'Hauling Transfer Trailers',
-                        'lot location': '"783 Park Ave, New York, NY 10021"',
-                        'lot condition': 'Brand New',
-                        'pre-tax amount': '2.3',
-                        'tax name': '',
-                        'tax amount': '',
-                    },
-                ]),
+                body: JSON.stringify(jsonData),
             })
-                .then((response) => response.json())
-                .then((responseData) => {
-                    console.log(responseData);
+                .then((response) => response.status)
+                .then((status) => {
+                    if (status !== SUCCESS_RESPONSE_CODE) {
+                        throw new Error('Failed to upload data in database');
+                    }
                     // Here code for setting data state can be written if display
                     // of data from database is desired.
                 })
                 .catch((err) => {
-                    console.log(err);
+                    throw err;
                 });
         } catch (err) {
-            return FAIL_RESPONSE_CODE;
+            return 0;
         }
         setData(jsonData);
-        return SUCCESS_RESPONSE_CODE;
+        return 1;
     }
     const providerValues = useMemo(() => ({ data, uploadData }), [data]);
     return (

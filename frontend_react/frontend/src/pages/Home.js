@@ -40,8 +40,12 @@ function Home() {
             return;
         }
 
-        const responseCode = await uploadData(csvData);
-        if (responseCode !== SUCCESS_RESPONSE_CODE) {
+        const uploaded = await uploadData(csvData);
+        if (!uploaded) {
+            document
+                .querySelector('.form-fileInput')
+                .setCustomValidity('Error'); // Invalidate the input field to show errors
+            setError('Error in uploading data.');
             return;
         }
 
