@@ -1,0 +1,243 @@
+{
+  "swagger": "2.0",
+  "x-stoplight": {
+    "id": "ccxcvm0nwuse5"
+  },
+  "info": {
+    "description": "This is the back-end routes for Dusty Luck's NRI Web Dev Challenge submission.",
+    "version": "1.0.0",
+    "title": "NRI Web Dev Challenge API",
+    "contact": {
+      "url": "https://dluck.vercel.app",
+      "email": "luckdusty@gmail.com",
+      "name": "Dusty"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/vercel/next.js/blob/canary/license.md"
+    }
+  },
+  "tags": [
+    {
+      "name": "itemSales",
+      "description": "Routes for fetching and creating item sales"
+    }
+  ],
+  "paths": {
+    "/itemSales": {
+      "get": {
+        "tags": ["itemSales"],
+        "summary": "Fetch Item Sales",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "query",
+            "name": "orderBy",
+            "description": "To order item sales by field name."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ItemSale"
+              }
+            }
+          }
+        },
+        "description": "Sends a request to server to serve all item sales.",
+        "operationId": "getItemSales"
+      }
+    }
+  },
+  "basePath": "/api/",
+  "schemes": ["https"],
+  "securityDefinitions": {},
+  "definitions": {
+    "AuctionItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        }
+      }
+    },
+    "ItemSale": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "preTaxAmount": {
+          "type": "number"
+        },
+        "taxAmount": {
+          "type": ["number", "null"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "item": {
+          "$ref": "#/definitions/AuctionItem"
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
+        },
+        "condition": {
+          "$ref": "#/definitions/Condition"
+        },
+        "tax": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Tax"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        },
+        "auctionItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuctionItem"
+          }
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "address": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        }
+      }
+    },
+    "Tax": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        }
+      }
+    },
+    "Condition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "itemSale": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemSale"
+          }
+        }
+      }
+    }
+  },
+  "host": "nri-webdev-challenge.vercel.app"
+}
