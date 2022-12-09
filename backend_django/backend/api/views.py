@@ -6,6 +6,7 @@ import traceback
 import logging
 import json
 from .models import DataEntry
+import datetime
 
 REQUIRED_FIELDS = [
     'date',
@@ -121,6 +122,9 @@ def cleanData(data):
     for entry in data:
         if entry["tax amount"] == "":
             entry["tax amount"] = None
+        # Change data format
+        entry["date"] = datetime.datetime.strptime(
+            entry["date"], "%m/%d/%Y").strftime("%Y-%m-%d")
 
 
 @csrf_exempt

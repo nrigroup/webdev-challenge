@@ -29,7 +29,7 @@ export function DataProvider({ children }) {
                 },
                 body: JSON.stringify([
                     {
-                        date: '2013-09-22',
+                        date: '09/22/2013',
                         category: 'Construction',
                         'lot title': 'Hauling Transfer Trailers',
                         'lot location': '"783 Park Ave, New York, NY 10021"',
