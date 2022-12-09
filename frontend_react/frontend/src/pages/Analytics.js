@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BarChart from '../components/BarChart';
 import PieChart from '../components/PieChart';
 import { useData } from '../contexts/DataContext';
+import * as constants from '../common/common_names';
 
 const CSV_INT_BASE = 10;
 // Gets all the unique fields in the data array based on the field type requested
@@ -15,12 +16,15 @@ export function getUniqueFields(dataArray, fieldType) {
 }
 
 // Returns the total pre-tax amount based on the queryType and query for that queryType
-// Eg: Get total pre tax amount for 'category' 'Construction'. Here query is 'Construction' and queryType is 'category'
+// Eg: Get total pre tax amount for constants.CATEGORY_FIELD_NAME 'Construction'. Here query is 'Construction' and queryType is constants.CATEGORY_FIELD_NAME
 export function getAmountPerQueryType(dataArray, query, queryType) {
     let totalAmount = 0;
     dataArray.forEach((element) => {
         if (element[queryType] === query) {
-            totalAmount += parseInt(element['pre-tax amount'], CSV_INT_BASE);
+            totalAmount += parseInt(
+                element[constants.TAX_FIELD_NAME],
+                CSV_INT_BASE
+            );
         }
     });
 
@@ -33,7 +37,7 @@ export function getAmountForDate(date, dataArray) {
     let totalAmount = 0;
     dataArray.forEach((element) => {
         if (element.date === date) {
-            totalAmount += parseInt(element['pre-tax amount'], 10);
+            totalAmount += parseInt(element[constants.TAX_FIELD_NAME], 10);
         }
     });
 
@@ -47,6 +51,7 @@ function mapTwoArrays(array1, array2) {
     });
     return result;
 }
+
 function Analytics() {
     const { data } = useData();
     // For amount per Dates
@@ -62,21 +67,31 @@ function Analytics() {
     useEffect(() => {
         if (data !== undefined) {
             // Dates
-            const uniqueDates = getUniqueFields(data, 'date');
+            const uniqueDates = getUniqueFields(
+                data,
+                constants.DATE_FIELD_NAME
+            );
             const amountPerDate = uniqueDates.map((date) => {
-                const amount = getAmountPerQueryType(data, date, 'date');
+                const amount = getAmountPerQueryType(
+                    data,
+                    date,
+                    constants.DATE_FIELD_NAME
+                );
                 return amount;
             });
             setDates(uniqueDates);
             setAmountsPerDate(amountPerDate);
 
             // Categories
-            const uniqueCategories = getUniqueFields(data, 'category');
+            const uniqueCategories = getUniqueFields(
+                data,
+                constants.CATEGORY_FIELD_NAME
+            );
             const amountPerCategory = uniqueCategories.map((category) => {
                 const amount = getAmountPerQueryType(
                     data,
                     category,
-                    'category'
+                    constants.CATEGORY_FIELD_NAME
                 );
                 return amount;
             });
@@ -84,12 +99,15 @@ function Analytics() {
             setAmountsPerCategory(amountPerCategory);
 
             // Conditions
-            const uniqueConditions = getUniqueFields(data, 'lot condition');
+            const uniqueConditions = getUniqueFields(
+                data,
+                constants.LOT_CONDITION_FIELD_NAME
+            );
             const amountPerCondition = uniqueConditions.map((condition) => {
                 const amount = getAmountPerQueryType(
                     data,
                     condition,
-                    'lot condition'
+                    constants.LOT_CONDITION_FIELD_NAME
                 );
                 return amount;
             });

@@ -1,10 +1,7 @@
 import { createContext, useContext, useMemo, useState } from 'react';
-
-const FAIL_RESPONSE_CODE = 400;
-const SUCCESS_RESPONSE_CODE = 200;
+import { BACKEND_API_URL, SUCCESS_RESPONSE_CODE } from '../common/common_names';
 
 const DataContext = createContext();
-const BACKEND_API_URL = 'http://localhost:8000/api/';
 
 // Custom Hook to use the context for authentication
 export function useData() {
@@ -22,7 +19,6 @@ export function DataProvider({ children }) {
         if (!jsonData) return 0;
 
         try {
-            console.log(jsonData);
             await fetch(BACKEND_API_URL, {
                 method: 'POST',
                 headers: {
