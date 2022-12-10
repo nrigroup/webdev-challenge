@@ -1,5 +1,6 @@
 {
-  "swagger": "2.0",
+  "swagger": "2.2.1",
+  "openapi": "3.0.3",
   "x-stoplight": {
     "id": "ccxcvm0nwuse5"
   },
@@ -17,6 +18,10 @@
       "url": "https://github.com/vercel/next.js/blob/canary/license.md"
     }
   },
+  "servers": [
+    { "url": "http://localhost:3000/api", "description": "Development server" },
+    { "url": "https://nri-webdev-challenge.vercel.app/api", "description": "Production server" }
+  ],
   "tags": [
     {
       "name": "itemSales",
@@ -38,11 +43,18 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ItemSale"
+            "description": "the item sales being returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemSale",
+                    "discriminator": {
+                      "propertyName": "itemSale"
+                    }
+                  }
+                }
               }
             }
           }
@@ -52,192 +64,208 @@
       }
     }
   },
-  "basePath": "/api/",
-  "schemes": ["https"],
-  "securityDefinitions": {},
-  "definitions": {
-    "AuctionItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
+  "components": {
+    "schemas": {
+      "AuctionItem": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "auctionItem"
         },
-        "name": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "itemSale": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemSale"
-          }
-        },
-        "category": {
-          "$ref": "#/definitions/Category"
-        }
-      }
-    },
-    "ItemSale": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "preTaxAmount": {
-          "type": "number"
-        },
-        "taxAmount": {
-          "type": ["number", "null"]
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "item": {
-          "$ref": "#/definitions/AuctionItem"
-        },
-        "category": {
-          "$ref": "#/definitions/Category"
-        },
-        "location": {
-          "$ref": "#/definitions/Location"
-        },
-        "condition": {
-          "$ref": "#/definitions/Condition"
-        },
-        "tax": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Tax"
-            },
-            {
-              "type": "null"
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "itemSale": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemSale"
             }
-          ]
-        }
-      }
-    },
-    "Category": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "itemSale": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemSale"
-          }
-        },
-        "auctionItem": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AuctionItem"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
           }
         }
-      }
-    },
-    "Location": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
+      },
+      "ItemSale": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "itemSale"
         },
-        "address": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "itemSale": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemSale"
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "preTaxAmount": {
+            "type": "number"
+          },
+          "taxAmount": {
+            "type": ["number", "null"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "item": {
+            "$ref": "#/components/schemas/AuctionItem"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "condition": {
+            "$ref": "#/components/schemas/Condition"
+          },
+          "tax": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Tax"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         }
-      }
-    },
-    "Tax": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
+      },
+      "Category": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "category"
         },
-        "name": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "itemSale": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemSale"
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "itemSale": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemSale"
+            }
+          },
+          "auctionItem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuctionItem"
+            }
           }
         }
-      }
-    },
-    "Condition": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
+      },
+      "Location": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "location"
         },
-        "description": {
-          "type": "string"
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "address": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "itemSale": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemSale"
+            }
+          }
+        }
+      },
+      "Tax": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "tax"
         },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "itemSale": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemSale"
+            }
+          }
+        }
+      },
+      "Condition": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "condition"
         },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "itemSale": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemSale"
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "itemSale": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemSale"
+            }
           }
         }
       }
     }
-  },
-  "host": "nri-webdev-challenge.vercel.app"
+  }
 }
