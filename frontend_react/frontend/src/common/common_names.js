@@ -27,6 +27,6 @@ export const ALL_HEADERS = [
 export const REQUIRED_NUM_OF_HEADERS = 8;
 
 export const CSV_SPLIT_PATTERN = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
-export const BACKEND_API_URL = 'http://localhost:8000/api/';
+export const BACKEND_API_URL = 'https://csvreader-backend.herokuapp.com/api/';
 export const FAIL_RESPONSE_CODE = 400;
 export const SUCCESS_RESPONSE_CODE = 200;

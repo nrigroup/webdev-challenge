@@ -5,6 +5,7 @@ from http import HTTPStatus
 import traceback
 import logging
 import json
+import os
 from .models import DataEntry
 import datetime
 
@@ -25,6 +26,7 @@ def checkRequiredFieldsPresent(dataEntries):
     Returns: 
         Boolean: True, if all fields are present. False, Otherwise
         """
+
     for entry in dataEntries:
         for required in REQUIRED_FIELDS:
 
@@ -129,12 +131,16 @@ def cleanData(data):
 
 @csrf_exempt
 def index(request):
-    print(request)
+    print(os.getenv('DATABASE_NAME'))
+    print(os.getenv('DATABASE_HOST'))
+    print(os.getenv('DATABASE_PORT'))
+    print(os.getenv('DATABASE_PASSWORD'))
+    print(os.getenv('DATABASE_USER'))
+    print(os.getenv('SECRET_KEY'))
     if request.method == "POST":
 
         try:
             receivedDataString = request.body  # Because its a byte string
-            print(receivedDataString)
             listOfDataEntries = json.loads(receivedDataString)
 
             if listOfDataEntries == []:
