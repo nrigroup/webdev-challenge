@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-
+import django_heroku
 # Load environment variables
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://csv-reader-front.herokuapp.com"
 ]
 CORS_ALLOW_HEADERS = [
     'body',
@@ -139,3 +140,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Activate django-heroku
+django_heroku.settings(locals())
