@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+/* eslint-disable */
+import { Chart as ChartJS } from 'chart.js/auto';
+/* eslint-enable */
 import BarChart from '../components/BarChart';
 import PieChart from '../components/PieChart';
 import { useData } from '../contexts/DataContext';
