@@ -36,6 +36,16 @@ export function findElementInArray(element, arr) {
     return false;
 }
 
+// Gets all the unique fields in the data array based on the field type requested
+export function getUniqueFields(dataArray, fieldType) {
+    const uniqueFields = new Set([]);
+    dataArray.forEach((row) => {
+        const field = row[fieldType];
+        uniqueFields.add(field);
+    });
+    return Array.from(uniqueFields);
+}
+
 // Returns an array of objects where each object represents a row with header matched with each element
 // Assumes each number of headers match with number of elements in each row
 // Returns an empty array if there is an empty column in a row for a required header

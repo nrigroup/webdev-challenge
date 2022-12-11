@@ -4,7 +4,7 @@ import {
     getCsvHeaders,
     getCsvRows,
     mapHeadersToRows,
-} from '../utils';
+} from '../common/utils';
 
 test('Returns true if an element exist in array', () => {
     expect(findElementInArray(1, [1, 2, 3])).toBe(true);
