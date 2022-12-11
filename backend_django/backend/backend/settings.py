@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
 ]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://csv-reader-front.herokuapp.com"
-]
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'https://csv-reader-front.herokuapp.com'
+
+)
 CORS_ALLOW_HEADERS = [
     'body',
     'content-type',

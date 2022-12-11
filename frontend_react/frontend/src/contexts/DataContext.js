@@ -25,7 +25,7 @@ export function DataProvider({ children }) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(jsonData),
-                mode: 'no-cors',
+                mode: 'cors',
             })
                 .then((response) => response.status)
                 .then((status) => {
