@@ -10,8 +10,6 @@ import {
 } from '../common/utils';
 import * as constants from '../common/common_names';
 
-const { REQUIRED_NUM_OF_HEADERS } = constants;
-
 function Home() {
     // State for maintaining error
     const [error, setError] = useState('');

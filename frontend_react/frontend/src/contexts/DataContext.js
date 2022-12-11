@@ -30,15 +30,12 @@ export function DataProvider({ children }) {
                 .then((response) => response.status)
                 .then((status) => {
                     if (status !== SUCCESS_RESPONSE_CODE) {
-                        console.log(status);
-
                         throw new Error('Failed to upload data in database');
                     }
                     // Here code for setting data state can be written if display
                     // of data from database is desired.
                 })
                 .catch((err) => {
-                    console.log(err);
                     throw err;
                 });
         } catch (err) {

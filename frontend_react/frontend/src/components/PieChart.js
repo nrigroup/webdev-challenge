@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 /*eslint-disable */
 import { Pie } from 'react-chartjs-2';
 /* eslint-enable */
-import { Chart as ChartJS } from 'chart.js/auto';
 
 function getRandomColor() {
     const letters = '0123456789ABCDEF'.split('');

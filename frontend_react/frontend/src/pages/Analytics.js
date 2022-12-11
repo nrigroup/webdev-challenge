@@ -36,14 +36,6 @@ export function getAmountForDate(date, dataArray) {
     return totalAmount;
 }
 
-function mapTwoArrays(array1, array2) {
-    const result = {};
-    array1.forEach((element, i) => {
-        result[element] = array2[i];
-    });
-    return result;
-}
-
 function Analytics() {
     const { data } = useData();
     // For amount per Dates
