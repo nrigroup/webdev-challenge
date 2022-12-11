@@ -1,13 +1,13 @@
-from django.shortcuts import render, HttpResponse
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+"""Views that define api functionality for CRUD operations
+"""
 from http import HTTPStatus
 import traceback
 import logging
 import json
-import os
-from .models import DataEntry
 import datetime
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import DataEntry
 
 REQUIRED_FIELDS = [
     'date',
@@ -22,8 +22,9 @@ REQUIRED_FIELDS = [
 
 def checkRequiredFieldsPresent(dataEntries):
     """Checks if required fields are present in the data or not
-    Arguments: Accept a list of data entries where each entry is a dict, Atlease one entry should be present
-    Returns: 
+    Arguments: Accept a list of data entries where each entry is a dict,
+               Atlease one entry should be present.
+    Returns:
         Boolean: True, if all fields are present. False, Otherwise
         """
 
@@ -40,9 +41,10 @@ def checkRequiredFieldsPresent(dataEntries):
 
 def checkDataValues(dataEntries):
     """Checks if field values are in range and as per database model
-    Arguments: Accept a list of data entries where each entry is a dict, Atleast one entry should be present
+    Arguments: Accept a list of data entries where each entry is a dict,
+               Atleast one entry should be present
                 Assumes data has been validated through required fields checks
-    Returns: 
+    Returns:
         Boolean: True, if all entries are valid, False otherwise
         """
 
@@ -57,7 +59,7 @@ def checkDataValues(dataEntries):
                                         pre_tax_amount=entry['pre-tax amount'],
                                         )
 
-        except Exception as e:
+        except Exception as exception:
             logging.error(traceback.format_exc())
             return False
 
@@ -73,17 +75,17 @@ def validateData(dataEntries):
         string: A validations message
     """
     # Validate required fields are not empty
-    if(not checkRequiredFieldsPresent(dataEntries)):
+    if not checkRequiredFieldsPresent(dataEntries):
         return "Invalid Data, required fields missing"
 
     # Validate type and range for each field values based on database model restrictions
-    if(not checkDataValues(dataEntries)):
+    if not checkDataValues(dataEntries):
         return "Invalid type and range for some fields"
 
     return "valid"
 
 
-def clearDatabase(ModelToDelete):
+def clearDatabase(modelToDelete):
     """Deletes all entries in the databse
     Arguments:
         Model which needs to be deleted. Expects that model exists
@@ -91,9 +93,9 @@ def clearDatabase(ModelToDelete):
         None
     """
     try:
-        ModelToDelete.objects.all().delete()
-    except Exception as e:
-        raise e
+        modelToDelete.objects.all().delete()
+    except Exception as exception:
+        raise exception
 
 
 def saveInDatabase(entry):
@@ -116,11 +118,20 @@ def saveInDatabase(entry):
                                tax_amount=entry['tax amount']
                                )
         entryModel.save()
-    except:
-        raise Exception("Could not save in database")
+    except Exception as exception:
+        raise exception
 
 
 def cleanData(data):
+    """Changes the date format from mm/dd/yyyy to yyyy-mm-dd
+        Also if there are any empty fields for tax amount, they are converted to None
+        This is done for consistency with database checks for float type which does
+        not accept empty strings.
+        Note: Data cleaning happens inplace.
+
+    Args:
+        data (list(dict)): Data to be cleaned
+    """
     for entry in data:
         if entry["tax amount"] == "":
             entry["tax amount"] = None
@@ -131,7 +142,7 @@ def cleanData(data):
 
 @csrf_exempt
 def index(request):
-
+    """View for POST request on api route"""
     if request.method == "POST":
 
         try:
@@ -141,7 +152,7 @@ def index(request):
             if listOfDataEntries == []:
                 return JsonResponse({'message': 'Empty data'}, status=HTTPStatus.BAD_REQUEST)
             # Clean the data
-            cleanedData = cleanData(listOfDataEntries)
+            cleanData(listOfDataEntries)
             # Validate data
             validationResult = validateData(listOfDataEntries)
 
@@ -157,7 +168,7 @@ def index(request):
 
             return JsonResponse({'message': validationResult}, status=HTTPStatus.BAD_REQUEST)
 
-        except Exception as e:
+        except Exception as exception:
             logging.error(traceback.format_exc())
             return JsonResponse({'message': 'failed'}, status=HTTPStatus.BAD_REQUEST)
     return JsonResponse({'message': 'failed'}, status=HTTPStatus.BAD_REQUEST)
