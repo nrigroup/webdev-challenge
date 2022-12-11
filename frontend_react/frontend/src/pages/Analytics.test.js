@@ -16,7 +16,7 @@ test('Returns length 2 for an array with two dates which are different', () => {
     expect(
         getUniqueFields(
             [
-                { date: '12/2/2013', category: 'Construction' },
+                { date: '12/1/2013', category: 'Construction' },
                 { date: '12/2/2013', category: 'Construction' },
             ],
             'date'
