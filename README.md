@@ -22,6 +22,7 @@ Heroku Deployment Link: https://csv-reader-front.herokuapp.com/
 * Presence of required headers and required values.
 * Validation for data types in the fields. For example, pre-tax amount can not be negative.
 * Proper error reporting for both frontend and backend.
+* Avoiding access of analytics page without data.
 9. Linters are used for both frontend(ESLint) and backend(Pylint) to ensure a consistent and clean coding conventions. Airbnb Javascript style guide is used for frontend.
 10. Automated unit tests were developed for frontend using Jest. These tests are also included in the github actions workflows which automatically runs these tests on every push to the branch. 
 11. Docker is used to setup development environment easily. Both frontend and backend have their separate docker files so that developers can setup frontend and backend environment separately. However, a common docker-compose file is also available in the root directory which sets up both frontend and backend at the same time.
