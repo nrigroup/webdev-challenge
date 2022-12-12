@@ -162,7 +162,6 @@ Vagrantfile
 
 # React
 .DS_STORE
-node_modules
 scripts/flow/*/.flowconfig
 .flowconfig
 *~
