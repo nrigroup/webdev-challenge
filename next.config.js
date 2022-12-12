@@ -16,14 +16,6 @@ const nextConfig = {
     }
     return config
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "img.icons8.com",
-      },
-    ],
-  },
 }
 
 module.exports = withTM(nextConfig)
