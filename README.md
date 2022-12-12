@@ -1,6 +1,6 @@
 # NRI Web Development Challenge
 ## Demo
-
+![](https://github.com/Tez01/webdev-challenge/blob/master/demo.gif)
 # Installation instruction
 1. Clone the repository from github.
 2. The database configuration is taken from an environment file. Which is not available in the repo for security reasons but the .env file is shared in the email. Save this file in the `backend_django/backend/backend/` directory.
