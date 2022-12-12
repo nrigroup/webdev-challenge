@@ -1,5 +1,5 @@
 # NRI Web Development Challenge
-Heroku Deployment Link: https://dashboard.heroku.com/apps/csv-reader-front
+Heroku Deployment Link: https://csv-reader-front.herokuapp.com/
 ## Demo
 ![](https://github.com/Tez01/webdev-challenge/blob/master/demo.gif)
 # Installation instruction
