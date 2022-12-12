@@ -36,10 +36,10 @@ const FileDropzone = ({
                 <div className={styles.file}>
                   <Image
                     className={styles.icon}
-                    src="/icons/happy-file.png"
+                    src="/icons/file-icon.svg"
                     alt="happy file icon"
-                    width={96}
-                    height={96}
+                    width={30}
+                    height={30}
                   />
                   <span>
                     <em>{fileName}</em>
@@ -53,10 +53,10 @@ const FileDropzone = ({
                     removeFile()
                   }}>
                   <Image
-                    src="/icons/delete.png"
+                    src="/icons/trash-bin-icon.svg"
                     alt="trash can icon"
-                    width={48}
-                    height={48}
+                    width={30}
+                    height={30}
                   />
                 </button>
               </div>
