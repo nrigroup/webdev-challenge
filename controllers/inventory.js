@@ -4,8 +4,6 @@ exports.read = (req, res) => {
   db.query(
     `Select * from ${req.query.table} where posteddate='${req.query.posteddate}'`,
     (err, result) => {
-      console.log(result);
-      console.log(err);
       if (!err) {
         res.send(result.rows);
       } else {
@@ -16,7 +14,7 @@ exports.read = (req, res) => {
   db.end;
 };
 
-exports.newtables = (req, res) => {
+exports.newTable = (req, res) => {
   const inv = req.body;
 
   for (const key in inv) {
@@ -87,5 +85,20 @@ exports.newtables = (req, res) => {
 
   res.send("Insertion was done");
 
+  db.end;
+};
+
+exports.deleteTable = (req, res) => {
+  const info = req.body;
+  db.query(
+    `DELETE FROM ${info.table} WHERE posteddate = '${info.date}'`,
+    (err, result) => {
+      if (!err) {
+        res.send("Successful!");
+      } else {
+        res.send("Fail!");
+      }
+    }
+  );
   db.end;
 };
