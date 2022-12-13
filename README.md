@@ -13,6 +13,8 @@
   <a href="#key-features">Tech Stack & Features</a> •
   <a href="#running-locally">Running Locally</a> •
   <a href="#todo">TODO</a>
+  <a href="#demo">DEMO</a>
+  <a href="#discussion">DISCUSSION</a>
 </p>
 
 
@@ -22,7 +24,7 @@
 * [Express](https://expressjs.com)
 * Automatically restarting Node application when there are file changes using [Nodemon](https://nodemon.io)
 * Easy connection to database using [pg](https://node-postgres.com/)
-* A simple middleware for backend router [router](https://github.com/pillarjs/router)
+* A simple middleware for backend [router](https://github.com/pillarjs/router)
 * Automatically load environment variables from a .env file into the process using [dotenv](https://github.com/motdotla/dotenv#readme)
  
 ## Running Locally
@@ -68,4 +70,15 @@ The API will run locally at: http://localhost:8000/
 ## TODO
 
 * Add support for editing table data
+
+
+## DEMO
+
+* [Website](https://nri-challenge.netlify.app/)
+* [Demo link](https://www.youtube.com)
+
+
+## DISCUSSION
+
+I chose React.js because it helps me build from a simple app to a complex app with ease. However, this is my first-time using Ant Design for styling. This React UI library comes with excellent prebuilt styling components.
 
