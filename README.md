@@ -21,8 +21,8 @@
 
 * [Express](https://expressjs.com)
 * Automatically restarting Node application when there are file changes using [Nodemon](https://nodemon.io)
-* Easy connection to database using [PG](https://node-postgres.com/)
-* A simple middleware for backend router [Router](https://github.com/pillarjs/router)
+* Easy connection to database using [pg](https://node-postgres.com/)
+* A simple middleware for backend router [router](https://github.com/pillarjs/router)
 * Automatically load environment variables from a .env file into the process using [dotenv](https://github.com/motdotla/dotenv#readme)
  
 ## Running Locally
