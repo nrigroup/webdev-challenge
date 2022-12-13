@@ -1,57 +1,74 @@
-# NRI Web Development Challenge
-To better gauge your skills as a web developer, we would like you to complete the following challenge. This will help the interviewers assess your strengths, and frame the conversation through the interview process. Take as much time as you need, however we ask that you not spend more than a few hours. 
 
-You can use any framework to complete the challenge. For the frontend, please use your favourite frameworks or libararies such as bootstrap, jquery, foundation, vuejs...etc. If you prefer NOT using any, please provide us with reasons as to why. However, here at NRI, we use Laravel, Bootstrap & jQuery, and it would help us to evaluate what we know and use.
+<h1 align="center">
+  <br>
+  <a href="https://nri-challenge.netlify.app"><img src="https://user-images.githubusercontent.com/70352144/207425372-29b575f3-2ddf-4929-bde5-40c1ca08a648.png" alt="NRI Challenge" width="200"></a>
+  <br>
+    NRI Challenge Express REST API
+  <br>
+  <div align="center">
+    <a href="https://github.com/tienviet10/todos-server/actions/workflows/main.yml"><img src="https://github.com/tienviet10/todos-server/actions/workflows/main.yml/badge.svg" alt="Deployment Badge" ></a>
+  </div>  
+</h1>
 
-Bonus points if you can deploy and give us a demo link.
+<h4 align="center">This backend application is written in Node.js (<a href="https://expressjs.com/">Express.js</a>) and deployed automatically to <a href="https://railway.app//">Railway</a> on merges to the main branch. PostgreSQL database hosted by Railway is used for this application. The frontend made in React.js can be accessed at this <a href="https://github.com/tienviet10/webdev-challenge-frontend/">link.</a></h4>
 
-## Submission Instructions
-1. Fork this project on github. You will need to create an account if you don't already have one
-2. Complete the challenge within your fork after reading below details.
-3. Push all of your changes to your fork on github and submit a pull request.
+<p align="center">
+  <a href="#key-features">Tech Stack & Features</a> •
+  <a href="#running-locally">Running Locally</a> •
+  <a href="#todo">TODO</a>
+</p>
 
-## Project Description
-Imagine that NRI has won some items from an auction. From the auctioneer, we have received the item details electronically. We would like to import this dataset into our central inventory system. Your task is to create a simple web interface that will accept a `.csv` file and then store them in a relation database.
 
-### What your web application must do:
-1. Observe MVC structure in your code.
-2. Show a simple, attractive web interface that allows users to upload a file.
-3. Gets the uploaded csv file, parses it and saves it into a RDB.
-4. After saving into the RDB, the "dashboard" displays a simple report - the total amount (pre tax amount) per day in a bar graph, as well as two pie charts displaying the overall total (pre tax amount) per category and total per condition.
-5. These are the basic requirements of this challenge. Other features you implement will count as bonus.
 
-* Your app must accept a comma separated file with the following columns:date (required), category (required), lot title (required), lot location (required), lot condition (required), pre-tax amount (required), tax name, tax amount
-* Please keep mind of the following:
-     - Column names may or may not exist and may nota be in that order specified above (there will always be a headline/row)
-     - There may or may not be data in each column in the data (required fields must have data)
-  
- An example input file named `data.csv` is included in this repo. However, we may or may not use the same data file to test your work. 
+## Tech Stack & Features
 
-Your application should be easy to set up, and should run on Linux distros such as ubuntu, centos or debian. It should not require any non open-source software.
+* [Express](https://expressjs.com)
+* Automatically restarting Node application when there are file changes using [Nodemon](https://nodemon.io)
+* Easy connection to database using [PG](https://node-postgres.com/)
+* A simple middleware for backend router [Router](https://github.com/pillarjs/router)
+* Automatically load environment variables from a .env file into the process using [dotenv](https://github.com/motdotla/dotenv#readme)
+ 
+## Running Locally
 
-There are many ways that this application could be built; we ask that you build it in a way that showcases one of your strengths (OOP, clean interface, clean code, extensible code, high code quailty, beautiful frontend...etc). If you you enjoy front-end development, do something interesting with the interface. If you like object-oriented design, feel free to dive deeper into the domain model of this problem. We're happy to tweak the requirements slightly if it helps you show off one of your strengths.
+**Prerequisites**
 
-Once you're done, please submit a paragraph or two in your `README` about what you are particularly proud of in your implementation, and why.
+The following applications should be installed in your system:
+* [Git](https://git-scm.com) 
+* [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com))
+* PostgreSQL
 
-## Evaluation
-Evaluation of your submission will be based on the following criteria. 
+**API**
 
-1. Did your application fulfill the basic requirements?
-2. Did you document the method for setting up and running your application?
-3. Did you follow the instructions for submission?
-4. Did you style your code in a way that it's easy to read and understand?
-5. Did you go above and beyond? (Did your submission surprise us?)
-6. Did you maintain clean code (indentation, comments, naming conventions)
+1. Create a folder and clone this repository
 
-## Note
-Please submit clean code with proper indentation. Understand that the first thing we do is  
-read your code, not run your code. If you fail to keep consistant indentation and  
-the best practices in defining your functions and variable names, chances are  
-we will not need to run your code to evaluate your skills.
+```sh
+$ git clone https://github.com/tienviet10/webdev-challenge.git
+```
 
-## What's Next?
-Once when you have submitted your work we will review your submission as soon as possible. 
+2. Move to the correct directory
 
-Please note we will only contact the selected candidates for further consideration.
+```sh
+$ cd webdev-challenge
+```
 
-We thank you for taking the time to complete this development challenge and appreciate your interest in pursuing a career with NRI. 
+3. Install dependencies
+
+```sh
+$ npm install
+```
+
+4. Fill out variables in .env file.
+
+5. Run the application
+
+```sh
+$ npm run dev
+```
+
+The API will run locally at: http://localhost:8000/
+
+
+## TODO
+
+* Add support for editing table data
+
