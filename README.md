@@ -5,9 +5,6 @@
   <br>
     NRI Challenge Express REST API
   <br>
-  <div align="center">
-    <a href="https://github.com/tienviet10/todos-server/actions/workflows/main.yml"><img src="https://github.com/tienviet10/todos-server/actions/workflows/main.yml/badge.svg" alt="Deployment Badge" ></a>
-  </div>  
 </h1>
 
 <h4 align="center">This backend application is written in Node.js (<a href="https://expressjs.com/">Express.js</a>) and deployed automatically to <a href="https://railway.app//">Railway</a> on merges to the main branch. PostgreSQL database hosted by Railway is used for this application. The frontend made in React.js can be accessed at this <a href="https://github.com/tienviet10/webdev-challenge-frontend/">link.</a></h4>
