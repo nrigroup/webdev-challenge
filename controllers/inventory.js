@@ -4,8 +4,12 @@ exports.read = (req, res) => {
   db.query(
     `Select * from ${req.query.table} where posteddate='${req.query.posteddate}'`,
     (err, result) => {
+      console.log(result);
+      console.log(err);
       if (!err) {
         res.send(result.rows);
+      } else {
+        res.send([]);
       }
     }
   );
