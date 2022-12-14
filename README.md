@@ -12,8 +12,8 @@
 <p align="center">
   <a href="#key-features">Tech Stack & Features</a> •
   <a href="#running-locally">Running Locally</a> •
-  <a href="#todo">TODO</a>
-  <a href="#demo">DEMO</a>
+  <a href="#todo">TODO</a> •
+  <a href="#demo">DEMO</a> •
   <a href="#discussion">DISCUSSION</a>
 </p>
 
