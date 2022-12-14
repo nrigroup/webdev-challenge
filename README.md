@@ -75,7 +75,7 @@ The API will run locally at: http://localhost:8000/
 ## DEMO
 
 * [Website](https://nri-challenge.netlify.app/)
-* [Demo link](https://www.youtube.com)
+* [Demo link](https://www.youtube.com/watch?v=Fw4aGFjmGTI)
 
 
 ## DISCUSSION
