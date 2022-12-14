@@ -80,5 +80,14 @@ The API will run locally at: http://localhost:8000/
 
 ## DISCUSSION
 
-I chose React.js because it helps me build from a simple app to a complex app with ease. However, this is my first-time using Ant Design for styling. This React UI library comes with excellent prebuilt styling components.
+
+As a React.js and Node.js developer, I am proud of my takehome work for a few reasons.
+First, I successfully implemented Ant Design, which I have yet to try to create a beautiful and intuitive user interface (UI) and user experience (UX) for the application. I decided to use Ant Design because I had heard a lot of great reviews regarding the framework. Ant Design is a perfect UI framework for developing organizational apps and dashboards. The frontend
+was deployed to Netlify, allowing continuous application deployment through GitHub.
+
+Second, I was able to leverage my knowledge of React.js and Node.js to build a robust and
+scalable backend for the application. The backend and PostgreSQL were deployed to Railway, allowing continuous development and deployment through GitHub. I tested the application to ensure it was free of bugs and errors. 
+
+Finally, writing a logic to identify the columns without column names poses some challenges. I have to know more about the data to develop a better logic that fits all cases. Overall, I am proud of my work on this project, and I believe it showcases my skills and abilities as a Reacts and Node.js developer.
+
 
