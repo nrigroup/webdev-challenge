@@ -7,7 +7,7 @@ Heroku Deployment Link: https://csv-reader-front.herokuapp.com/
 2. Clone the repository from github.
 3. The database configuration is taken from an environment file. Which is not available in the repo for security reasons but the .env file is shared in the email. Save this file in the `backend_django/backend/backend/` directory.
 4. cd into the clone repository. Go to `frontend_react/frontend` folder. Run `npm install` 
-5. Go back to the root folder of repository and run `docker-compose up`.
+5. Go back to the root of repository and run `docker-compose up`.
 6. This should set up the frontend and backend at the same time. 
 7. By default, frontend can be accessed at `localhost:3000` and backend at `localhost:8000`.
 
