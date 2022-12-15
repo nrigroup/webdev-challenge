@@ -3,11 +3,13 @@ Heroku Deployment Link: https://csv-reader-front.herokuapp.com/
 ## Demo
 ![](https://github.com/Tez01/webdev-challenge/blob/master/demo.gif)
 # Installation instruction
-1. Clone the repository from github.
-2. The database configuration is taken from an environment file. Which is not available in the repo for security reasons but the .env file is shared in the email. Save this file in the `backend_django/backend/backend/` directory.
-3. cd into the cloned repository and run `docker-compose up`.
-4. This should set up the frontend and backend at the same time. 
-5. By default, frontend can be accessed at `localhost:3000` and backend at `localhost:8000`.
+1. Make sure you have node.js installed.
+2. Clone the repository from github.
+3. The database configuration is taken from an environment file. Which is not available in the repo for security reasons but the .env file is shared in the email. Save this file in the `backend_django/backend/backend/` directory.
+4. cd into the clone repository. Go to frontend_react/frontend folder. Run `npm install` 
+5. Go back to the root folder of repository and run `docker-compose up`.
+6. This should set up the frontend and backend at the same time. 
+7. By default, frontend can be accessed at `localhost:3000` and backend at `localhost:8000`.
 
 ## Things I am proud of
 1. I have chosen an architecture so as to separate the development of frontend and backend which reduces complexity and is more scalable design for larger projects. 
