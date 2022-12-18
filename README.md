@@ -2,7 +2,7 @@
 Heroku Deployment Link: https://csv-reader-front.herokuapp.com/
 ## Demo
 ![](https://github.com/Tez01/webdev-challenge/blob/master/demo.gif)
-A CSV Reader web application that reads a csv file and displays analytics based for the data. The application was developed using React, Django and PostgreSQL database. Data validation checks are implemented on both frontend and backend.
+A CSV Reader web application that reads a csv file, displays analytics for the data and saves the data in a database. The application was developed using React, Django and PostgreSQL database. Data is validated on both frontend and backend.
 # Installation instruction
 1. Make sure you have node.js installed.
 2. Clone the repository from github.
