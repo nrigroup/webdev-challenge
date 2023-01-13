@@ -1,0 +1,20 @@
+node_modules/
+# .env
+# .env.local
+# .env.development.local
+# .env.test
+package-lock.json
+yarn.lock
+yarn-error.log
+yarn-debug.log
+yarn-integrity.json
+npm-debug.log*
+npm-debug.log
+pnpm-debug.log
+pnpm-debug.log*
+pnpm-lock.yaml
+pnpm-workspace.yaml
+pnpmfile.js
+lerna-debug.log
+
+    
