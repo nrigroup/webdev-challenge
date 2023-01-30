@@ -1,0 +1,30 @@
+Dashboard
+    a bar graph
+    two pie chart
+
+Upload file UI
+    csv file
+    [column name may not be present] [Scan data for errors]
+        Date [R]
+        Category [R]
+        Lot Title [R]
+        Lot Location [R]
+        Lot Condition [R]
+        Pre-Tax Amount [R]
+        Tax Name [NR]
+        Tax Amount [NR]
+
+
+
+User  will upload csv file
+    parse  csv file and save it to relational DB
+
+display on dashboard
+    Bar graph
+        total amount PER DAY (pre tax amount)
+
+    pie chart
+        overall total PER CATEGORY (pre tax amount)
+        total PER CONDITION
+
+
