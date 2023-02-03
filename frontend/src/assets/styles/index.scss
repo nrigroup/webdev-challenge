@@ -1,0 +1,60 @@
+@use "theme";
+@use "loading";
+@use "dashboard";
+@use "dataTable";
+@use "./components/Navigation";
+
+* {
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+:root {
+  @include theme.text(dark);
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+  }
+  p {
+    font-family: "Noto Sans Palmyrene", sans-serif;
+  }
+  button.primary {
+    @include theme.primary-button()
+  }
+  .danger {
+    color: #de0000;
+  }
+}
+
+#root {
+  display: flex;
+
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  @include theme.background-container(dark);
+
+  .main.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+
+.center-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main.container {
+  #dashboard {
+  padding-block: .5rem;
+  padding-inline: 1rem;
+  }
+}

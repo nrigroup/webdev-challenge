@@ -1,0 +1,171 @@
+/*
+ * Light Mode
+ * */
+$DM-background-color: #242423;
+$DM-secondary-color: #333533;
+$DM-highlight-color: #F5CB5C;
+$DM-text-color: #E8EDDF;
+$DM-secondary-text-color: #CFDBD5;
+
+/*
+ * Dark Mode
+ * */
+$LM-background-color: #E8EDDF;
+$LM-secondary-color: #CFDBD5;
+$LM-highlight-color: #F5CB5C;
+$LM-text-color: #242423;
+$LM-secondary-text-color: #333533;
+
+
+/*
+ * Mixins for reusable styles
+ * */
+@mixin text($theme: light) {
+  @if ($theme==light) {
+    color: $LM-text-color;
+  } @else {
+    color: $DM-text-color;
+  }
+}
+
+@mixin placeholder-text-color($theme) {
+  @if ($theme==light) {
+    ::placeholder {
+      color: rgba(51, 53, 51, 0.5);
+    }
+  } @else {
+    color: rgba(232, 237, 223, 0.5);
+  }
+}
+
+@mixin highlight-text($theme: dark) {
+  @if $theme == light {
+    color: $LM-highlight-color;
+  } @else {
+    color: $DM-highlight-color;
+  }
+}
+
+@mixin background-container($theme: light) {
+  @if $theme == light {
+    background-color: $LM-background-color;
+  } @else {
+    background-color: $DM-background-color;
+  }
+}
+
+@mixin background-secondary-container($theme: light) {
+  @if $theme == light {
+    background-color: $LM-secondary-color;
+  } @else {
+    background-color: $DM-secondary-color;
+  }
+}
+
+@mixin primary-button($theme: light) {
+  cursor: pointer;
+
+  outline: none;
+  border: none;
+  border-radius: 3px;
+
+  padding-block: .5rem;
+  padding-inline: 1.6rem;
+
+
+  @if $theme == light {
+    background-color: $LM-highlight-color;
+    color: $DM-text-color;
+
+  } @else {
+    background-color: $DM-highlight-color;
+    color: $LM-text-color;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 1;
+  }
+}
+
+@mixin secondary-button($theme: light) {
+  cursor: pointer;
+
+  outline: none;
+  border: none;
+  border-radius: 3px;
+
+  padding-block: .5rem;
+  padding-inline: 1rem;
+
+
+  @if $theme == light {
+    background-color: $LM-secondary-color;
+    color: $LM-text-color;
+
+    &:hover {
+      background-color: $LM-background-color;
+    }
+    &:active {
+      background-color: $LM-secondary-color;
+    }
+
+  } @else {
+    background-color: $DM-secondary-color;
+    color: $DM-text-color;
+
+    &:hover {
+      background-color: $DM-background-color;
+    }
+    &:active {
+      background-color: $DM-secondary-color;
+    }
+  }
+}
+
+@mixin transparent-button($theme: light) {
+  cursor: pointer;
+
+  outline: none;
+  border: none;
+  border-radius: 3px;
+
+  padding-block: .5rem;
+  padding-inline: 1rem;
+
+  background-color: transparent;
+
+  @if $theme == light {
+    color: $LM-text-color;
+  } @else {
+    color: $DM-text-color;
+  }
+
+  &:hover {
+    background-color: rgba(134, 134, 134, 0.2);
+  }
+  &:active {
+    background-color: transparent;
+  }
+
+  &:disabled {
+    color: rgba(135, 135, 135, 0.32);
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+}
+
+@mixin outline-text-color($theme: light) {
+  @if ($theme==light) {
+    outline: 1px solid rgba(51, 53, 51, 0.5);
+  } @else {
+    outline: 1px solid rgba(232, 237, 223, 0.5);
+
+  }
+}

@@ -1,0 +1,210 @@
+@use "../theme";
+
+.display-page-name {
+  text-transform: capitalize;
+}
+
+
+
+.search-bar {
+  width: 100%;
+  input {
+    width: 100%;
+    @include theme.background-container(dark);
+    @include theme.outline-text-color(dark);
+    @include theme.text(dark);
+    @include theme.placeholder-text-color(dark);
+
+    border-radius: 2px;
+    border: none;
+    padding-block: .5rem;
+
+    padding-inline: .5rem;
+  }
+}
+
+
+
+
+
+
+
+button.add-data {
+  padding: .5rem !important;
+  padding-inline: .5rem !important;
+  span {
+    color: #242423;
+  }
+}
+
+div.add-data.active {
+  position: fixed;
+  display: flex;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  //background-color: #fff;
+
+  .background-close-button {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+
+    z-index: -1;
+
+    backdrop-filter: blur(20px);
+
+    &:hover {
+      background-color: transparent;
+      backdrop-filter: blur(2px);
+
+    }
+  }
+
+  .upload, .uploaded {
+    @include theme.background-secondary-container(dark);
+    width: 70vw;
+    height: 30vh;
+
+    justify-content: center;
+    gap: 10px;
+    box-sizing: border-box;
+
+    .controls {
+
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+
+      width: 100%;
+      height: 0;
+
+      button {
+        width: auto;
+        padding: 1rem;
+
+        z-index: 10;
+      }
+    }
+  }
+
+  .upload {
+    .upload {
+      display: flex;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      //justify-content: start;
+
+
+      input {
+        cursor: pointer;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+      .icon {
+        font-size: 70px;
+      }
+    }
+    .uploaded {
+      display: none;
+    }
+  }
+
+  .uploaded {
+    overflow: hidden;
+    height: 400px;
+
+    .upload {
+      display: none;
+    }
+    .uploaded {
+      display: flex;
+
+      margin: 1rem;
+
+      .content {
+      overflow: scroll;
+        @include theme.background-container(dark);
+        width: 90%;
+        height: 100%;
+      }
+
+      .main-controls {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        button {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width: 100%;
+
+          font-size: 15px;
+          font-weight: bold;
+
+          p {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+div.add-data {
+  display: none;
+}
+button.theme-switch {
+  height: 40px !important;
+  width: 60px !important;
+  padding-inline: 5px !important;
+
+  border-radius: 50px !important;
+
+  background-color: #1a1406 !important;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  overflow: hidden;
+
+  div {
+    @include theme.background-secondary-container(dark);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+
+    transition: transform 0.2s ease-in-out, rotate 0.2s ease-in-out;
+
+    div {
+      height: 30px;
+      width: 30px;
+
+      opacity: 0;
+      border-radius: 50%;
+
+      background-color: #1a1406 !important;
+      transform: translateX(-12px) translateY(-3px);
+    }
+  }
+
+  &.active {
+    div {
+      div {
+        opacity: 1;
+        transform: translateX(-12px) translateY(-3px);
+      }
+      transform: translateX(20px);
+    }
+
+  }
+}
+
+
