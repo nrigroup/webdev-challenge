@@ -24,17 +24,21 @@ const DataTable = () => {
   })
 
   useEffect(() => {
-    // getting data form api server
-    auctionItemService.GetData()
-        .then((result) => {
-          console.log(result);
-          setData((prevState) => {
-            return {
-              Total: result,
-              Filter: result
-            }
+    try {
+      // getting data form api server
+      auctionItemService.GetData()
+          .then((result) => {
+            console.log(result);
+            setData((prevState) => {
+              return {
+                Total: result,
+                Filter: result
+              }
+            })
           })
-        })
+    } catch (e) {
+      
+    }
   }, [Data.Total.length])
 
   return <Suspense fallback={<Loading />}>
@@ -70,19 +74,23 @@ const DataTable = () => {
 const DataList = (props) => {
   let result = [];
 
-  for (const Element of props.filterdata) {
-    result.push(
-        <tr key={Element.date+Element.category+Element.preTaxAmount}>
-          <td>{Element.date}</td>
-          <td>{Element.category}</td>
-          <td>{Element.lotTitle}</td>
-          <td>{Element.lotLocation}</td>
-          <td>{Element.lotCondition}</td>
-          <td>{Element.preTaxAmount}</td>
-          <td>{Element.taxName}</td>
-          <td>{Element.taxAmount}</td>
-        </tr>
-    )
+  try {
+    for (const Element of props.filterdata) {
+      result.push(
+          <tr key={Element.date + Element.category + Element.preTaxAmount}>
+            <td>{Element.date}</td>
+            <td>{Element.category}</td>
+            <td>{Element.lotTitle}</td>
+            <td>{Element.lotLocation}</td>
+            <td>{Element.lotCondition}</td>
+            <td>{Element.preTaxAmount}</td>
+            <td>{Element.taxName}</td>
+            <td>{Element.taxAmount}</td>
+          </tr>
+      )
+    }
+  }catch (e) {
+    
   }
 
   return result;

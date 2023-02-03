@@ -104,35 +104,39 @@ const Dashboard = (props) => {
    * Overall Total Per Category
    * Overall Total Per Condition
    * */
-  // looping through data
-  // to sort
-  Data.forEach(item => {
 
-    // If amount of current DATE is not present
-    // create one and assign 0
-    if (!amountPerDay[item.date]) {
-      amountPerDay[item.date] = 0;
-    }
-    // If amount of current CATEGORY is not present
-    // create one and assign 0
-    if (!amountPerCategory[item.category]) {
-      amountPerCategory[item.category] = 0;
-    }
-    // If amount of current Condition is not present
-    // create one and assign 0
-    if (!amountPerCondition[item.lotCondition]) {
-      amountPerCondition[item.lotCondition] = 0;
-    }
+  // wrapping loop with try and catch to
+  // catch errors while data still loading
+  try {
+    // looping through data
+    // to sort
+    Data.forEach(item => {
 
-    // Add Pre Tax amount to all the filters
-    OverallTotalPreTax += parseFloat(item.preTaxAmount); // adding to overall total pre tax
-    OverallTaxAmount += parseFloat(item.taxAmount); // adding to overall tax amount
-    amountPerDay[item.date] += item.preTaxAmount;
-    amountPerCategory[item.category] += parseFloat(item.preTaxAmount);
-    amountPerCondition[item.lotCondition] += parseFloat(item.preTaxAmount);
+      // If amount of current DATE is not present
+      // create one and assign 0
+      if (!amountPerDay[item.date]) {
+        amountPerDay[item.date] = 0;
+      }
+      // If amount of current CATEGORY is not present
+      // create one and assign 0
+      if (!amountPerCategory[item.category]) {
+        amountPerCategory[item.category] = 0;
+      }
+      // If amount of current Condition is not present
+      // create one and assign 0
+      if (!amountPerCondition[item.lotCondition]) {
+        amountPerCondition[item.lotCondition] = 0;
+      }
 
-  })
+      // Add Pre Tax amount to all the filters
+      OverallTotalPreTax += parseFloat(item.preTaxAmount); // adding to overall total pre tax
+      OverallTaxAmount += parseFloat(item.taxAmount); // adding to overall tax amount
+      amountPerDay[item.date] += item.preTaxAmount;
+      amountPerCategory[item.category] += parseFloat(item.preTaxAmount);
+      amountPerCondition[item.lotCondition] += parseFloat(item.preTaxAmount);
 
+    })
+  } catch (e) {}
   // Format data for the Amount Per Day Bar Chart
   labels = Object.keys(amountPerDay);
   values = Object.values(amountPerDay);
