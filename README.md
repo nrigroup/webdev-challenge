@@ -65,6 +65,7 @@ We thank you for taking the time to complete this development challenge and appr
 
 ## What I'm using
 
-Laravel
-React
+Laravel(php)
+SQLite(SQLite viewer extention to view db straight in VS code)
+ReactJS
 papa parse, axios

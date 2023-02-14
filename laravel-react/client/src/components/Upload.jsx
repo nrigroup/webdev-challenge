@@ -3,44 +3,36 @@ import { useCSVReader } from 'react-papaparse'
 import axios from 'axios';
 import axiosClient from '../axios-client'
 
-const Upload = () => {
-    const [data, setData] = useState({})
+const Upload = ({setChartData}) => {
 
-    const Submit = () => {
-        const payload = data;
-        console.log(payload);
+    const [input, setInput] = useState({});
+    const [data, setData] = useState([]);
+
+    //axios POST request to laravel server to store parsed data into SQLite DB
+    const Post = ( payload ) => {
         axios({
-            url:'http://127.0.0.1:8000/api/save',
+            url:'http://127.0.0.1:8000/api/lotlog',
             method:'POST',
-            data: JSON.stringify(payload)
-        // }, {
-        //     headers: {
-        //       'Content-Type': 'application/x-www-form-urlencoded'
-        //     }
-        })
-        .then(()=>{
+            data: payload
+        }).then(()=>{
             console.log("Data has been sent to the server");
         })
         .catch((error) => {
             console.log(error.response.data);
         });
 
-        // axiosClient.post('/save', payload)
-        // .then(()=>{
-        //     console.log("Data has been sent to the server");
-        // })
-        // .catch(() => {
-        //     console.log("Internal server error");
-        // });
     }
-    
-    const handleLog= () => {
+
+    //iterates through each entry in input array and creates a labled JSON object for that entry 
+    //adds the labled entry to data array and calls Post function using the current entry as its payload
+    //setChartData state as data array to be used in Chart Component.
+    const handleLog=() => {
         console.log(data)
-        data.shift();//gets rid of headers
-        data.pop();//gets rid of empty last row
-        //maps through and creates a new JSON object for each entry and sends it the server as a post request
-        data.map((log, i) => {
-        
+        input.shift();//gets rid of headers
+        input.pop();//gets rid of empty last row
+
+        //iterates through data array and creates a new labled JSON object for each entry and sends it the server as a post request
+        input.forEach(log => {
             const Lotlog = {
                 "date":log[0],
                 "category":log[1],
@@ -51,29 +43,25 @@ const Upload = () => {
                 "tax_name":log[6],
                 "tax_amount":log[7]
             }
-            console.log(Lotlog);
-            
-            axios({
-                url:'http://127.0.0.1:8000/api/lotlog',
-                method:'POST',
-                data: Lotlog
-            }).then(()=>{
-                console.log("Data has been sent to the server");
-            })
-            .catch((error) => {
-                console.log(error.response.data);
-            });
-        })
+            data.push(Lotlog);
+            //console.log(data);
+            //Post(Lotlog);
+        });
+
+        setChartData(data);
+
     }
-
-    //https://react-papaparse.js.org/docs#local-files
-    const { CSVReader } = useCSVReader();
-
+   
+  //papa parse used to parse csv file 
+  //data is returned as unlabled JSON object and stored in the input array.
+  //boilerplate code taken from 
+  //https://react-papaparse.js.org/docs#local-files
+  const { CSVReader } = useCSVReader();
   return (
     <div>
        <CSVReader
             onUploadAccepted={(results) => {
-                setData(results.data)
+                setInput(results.data)
                 // console.log('---------------------------');
                 // console.log(data); //only show data
                 // console.log('---------------------------');
