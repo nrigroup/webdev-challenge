@@ -1,0 +1,21 @@
+h3{
+    margin-top: 0;
+}
+
+.pie-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.pie-chart{
+    margin: 0 auto;
+    .legend{
+        margin-top: 2px;
+    }
+}
+
+@media screen and (max-width: 1280px){
+    .pie-container{
+        grid-template-columns: 1fr;
+    }
+}

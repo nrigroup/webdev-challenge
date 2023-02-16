@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('lot_location');
             $table->string('lot_condition');
             $table->double('pre_tax_amount');
-            $table->string('tax_name');
-            $table->double('tax_amount');
+            $table->string('tax_name')->nullable();
+            $table->double('tax_amount')->nullable();
             $table->timestamps();
         });
     }

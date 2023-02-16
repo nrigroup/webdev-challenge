@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import Chart from './Chart'
-import Upload from './Upload'
+import Chart from '../Charts/Chart'
+import Footer from '../Footer/Footer'
+import Upload from '../Upload/Upload'
 
 //dashboard components acts as a warper for all other components.
 const Dashboard = () => {
@@ -16,6 +17,7 @@ const Dashboard = () => {
         <div>
             <Chart chartData={chartData}/>
         </div>
+        <Footer/>
     </div>
   )
 }
