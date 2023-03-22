@@ -23,3 +23,9 @@ Refer .env.template
 ## Run in development mode
 
 `npm run dev`
+
+Expected results
+
+![image](https://user-images.githubusercontent.com/59893217/226796437-93ded48e-d8f2-40c2-8314-aa54c691fbd7.png)
+![image](https://user-images.githubusercontent.com/59893217/226796653-f90af175-33cb-4c3a-8ead-e3ceb61433e1.png)
+![image](https://user-images.githubusercontent.com/59893217/226796740-3932a99a-7075-42b0-bfcb-55775f65ef8e.png)
